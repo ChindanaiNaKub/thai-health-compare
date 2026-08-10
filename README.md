@@ -55,10 +55,18 @@ bun run build          # static output in build/
 
 ## Status
 
-Alpha. 17 plan records from AIA, Bangkok Life, Dhipaya, FWD, Krungthai-AXA,
-Muang Thai, Thai Life, and TQM/Thai Health, plus the three public schemes
-(สปสช. / ประกันสังคม / สิทธิข้าราชการ). The `_example-*.yaml` files are
+Alpha. 33 plan records from 12 insurers — AIA, Bangkok Life, Dhipaya, FWD,
+Generali, Krungthai-AXA, Muang Thai, Navakij, Ocean Life, Pacific Cross, Thai
+Life, and Thai Health — plus the three public schemes (สปสช. / ประกันสังคม /
+สิทธิข้าราชการ), drawn from 39 cited sources. The `_example-*.yaml` files are
 **fictional templates**, kept only to show the schema.
+
+Nine records now carry a premium for every year from entry to the renewal
+ceiling, so their lifetime cost is complete rather than partial. Seven cite
+filed policy wording. One — Ocean Life OCHI — is the first rider anywhere in
+this dataset with a host premium published at every age, which is the only
+reason its "share of your money that buys health cover" figure is a real
+number instead of a blank.
 
 What entering real data taught us:
 

@@ -26,7 +26,12 @@ const Sourced = z.object({
 const PremiumBand = z.object({
 	age_from: z.number().int().min(0).max(120),
 	age_to: z.number().int().min(0).max(120),
-	thb_per_year: z.number().int().positive(),
+	/**
+	 * Not an integer: Ocean Life quotes host premiums in half-baht (720.50), and
+	 * rounding a published figure to make it fit the schema would be this project
+	 * editing an insurer's number. Display already formats to whole baht.
+	 */
+	thb_per_year: z.number().positive(),
 	sex: z.enum(['any', 'male', 'female']).default('any')
 });
 

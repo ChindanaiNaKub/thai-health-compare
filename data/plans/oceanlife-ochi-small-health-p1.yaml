@@ -1,0 +1,480 @@
+# โครงการโอชิ สมอล เฮลท์ แผน 1 ของไทยสมุทรประกันชีวิต
+# ระเบียนนี้สำคัญกับเว็บนี้เป็นพิเศษ เพราะเป็นสัญญาเพิ่มเติมฉบับแรกในชุดข้อมูลที่บริษัท
+# ประกาศ "ราคาสัญญาหลัก" ออกมาเป็นบรรทัดแยกของตัวเอง ทุกอายุ ทั้งสองเพศ
+# บริษัทอื่นบอกแค่ราคาสัญญาเพิ่มเติม แล้วปล่อยให้ผู้ซื้อไปรู้ราคาสัญญาหลักเอาตอนคุยกับตัวแทน
+id: oceanlife-ochi-small-health-p1
+insurer:
+  th: ไทยสมุทรประกันชีวิต
+  en: Ocean Life Insurance PCL
+name:
+  th: โครงการโอชิ สมอล เฮลท์ — แผน 1 (เฉพาะสัญญาสุขภาพ ไม่รวมบันทึกสลักหลังผู้ป่วยนอก)
+  en: OCHI Small Health — Package 1 (health rider only, OPD endorsement not taken)
+
+type: rider
+host_policy:
+  name:
+    th: โอเชี่ยนไลฟ์ สมาร์ท โพรเทคชั่น 99/99
+    en: Ocean Life Smart Protection 99/99
+  min_sum_insured_thb: 50000
+  # ราคาสัญญาหลักทุกอายุ 16-80 ปี แยกชาย-หญิง ไม่ใช่ตัวอย่างจุดเดียว และไม่ใช่ราคาขั้นต่ำ
+  # แต่เป็นราคาที่ระบบขายออนไลน์ของบริษัทคิดให้จริงคู่กับสัญญาเพิ่มเติมในแพ็กเกจนี้
+  premium:
+  - { age_from: 16, age_to: 16, thb_per_year: 720.5, sex: male }
+  - { age_from: 17, age_to: 17, thb_per_year: 735, sex: male }
+  - { age_from: 18, age_to: 18, thb_per_year: 749.5, sex: male }
+  - { age_from: 19, age_to: 19, thb_per_year: 765, sex: male }
+  - { age_from: 20, age_to: 20, thb_per_year: 780.5, sex: male }
+  - { age_from: 21, age_to: 21, thb_per_year: 797, sex: male }
+  - { age_from: 22, age_to: 22, thb_per_year: 814, sex: male }
+  - { age_from: 23, age_to: 23, thb_per_year: 831.5, sex: male }
+  - { age_from: 24, age_to: 24, thb_per_year: 849.5, sex: male }
+  - { age_from: 25, age_to: 25, thb_per_year: 869, sex: male }
+  - { age_from: 26, age_to: 26, thb_per_year: 889, sex: male }
+  - { age_from: 27, age_to: 27, thb_per_year: 909.5, sex: male }
+  - { age_from: 28, age_to: 28, thb_per_year: 931.5, sex: male }
+  - { age_from: 29, age_to: 29, thb_per_year: 954.5, sex: male }
+  - { age_from: 30, age_to: 30, thb_per_year: 978.5, sex: male }
+  - { age_from: 31, age_to: 31, thb_per_year: 1003.5, sex: male }
+  - { age_from: 32, age_to: 32, thb_per_year: 1029.5, sex: male }
+  - { age_from: 33, age_to: 33, thb_per_year: 1057, sex: male }
+  - { age_from: 34, age_to: 34, thb_per_year: 1086, sex: male }
+  - { age_from: 35, age_to: 35, thb_per_year: 1116, sex: male }
+  - { age_from: 36, age_to: 36, thb_per_year: 1147.5, sex: male }
+  - { age_from: 37, age_to: 37, thb_per_year: 1181, sex: male }
+  - { age_from: 38, age_to: 38, thb_per_year: 1215.5, sex: male }
+  - { age_from: 39, age_to: 39, thb_per_year: 1252, sex: male }
+  - { age_from: 40, age_to: 40, thb_per_year: 1290.5, sex: male }
+  - { age_from: 41, age_to: 41, thb_per_year: 1337.5, sex: male }
+  - { age_from: 42, age_to: 42, thb_per_year: 1387, sex: male }
+  - { age_from: 43, age_to: 43, thb_per_year: 1440, sex: male }
+  - { age_from: 44, age_to: 44, thb_per_year: 1495, sex: male }
+  - { age_from: 45, age_to: 45, thb_per_year: 1553.5, sex: male }
+  - { age_from: 46, age_to: 46, thb_per_year: 1615, sex: male }
+  - { age_from: 47, age_to: 47, thb_per_year: 1680.5, sex: male }
+  - { age_from: 48, age_to: 48, thb_per_year: 1750, sex: male }
+  - { age_from: 49, age_to: 49, thb_per_year: 1823, sex: male }
+  - { age_from: 50, age_to: 50, thb_per_year: 1901, sex: male }
+  - { age_from: 51, age_to: 51, thb_per_year: 1974.5, sex: male }
+  - { age_from: 52, age_to: 52, thb_per_year: 2053, sex: male }
+  - { age_from: 53, age_to: 53, thb_per_year: 2136, sex: male }
+  - { age_from: 54, age_to: 54, thb_per_year: 2225, sex: male }
+  - { age_from: 55, age_to: 55, thb_per_year: 2320, sex: male }
+  - { age_from: 56, age_to: 56, thb_per_year: 2421.5, sex: male }
+  - { age_from: 57, age_to: 57, thb_per_year: 2530, sex: male }
+  - { age_from: 58, age_to: 58, thb_per_year: 2646.5, sex: male }
+  - { age_from: 59, age_to: 59, thb_per_year: 2772, sex: male }
+  - { age_from: 60, age_to: 60, thb_per_year: 2906.5, sex: male }
+  - { age_from: 61, age_to: 61, thb_per_year: 3051.5, sex: male }
+  - { age_from: 62, age_to: 62, thb_per_year: 3207, sex: male }
+  - { age_from: 63, age_to: 63, thb_per_year: 3375, sex: male }
+  - { age_from: 64, age_to: 64, thb_per_year: 3557, sex: male }
+  - { age_from: 65, age_to: 65, thb_per_year: 3752.5, sex: male }
+  - { age_from: 66, age_to: 66, thb_per_year: 3965, sex: male }
+  - { age_from: 67, age_to: 67, thb_per_year: 4194, sex: male }
+  - { age_from: 68, age_to: 68, thb_per_year: 4442.5, sex: male }
+  - { age_from: 69, age_to: 69, thb_per_year: 4712, sex: male }
+  - { age_from: 70, age_to: 70, thb_per_year: 5003.5, sex: male }
+  - { age_from: 71, age_to: 71, thb_per_year: 5318.5, sex: male }
+  - { age_from: 72, age_to: 72, thb_per_year: 5659, sex: male }
+  - { age_from: 73, age_to: 73, thb_per_year: 6026, sex: male }
+  - { age_from: 74, age_to: 74, thb_per_year: 6422, sex: male }
+  - { age_from: 75, age_to: 75, thb_per_year: 6847, sex: male }
+  - { age_from: 76, age_to: 76, thb_per_year: 7303, sex: male }
+  - { age_from: 77, age_to: 77, thb_per_year: 7792.5, sex: male }
+  - { age_from: 78, age_to: 78, thb_per_year: 8317, sex: male }
+  - { age_from: 79, age_to: 79, thb_per_year: 8879.5, sex: male }
+  - { age_from: 80, age_to: 80, thb_per_year: 9483.5, sex: male }
+  - { age_from: 16, age_to: 16, thb_per_year: 628.5, sex: female }
+  - { age_from: 17, age_to: 17, thb_per_year: 640.5, sex: female }
+  - { age_from: 18, age_to: 18, thb_per_year: 653, sex: female }
+  - { age_from: 19, age_to: 19, thb_per_year: 665.5, sex: female }
+  - { age_from: 20, age_to: 20, thb_per_year: 679, sex: female }
+  - { age_from: 21, age_to: 21, thb_per_year: 692.5, sex: female }
+  - { age_from: 22, age_to: 22, thb_per_year: 707, sex: female }
+  - { age_from: 23, age_to: 23, thb_per_year: 722, sex: female }
+  - { age_from: 24, age_to: 24, thb_per_year: 737.5, sex: female }
+  - { age_from: 25, age_to: 25, thb_per_year: 753.5, sex: female }
+  - { age_from: 26, age_to: 26, thb_per_year: 770, sex: female }
+  - { age_from: 27, age_to: 27, thb_per_year: 787.5, sex: female }
+  - { age_from: 28, age_to: 28, thb_per_year: 806, sex: female }
+  - { age_from: 29, age_to: 29, thb_per_year: 825, sex: female }
+  - { age_from: 30, age_to: 30, thb_per_year: 845, sex: female }
+  - { age_from: 31, age_to: 31, thb_per_year: 866, sex: female }
+  - { age_from: 32, age_to: 32, thb_per_year: 887.5, sex: female }
+  - { age_from: 33, age_to: 33, thb_per_year: 910.5, sex: female }
+  - { age_from: 34, age_to: 34, thb_per_year: 934.5, sex: female }
+  - { age_from: 35, age_to: 35, thb_per_year: 959.5, sex: female }
+  - { age_from: 36, age_to: 36, thb_per_year: 985.5, sex: female }
+  - { age_from: 37, age_to: 37, thb_per_year: 1013, sex: female }
+  - { age_from: 38, age_to: 38, thb_per_year: 1042, sex: female }
+  - { age_from: 39, age_to: 39, thb_per_year: 1072.5, sex: female }
+  - { age_from: 40, age_to: 40, thb_per_year: 1104, sex: female }
+  - { age_from: 41, age_to: 41, thb_per_year: 1143, sex: female }
+  - { age_from: 42, age_to: 42, thb_per_year: 1184, sex: female }
+  - { age_from: 43, age_to: 43, thb_per_year: 1227.5, sex: female }
+  - { age_from: 44, age_to: 44, thb_per_year: 1273.5, sex: female }
+  - { age_from: 45, age_to: 45, thb_per_year: 1321.5, sex: female }
+  - { age_from: 46, age_to: 46, thb_per_year: 1373, sex: female }
+  - { age_from: 47, age_to: 47, thb_per_year: 1427.5, sex: female }
+  - { age_from: 48, age_to: 48, thb_per_year: 1484.5, sex: female }
+  - { age_from: 49, age_to: 49, thb_per_year: 1545.5, sex: female }
+  - { age_from: 50, age_to: 50, thb_per_year: 1610.5, sex: female }
+  - { age_from: 51, age_to: 51, thb_per_year: 1671.5, sex: female }
+  - { age_from: 52, age_to: 52, thb_per_year: 1736.5, sex: female }
+  - { age_from: 53, age_to: 53, thb_per_year: 1805.5, sex: female }
+  - { age_from: 54, age_to: 54, thb_per_year: 1879.5, sex: female }
+  - { age_from: 55, age_to: 55, thb_per_year: 1958.5, sex: female }
+  - { age_from: 56, age_to: 56, thb_per_year: 2042.5, sex: female }
+  - { age_from: 57, age_to: 57, thb_per_year: 2132.5, sex: female }
+  - { age_from: 58, age_to: 58, thb_per_year: 2229, sex: female }
+  - { age_from: 59, age_to: 59, thb_per_year: 2332.5, sex: female }
+  - { age_from: 60, age_to: 60, thb_per_year: 2444.5, sex: female }
+  - { age_from: 61, age_to: 61, thb_per_year: 2564.5, sex: female }
+  - { age_from: 62, age_to: 62, thb_per_year: 2694.5, sex: female }
+  - { age_from: 63, age_to: 63, thb_per_year: 2835, sex: female }
+  - { age_from: 64, age_to: 64, thb_per_year: 2987.5, sex: female }
+  - { age_from: 65, age_to: 65, thb_per_year: 3152, sex: female }
+  - { age_from: 66, age_to: 66, thb_per_year: 3331, sex: female }
+  - { age_from: 67, age_to: 67, thb_per_year: 3526, sex: female }
+  - { age_from: 68, age_to: 68, thb_per_year: 3737, sex: female }
+  - { age_from: 69, age_to: 69, thb_per_year: 3966.5, sex: female }
+  - { age_from: 70, age_to: 70, thb_per_year: 4215, sex: female }
+  - { age_from: 71, age_to: 71, thb_per_year: 4485, sex: female }
+  - { age_from: 72, age_to: 72, thb_per_year: 4777.5, sex: female }
+  - { age_from: 73, age_to: 73, thb_per_year: 5093, sex: female }
+  - { age_from: 74, age_to: 74, thb_per_year: 5434.5, sex: female }
+  - { age_from: 75, age_to: 75, thb_per_year: 5803, sex: female }
+  - { age_from: 76, age_to: 76, thb_per_year: 6201.5, sex: female }
+  - { age_from: 77, age_to: 77, thb_per_year: 6631.5, sex: female }
+  - { age_from: 78, age_to: 78, thb_per_year: 7097.5, sex: female }
+  - { age_from: 79, age_to: 79, thb_per_year: 7603.5, sex: female }
+  - { age_from: 80, age_to: 80, thb_per_year: 8154, sex: female }
+  premium_unknown_reason: null
+  source:
+    url: https://www.ocean.co.th/our-products/health-insurance/ochi-small-health-package?purchase_intent=1
+    tier: official_insurer
+    verified_on: 2026-08-10
+    note: >-
+      ระบบคำนวณเบี้ยของไทยสมุทรแยกบรรทัดราคาให้เห็นเองว่าเงินก้อนที่จ่ายไปเป็นค่าอะไรบ้าง
+      ตัวอย่างผู้ชายอายุ 35 ปี แพ็กเกจ 1 ระบบขึ้นว่า "โอเชี่ยนไลฟ์ สมาร์ท โพรเทคชั่น 99/99
+      1,116.00" และ "สัญญาเพิ่มเติมคุ้มครองสุขภาพ สมอล เฮลท์ 3,083.00" และ
+      "บันทึกสลักหลังค่ารักษาพยาบาลแบบผู้ป่วยนอก 1,161.00" รวมเป็น 5,360 บาทต่อปี
+      สัญญาหลักคุ้มครองชีวิต 50,000 บาท
+      เก็บข้อมูลโดยไล่ทุกอายุตั้งแต่ 16 ถึง 80 ปี ทั้งสองเพศ ที่ปลายทาง
+      POST /livewire/message/insure.internet-sales.calculator.package-selector
+      ใช้แค่เพศกับวันเกิด ไม่ต้องกรอกชื่อ อีเมล เบอร์โทร และไม่มี captcha
+      กับดักที่คนตรวจซ้ำต้องระวัง อายุ 15 และอายุ 81 ระบบก็คืนตัวเลขออกมาเหมือนกัน
+      แต่ไม่ใช่เบี้ยจริง เป็นค่าที่ระบบตกไปใช้เมื่ออายุหลุดช่วงรับประกัน เราจึงบันทึกเฉพาะ 16-80
+      ราคาสัญญาหลักคอลัมน์นี้เท่ากันทั้งสามแพ็กเกจ ต่างกันเฉพาะสัญญาเพิ่มเติมกับผู้ป่วยนอก
+
+shape: per_item_schedule
+new_health_standard: true
+
+# เบี้ยสัญญาเพิ่มเติมสุขภาพอย่างเดียว ยังไม่รวมสัญญาหลักและยังไม่รวมผู้ป่วยนอก
+# สัญญาหลักอยู่ในช่อง host_policy ด้านบน เว็บนี้จะบวกให้เองตอนคิดยอดรวม
+premium:
+  - { age_from: 16, age_to: 16, thb_per_year: 2885, sex: male }
+  - { age_from: 17, age_to: 17, thb_per_year: 2876, sex: male }
+  - { age_from: 18, age_to: 18, thb_per_year: 2868, sex: male }
+  - { age_from: 19, age_to: 19, thb_per_year: 2863, sex: male }
+  - { age_from: 20, age_to: 20, thb_per_year: 2860, sex: male }
+  - { age_from: 21, age_to: 21, thb_per_year: 2859, sex: male }
+  - { age_from: 22, age_to: 22, thb_per_year: 2861, sex: male }
+  - { age_from: 23, age_to: 23, thb_per_year: 2865, sex: male }
+  - { age_from: 24, age_to: 24, thb_per_year: 2870, sex: male }
+  - { age_from: 25, age_to: 25, thb_per_year: 2879, sex: male }
+  - { age_from: 26, age_to: 26, thb_per_year: 2889, sex: male }
+  - { age_from: 27, age_to: 27, thb_per_year: 2902, sex: male }
+  - { age_from: 28, age_to: 28, thb_per_year: 2917, sex: male }
+  - { age_from: 29, age_to: 29, thb_per_year: 2934, sex: male }
+  - { age_from: 30, age_to: 30, thb_per_year: 2953, sex: male }
+  - { age_from: 31, age_to: 31, thb_per_year: 2974, sex: male }
+  - { age_from: 32, age_to: 32, thb_per_year: 2998, sex: male }
+  - { age_from: 33, age_to: 33, thb_per_year: 3024, sex: male }
+  - { age_from: 34, age_to: 34, thb_per_year: 3052, sex: male }
+  - { age_from: 35, age_to: 35, thb_per_year: 3083, sex: male }
+  - { age_from: 36, age_to: 36, thb_per_year: 3116, sex: male }
+  - { age_from: 37, age_to: 37, thb_per_year: 3151, sex: male }
+  - { age_from: 38, age_to: 38, thb_per_year: 3188, sex: male }
+  - { age_from: 39, age_to: 39, thb_per_year: 3227, sex: male }
+  - { age_from: 40, age_to: 40, thb_per_year: 3269, sex: male }
+  - { age_from: 41, age_to: 41, thb_per_year: 3312, sex: male }
+  - { age_from: 42, age_to: 42, thb_per_year: 3359, sex: male }
+  - { age_from: 43, age_to: 43, thb_per_year: 3407, sex: male }
+  - { age_from: 44, age_to: 44, thb_per_year: 3457, sex: male }
+  - { age_from: 45, age_to: 45, thb_per_year: 3510, sex: male }
+  - { age_from: 46, age_to: 46, thb_per_year: 3565, sex: male }
+  - { age_from: 47, age_to: 47, thb_per_year: 3622, sex: male }
+  - { age_from: 48, age_to: 48, thb_per_year: 3682, sex: male }
+  - { age_from: 49, age_to: 49, thb_per_year: 3743, sex: male }
+  - { age_from: 50, age_to: 50, thb_per_year: 3807, sex: male }
+  - { age_from: 51, age_to: 51, thb_per_year: 3873, sex: male }
+  - { age_from: 52, age_to: 52, thb_per_year: 3942, sex: male }
+  - { age_from: 53, age_to: 53, thb_per_year: 4012, sex: male }
+  - { age_from: 54, age_to: 54, thb_per_year: 4085, sex: male }
+  - { age_from: 55, age_to: 55, thb_per_year: 4160, sex: male }
+  - { age_from: 56, age_to: 56, thb_per_year: 4237, sex: male }
+  - { age_from: 57, age_to: 57, thb_per_year: 4317, sex: male }
+  - { age_from: 58, age_to: 58, thb_per_year: 4399, sex: male }
+  - { age_from: 59, age_to: 59, thb_per_year: 4483, sex: male }
+  - { age_from: 60, age_to: 60, thb_per_year: 4569, sex: male }
+  - { age_from: 61, age_to: 61, thb_per_year: 4657, sex: male }
+  - { age_from: 62, age_to: 62, thb_per_year: 4748, sex: male }
+  - { age_from: 63, age_to: 63, thb_per_year: 4841, sex: male }
+  - { age_from: 64, age_to: 64, thb_per_year: 4936, sex: male }
+  - { age_from: 65, age_to: 65, thb_per_year: 5033, sex: male }
+  - { age_from: 66, age_to: 66, thb_per_year: 5133, sex: male }
+  - { age_from: 67, age_to: 67, thb_per_year: 5234, sex: male }
+  - { age_from: 68, age_to: 68, thb_per_year: 5338, sex: male }
+  - { age_from: 69, age_to: 69, thb_per_year: 5445, sex: male }
+  - { age_from: 70, age_to: 70, thb_per_year: 5553, sex: male }
+  - { age_from: 71, age_to: 71, thb_per_year: 5664, sex: male }
+  - { age_from: 72, age_to: 72, thb_per_year: 5777, sex: male }
+  - { age_from: 73, age_to: 73, thb_per_year: 5892, sex: male }
+  - { age_from: 74, age_to: 74, thb_per_year: 6009, sex: male }
+  - { age_from: 75, age_to: 75, thb_per_year: 6129, sex: male }
+  - { age_from: 76, age_to: 76, thb_per_year: 6251, sex: male }
+  - { age_from: 77, age_to: 77, thb_per_year: 6375, sex: male }
+  - { age_from: 78, age_to: 78, thb_per_year: 6501, sex: male }
+  - { age_from: 79, age_to: 79, thb_per_year: 6629, sex: male }
+  - { age_from: 80, age_to: 80, thb_per_year: 6760, sex: male }
+  - { age_from: 16, age_to: 16, thb_per_year: 2707, sex: female }
+  - { age_from: 17, age_to: 17, thb_per_year: 2725, sex: female }
+  - { age_from: 18, age_to: 18, thb_per_year: 2746, sex: female }
+  - { age_from: 19, age_to: 19, thb_per_year: 2769, sex: female }
+  - { age_from: 20, age_to: 20, thb_per_year: 2794, sex: female }
+  - { age_from: 21, age_to: 21, thb_per_year: 2821, sex: female }
+  - { age_from: 22, age_to: 22, thb_per_year: 2851, sex: female }
+  - { age_from: 23, age_to: 23, thb_per_year: 2882, sex: female }
+  - { age_from: 24, age_to: 24, thb_per_year: 2916, sex: female }
+  - { age_from: 25, age_to: 25, thb_per_year: 2952, sex: female }
+  - { age_from: 26, age_to: 26, thb_per_year: 2989, sex: female }
+  - { age_from: 27, age_to: 27, thb_per_year: 3029, sex: female }
+  - { age_from: 28, age_to: 28, thb_per_year: 3071, sex: female }
+  - { age_from: 29, age_to: 29, thb_per_year: 3116, sex: female }
+  - { age_from: 30, age_to: 30, thb_per_year: 3162, sex: female }
+  - { age_from: 31, age_to: 31, thb_per_year: 3210, sex: female }
+  - { age_from: 32, age_to: 32, thb_per_year: 3261, sex: female }
+  - { age_from: 33, age_to: 33, thb_per_year: 3314, sex: female }
+  - { age_from: 34, age_to: 34, thb_per_year: 3369, sex: female }
+  - { age_from: 35, age_to: 35, thb_per_year: 3425, sex: female }
+  - { age_from: 36, age_to: 36, thb_per_year: 3485, sex: female }
+  - { age_from: 37, age_to: 37, thb_per_year: 3546, sex: female }
+  - { age_from: 38, age_to: 38, thb_per_year: 3609, sex: female }
+  - { age_from: 39, age_to: 39, thb_per_year: 3674, sex: female }
+  - { age_from: 40, age_to: 40, thb_per_year: 3742, sex: female }
+  - { age_from: 41, age_to: 41, thb_per_year: 3812, sex: female }
+  - { age_from: 42, age_to: 42, thb_per_year: 3884, sex: female }
+  - { age_from: 43, age_to: 43, thb_per_year: 3958, sex: female }
+  - { age_from: 44, age_to: 44, thb_per_year: 4034, sex: female }
+  - { age_from: 45, age_to: 45, thb_per_year: 4112, sex: female }
+  - { age_from: 46, age_to: 46, thb_per_year: 4192, sex: female }
+  - { age_from: 47, age_to: 47, thb_per_year: 4275, sex: female }
+  - { age_from: 48, age_to: 48, thb_per_year: 4359, sex: female }
+  - { age_from: 49, age_to: 49, thb_per_year: 4446, sex: female }
+  - { age_from: 50, age_to: 50, thb_per_year: 4535, sex: female }
+  - { age_from: 51, age_to: 51, thb_per_year: 4626, sex: female }
+  - { age_from: 52, age_to: 52, thb_per_year: 4719, sex: female }
+  - { age_from: 53, age_to: 53, thb_per_year: 4814, sex: female }
+  - { age_from: 54, age_to: 54, thb_per_year: 4911, sex: female }
+  - { age_from: 55, age_to: 55, thb_per_year: 5011, sex: female }
+  - { age_from: 56, age_to: 56, thb_per_year: 5112, sex: female }
+  - { age_from: 57, age_to: 57, thb_per_year: 5216, sex: female }
+  - { age_from: 58, age_to: 58, thb_per_year: 5322, sex: female }
+  - { age_from: 59, age_to: 59, thb_per_year: 5429, sex: female }
+  - { age_from: 60, age_to: 60, thb_per_year: 5540, sex: female }
+  - { age_from: 61, age_to: 61, thb_per_year: 5652, sex: female }
+  - { age_from: 62, age_to: 62, thb_per_year: 5766, sex: female }
+  - { age_from: 63, age_to: 63, thb_per_year: 5882, sex: female }
+  - { age_from: 64, age_to: 64, thb_per_year: 6001, sex: female }
+  - { age_from: 65, age_to: 65, thb_per_year: 6122, sex: female }
+  - { age_from: 66, age_to: 66, thb_per_year: 6244, sex: female }
+  - { age_from: 67, age_to: 67, thb_per_year: 6369, sex: female }
+  - { age_from: 68, age_to: 68, thb_per_year: 6496, sex: female }
+  - { age_from: 69, age_to: 69, thb_per_year: 6626, sex: female }
+  - { age_from: 70, age_to: 70, thb_per_year: 6757, sex: female }
+  - { age_from: 71, age_to: 71, thb_per_year: 6890, sex: female }
+  - { age_from: 72, age_to: 72, thb_per_year: 7026, sex: female }
+  - { age_from: 73, age_to: 73, thb_per_year: 7164, sex: female }
+  - { age_from: 74, age_to: 74, thb_per_year: 7303, sex: female }
+  - { age_from: 75, age_to: 75, thb_per_year: 7445, sex: female }
+  - { age_from: 76, age_to: 76, thb_per_year: 7589, sex: female }
+  - { age_from: 77, age_to: 77, thb_per_year: 7736, sex: female }
+  - { age_from: 78, age_to: 78, thb_per_year: 7884, sex: female }
+  - { age_from: 79, age_to: 79, thb_per_year: 8034, sex: female }
+  - { age_from: 80, age_to: 80, thb_per_year: 8187, sex: female }
+
+# บริษัทเขียนไว้ที่หน้าผลิตภัณฑ์ว่า "อายุรับประกันภัย 16 - 70 ปี (ต่ออายุสัญญาได้ถึงอายุ 80 ปี)"
+entry_age_min: 16
+entry_age_max: 70
+# 80 ปีมาจากตัวบทสัญญาข้อ 7 และตรงกับหน้าขายพอดี เป็นบริษัทแรกในชุดข้อมูลนี้
+# ที่ตัวเลขในสัญญากับตัวเลขบนหน้าโฆษณาไม่ขัดกันเอง
+renewal_ceiling_age: 80
+
+# 10,000 บาท เป็นเพดานรวมของหมวด 1-8 และหมวด 12 ต่อการเข้าพักรักษาครั้งใดครั้งหนึ่ง
+# ไม่ใช่ต่อปี และไม่ใช่เพดานของแต่ละหมวดแยกกัน เป็นแผนวงเงินเล็กมากเมื่อเทียบกับแผนอื่นในตาราง
+ipd_annual_limit_thb: 10000
+ipd_limit_basis: per_confinement
+# ผู้ป่วยนอกเป็นบันทึกสลักหลังที่ซื้อแยก ระเบียนนี้บันทึกแบบไม่ซื้อ
+# ถ้าซื้อ บริษัทให้ 300 บาทต่อครั้ง ซึ่งเป็นเพดานต่อครั้ง ไม่ใช่ต่อปี จึงไม่มีวงเงินต่อปีให้บันทึก
+opd_annual_limit_thb: null
+# บริษัทไม่ได้แยกค่าห้องออกมาเป็นตัวเลขต่างหาก ค่าห้องรวมอยู่ในเพดาน 10,000 บาทข้างต้นแล้ว
+room_board_thb_per_night: null
+deductible_thb: 0
+copay_percent: 0
+copay_on_renewal: >-
+  ปีแรกไม่มีค่าใช้จ่ายร่วม ส่วนปีต่ออายุ ไทยสมุทรเขียนกลไกไว้ครบทั้งตัวเลขและเงื่อนไข
+  ในตัวบทสัญญาเอง ไม่ใช่ในโบรชัวร์ ซึ่งต่างจากบริษัทส่วนใหญ่ในชุดข้อมูลนี้
+  เงื่อนไขแรก ร่วมจ่าย 30% ถ้าเคลมโรคเล็กน้อยทั่วไปแล้วนอนโรงพยาบาลตั้งแต่ 3 ครั้งขึ้นไป
+  ในรอบปีกรมธรรม์ และมีอัตราการเรียกร้องค่าสินไหมตั้งแต่ 200% ขึ้นไป
+  เงื่อนไขที่สอง ร่วมจ่าย 30% ถ้านอนโรงพยาบาลตั้งแต่ 3 ครั้งขึ้นไปในรอบปีกรมธรรม์
+  และมีอัตราการเรียกร้องตั้งแต่ 400% ขึ้นไป โดยไม่นับค่าสินไหมจากโรคร้ายแรงตามรายชื่อ
+  แนบท้ายและการผ่าตัดใหญ่ ถ้าเข้าทั้งสองเงื่อนไขพร้อมกัน บริษัทจะกำหนดให้ร่วมจ่าย 50%
+  โครงสร้างนี้เหมือนไทยประกันชีวิตทุกประการ ต่างกันตรงที่ของไทยสมุทรอ้างจากตัวบทสัญญา
+  ที่บริษัทเผยแพร่เอง ไม่ใช่จากหน้าขาย
+  เรื่องการปรับเบี้ย บริษัทผูกไว้กับอายุ ชั้นอาชีพ และค่ารักษาที่สูงขึ้นหรือประสบการณ์
+  การจ่ายสินไหมโดยรวมของพอร์ตโฟลิโอ คือคิดจากพอร์ตรวม ไม่ใช่ประวัติการเคลมรายคน
+  ต้องแจ้งล่วงหน้าไม่น้อยกว่า 30 วัน และต้องเป็นอัตราที่นายทะเบียนเห็นชอบแล้ว
+
+# ข้อยกเว้นทั่วไป 15 ข้อแรกจากตัวบทสัญญาที่บริษัทเผยแพร่เอง (ข้อ 16-21 เป็นข้อยกเว้น
+# เรื่องอุบัติเหตุ สงคราม การก่อการร้าย และกัมมันตภาพรังสี ซึ่งไม่เกี่ยวกับค่ารักษาพยาบาลโดยตรง)
+exclusions:
+  - th: >-
+      ภาวะที่เป็นผลจากความผิดปกติที่เกิดขึ้นแต่กำเนิด
+      หรือระบบการสร้างอวัยวะของร่างกายไม่สมบูรณ์แต่กำเนิด หรือโรคทางพันธุกรรม
+      หรือความผิดปกติในการพัฒนาการของร่างกาย เว้นแต่
+      สัญญาเพิ่มเติมนี้มีผลคุ้มครองมาไม่น้อยกว่าหนึ่งปี (1 ปี)
+      และปรากฏอาการหลังผู้เอาประกันภัยมีอายุครบ 16 ปีบริบูรณ์
+    en: null
+  - th: >-
+      การตรวจรักษาหรือการผ่าตัดเพื่อเสริมสวย หรือการแก้ไขปัญหาผิวพรรณ สิว ฝ้า กระ รังแค
+      ผมร่วงหรือการควบคุมน้ำหนักตัว การผ่าตัดที่สามารถทดแทนด้วยการรักษาแนวทางอื่น
+      เว้นแต่เป็นการตกแต่งบาดแผลอันเนื่องมาจากอุบัติเหตุที่ได้รับความคุ้มครอง
+    en: null
+  - th: >-
+      การตั้งครรภ์ แท้งบุตร ทำแท้ง การคลอดบุตร โรคแทรกซ้อนจากการตั้งครรภ์ การแก้ไขปัญหาการมีบุตรยาก
+      (รวมถึง การสืบวิเคราะห์และการรักษา) การทำหมันหรือการคุมกำเนิด ยกเว้น มะเร็ง ครรภ์ไข่ปลาอุก
+      (Choriocarcinoma)
+    en: null
+  - th: >-
+      โรคเอดส์ หรือกามโรคหรือโรคติดต่อทางเพศสัมพันธ์ โดยโรคเอดส์ให้รวมถึง ภูมิคุ้มกันบกพร่อง
+      (Acquired Immune Deficiency Syndrome) ซึ่งเกิดจากการติดเชื้อไวรัสเอดส์
+      และให้หมายความรวมถึงการติดเชื้อจุลชีพฉวยโอกาส หรือ การติดโรค หรือ การเจ็บป่วยใด ๆ
+      ซึ่งโดยผลการตรวจเลือดแสดงเป็นเลือดบวกของไวรัส HIV (Human Immunodeficiency Virus)
+      การติดเชื้อจุลชีพฉวยโอกาสให้รวมถึง แต่ไม่จำกัดเฉพาะเชื้อที่ทำให้เกิดโรคปอดบวม หรือ ปอดอักเสบ
+      (Pneumocystis Carinii Pneumonia) เชื้อที่ทำให้เกิดโรคลำไส้อักเสบ หรือเรื้อรัง (Organism Causes
+      Chronic Enteritis) เชื้อไวรัสและ/หรือเชื้อราที่แพร่กระจายอยู่ทั่วไป (Disseminated Virus and/or
+      Fungi Infection) เนื้องอกร้ายแรง (Malignant Neoplasm) ให้รวมถึงแต่ ไม่จำกัดเฉพาะเนื้องอก
+      Kaposi’s Sarcoma มะเร็งต่อมน้ำเหลืองที่ระบบประสาทส่วนกลาง (Central Nervous System Lymphoma)
+      และ/หรือโรคร้ายแรงอื่น ๆ ซึ่งเป็นที่รู้จักในปัจจุบันนี้ว่าเป็นอาการของภูมิคุ้มกันบกพร่อง
+      (Acquired Immunodeficiency Syndrome) หรือซึ่งเป็นสาเหตุ ที่ทำให้คนที่เป็นเสียชีวิตอย่างกะทันหัน
+      เจ็บป่วย หรือทุพพลภาพ โรคภูมิคุ้มกันบกพร่อง (AIDS) ให้รวมถึงเชื้อไวรัส HIV (Human
+      Immunodeficiency Virus) ที่ทำให้เกิดโรคสมองเสื่อม (Encephalopathy Dementia)
+    en: null
+  - th: >-
+      การตรวจรักษา หรือการป้องกัน การใช้ยา หรือสารต่าง ๆ เพื่อการชะลอความเสื่อมของวัย
+      หรือการให้ฮอร์โมน ทดแทนในวัยใกล้หมดหรือหมดระดู การเสื่อมสมรรถภาพทางเพศในหญิง หรือชาย
+      การรักษาความผิดปกติ ทางเพศ และการแปลงเพศ
+    en: null
+  - th: >-
+      การตรวจสุขภาพ การร้องขอเข้าอยู่รักษาตัวในโรงพยาบาล หรือร้องขอการผ่าตัด การพักฟื้น
+      หรือการพักเพื่อ การฟื้นฟูหรือการรักษาโดยวิธีให้พักอยู่เฉย ๆ
+      หรือการพักรักษาในโรงพยาบาลเพื่อให้มีผู้ช่วยดูแลทั่วไป
+      การตรวจหรือการรักษาที่ไม่เกี่ยวข้องกับโรคที่เป็นสาเหตุของการรับตัวไว้ในโรงพยาบาล
+      การตรวจวินิจฉัยการบาดเจ็บหรือการป่วย การรักษาหรือตรวจวิเคราะห์เพื่อหาสาเหตุ
+      ซึ่งไม่ใช่ความจำเป็นทางการแพทย์ หรือไม่เป็นมาตรฐานทางการแพทย์
+    en: null
+  - th: >-
+      การตรวจรักษาความผิดปกติเกี่ยวกับสายตา การทำเลสิค
+      ค่าใช้จ่ายสำหรับอุปกรณ์เพื่อช่วยในการมองเห็นหรือการรักษาความผิดปกติของการมองเห็น
+    en: null
+  - th: >-
+      การตรวจรักษา หรือผ่าตัดเกี่ยวกับฟัน หรือเหงือก การทำฟันปลอม การครอบฟัน การรักษารากฟัน อุดฟัน
+      การจัดฟัน ขูดหินปูน ถอนฟัน การใส่รากฟันเทียม
+      ยกเว้นในกรณีจำเป็นอันเนื่องจากการบาดเจ็บโดยอุบัติเหตุ ซึ่งไม่รวมค่าฟันปลอม
+      การครอบฟันและการรักษารากฟันหรือใส่รากเทียม
+    en: null
+  - th: >-
+      การรักษาหรือการบำบัดการติดยาเสพติดให้โทษ บุหรี่ สุรา หรือสารออกฤทธิ์ต่อจิตประสาท
+    en: null
+  - th: >-
+      การตรวจรักษา อาการ หรือโรคที่เกี่ยวเนื่องกับภาวะทางจิตใจ โรคทางจิตเวช หรือทางพฤติกรรม
+      หรือความผิดปกติทางบุคลิกภาพ รวมถึงสภาวะสมาธิสั้น ออธิสซึม เครียด ความผิดปกติของการกิน
+      หรือความวิตกกังวล
+    en: null
+  - th: >-
+      การตรวจรักษาที่ยังอยู่ในระหว่างทดลอง การตรวจหรือการรักษาโรค หรืออาการหยุดหายใจขณะหลับ
+      การตรวจหรือการรักษาความผิดปกติของการนอนหลับ การนอนกรน
+    en: null
+  - th: >-
+      การปลูกฝี หรือการฉีดวัคซีนป้องกันโรค ยกเว้นการฉีดวัคซีนป้องกันโรคพิษสุนัขบ้า
+      ภายหลังการถูกสัตว์ทำร้าย และวัคซีนป้องกันบาดทะยักภายหลังได้รับการบาดเจ็บ
+    en: null
+  - th: >-
+      การตรวจรักษาที่ไม่ใช่แพทย์แผนปัจจุบัน รวมถึงแพทย์ทางเลือก
+    en: null
+  - th: >-
+      ค่าใช้จ่ายที่เกิดจากการตรวจรักษาพยาบาลที่ผู้เอาประกันภัยซึ่งเป็นแพทย์สั่งให้แก่ตัวเอง
+      รวมทั้งค่าใช้จ่ายที่เกิดจากการตรวจรักษาพยาบาลจากแพทย์ผู้ซึ่งเป็น บิดา มารดา คู่สมรส
+      หรือบุตรของผู้เอาประกันภัย
+    en: null
+  - th: >-
+      การฆ่าตัวตาย การพยายามฆ่าตัวตาย การทำร้ายร่างกายตนเอง
+      หรือการพยายามทำร้ายร่างกายตนเองไม่ว่าจะเป็นการกระทำโดยตนเอง
+      หรือยินยอมให้ผู้อื่นกระทำไม่ว่าจะอยู่ในระหว่างวิกลจริตหรือไม่ก็ตาม ทั้งนี้รวมถึง
+      อุบัติเหตุจากการที่ผู้เอาประกันภัย กิน ดื่ม หรือ ฉีดยาหรือสารมีพิษเข้าร่างกาย
+      การใช้ยาเกินกว่าที่แพทย์สั่ง
+    en: null
+waiting_period_days: 30
+
+premium_source:
+  url: https://www.ocean.co.th/our-products/health-insurance/ochi-small-health-package?purchase_intent=1
+  tier: official_insurer
+  verified_on: 2026-08-10
+  note: >-
+    ตัวเลขทุกช่องมาจากระบบขายออนไลน์ของไทยสมุทรเอง ไล่เก็บทุกอายุ 16-80 ปี ทั้งสองเพศ
+    จึงเป็นตารางเต็ม ไม่ใช่ตัวอย่างรายจุดแบบที่เอไอเอหรือกรุงเทพประกันชีวิตเผยแพร่
+    ราคานี้เป็นราคาที่บริษัทขายจริงในวันที่ตรวจ ไม่ใช่ราคาในโบรชัวร์
+    เบี้ยแยกชายหญิง ผู้หญิงจ่ายสัญญาเพิ่มเติมแพงกว่าผู้ชายเกือบทุกช่วงอายุ
+    แต่จ่ายสัญญาหลักถูกกว่าผู้ชายทุกช่วงอายุ สองอย่างนี้หักกลบกันบางส่วน
+    ถ้าดูแค่ราคาสัญญาเพิ่มเติมอย่างเดียวจะสรุปผิด
+    ตัวเลขในตารางนี้เป็นเบี้ยสัญญาเพิ่มเติมสุขภาพอย่างเดียว ยังไม่รวมสองอย่าง
+    (1) สัญญาหลัก ซึ่งบังคับซื้อ และอยู่ในช่อง host_policy ด้านบน
+    (2) บันทึกสลักหลังค่ารักษาผู้ป่วยนอก ซึ่งเลือกซื้อได้ ราคาแยกอีกชุดหนึ่ง
+    เริ่มที่ 1,101 บาทต่อปีสำหรับผู้ชายอายุ 16-30 ปี และ 1,491 บาทสำหรับผู้หญิงช่วงเดียวกัน
+    ไล่ขึ้นไปถึง 5,436 และ 5,904 บาทที่อายุ 76-80 ปี
+    แพ็กเกจ 2 และ 3 ของโครงการนี้ให้วงเงินผู้ป่วยใน 20,000 และ 50,000 บาท
+    ค่ารักษาผู้ป่วยนอก 500 และ 1,000 บาทต่อครั้ง ยอดรวมทั้งแพ็กเกจที่ผู้ชายอายุ 35 ปี
+    คือ 8,255 และ 13,481 บาทต่อปี แต่เรายังไม่บันทึกเป็นระเบียนแยก เพราะเก็บตารางเบี้ย
+    ครบทุกอายุได้เฉพาะแพ็กเกจ 1 การใส่ระเบียนที่มีเบี้ยจุดเดียวจะทำให้ยอดรวมตลอดสัญญา
+    เป็นช่องว่างเกือบทั้งแถว
+terms_source:
+  url: https://www.ocean.co.th/our-products/health-insurance/ochi-small-health-package/download/benefit
+  tier: filed_wording
+  verified_on: 2026-08-10
+  note: >-
+    ไฟล์ "รายละเอียดความคุ้มครองเพิ่มเติม" ที่ไทยสมุทรให้ดาวน์โหลดจากหน้าผลิตภัณฑ์
+    ไม่ใช่โบรชัวร์ แต่เป็นตัวบทจริง 20 หน้า มีทั้งเงื่อนไขทั่วไปแห่งกรมธรรม์ประกันชีวิต
+    ประเภทสามัญ (ขายผ่านทางอิเล็กทรอนิกส์) รหัส 20803 และตัวบทสัญญาเพิ่มเติมคุ้มครองสุขภาพ
+    สมอล เฮลท์ แผน 1 เต็มฉบับ รหัส 30008_01 / อ.72_01 และ 20681 / ร.302
+    เป็นแหล่งระดับตัวบทสัญญาแหล่งที่สองที่โครงการนี้หาเจอสำหรับสัญญาเพิ่มเติมของบริษัทประกันชีวิต
+    และต่างจากของไทยประกันสุขภาพตรงที่ฉบับนี้เป็นฉบับปัจจุบัน ไม่ใช่ฉบับปี 2560 ที่ค้างอยู่
+    ข้อควรรู้เรื่องตัวอักษรในเอกสารนี้ ชั้นข้อความใน PDF ของบริษัทมีปัญหาสองอย่าง
+    คือทำสระอำหาย (เขียน "กาเนิด" แทน "กำเนิด") และแทรกช่องว่างกลางคำจากการจัดหน้า
+    ข้อความข้อยกเว้นด้านบนจึงผ่านการซ่อมสองอย่างนี้แล้ว ไม่ได้แก้คำ ไม่ได้ตัดทอน
+    ไม่ได้เรียบเรียงใหม่ ใครที่อยากตรวจว่าตรงกับต้นฉบับไหม เปิดไฟล์จากลิงก์ด้านบนได้เลย
+    เรื่องวงเงิน ตัวบทกำหนดว่า "ผลประโยชน์รวม หมวดที่ 1-8 และหมวดที่ 12 ไม่เกิน 10,000 บาท
+    ต่อการเข้าพักรักษาตัวเป็นผู้ป่วยในครั้งใดครั้งหนึ่ง" และนิยาม "ครั้งใดครั้งหนึ่ง"
+    ว่านับการกลับเข้ารักษาภายใน 90 วันหลังออกจากโรงพยาบาลครั้งสุดท้ายเป็นครั้งเดียวกัน
+    เกณฑ์ 90 วันเดียวกับเอไอเอ ไทยประกันสุขภาพ และแปซิฟิค ครอส
+    เพดานต่ออายุ 80 ปีมาจากข้อ 7 ของตัวบท "สัญญาเพิ่มเติมนี้จะต่ออายุเมื่อครบรอบปี
+    กรมธรรม์ประกันภัย จนถึงรอบปีกรมธรรม์ประกันภัยที่ผู้เอาประกันภัยมีอายุ 80 ปี
+    โดยไม่ต้องแสดงหลักฐาน แต่บริษัทยังคงไว้ซึ่งสิทธิในการปรับเบี้ยประกันภัยตามข้อ 14"
+    ระยะเวลาที่ไม่คุ้มครอง 30 วันสำหรับการป่วยทั่วไป และ 120 วันสำหรับแปดกลุ่มโรคมาตรฐาน
+    โดยอุบัติเหตุไม่ต้องรอ อยู่ที่ข้อ 12 ของตัวบท
+    เรื่องมาตรฐานประกันสุขภาพแบบใหม่ ระเบียนนี้ยืนยันได้จากตัวบทโดยตรง ไม่ต้องเดาจากโครงสร้าง
+    เพราะตัวบทมีนิยาม "การป่วยเล็กน้อยทั่วไป (Simple diseases)" ตามระบบ ICD-10
+    และนิยาม "ค่าใช้จ่ายร่วม (Copayment)" ครบถ้วนตามมาตรฐานปี 2564
+    รวมทั้งเอกสารแนบท้ายกลุ่มโรคป่วยเล็กน้อยสำหรับเด็กอายุ 3-5 ปีอีกฉบับหนึ่ง
+
+verified_on: 2026-08-10
