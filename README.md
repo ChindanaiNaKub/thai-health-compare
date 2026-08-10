@@ -55,33 +55,31 @@ bun run build          # static output in build/
 
 ## Status
 
-Pre-alpha. Two real records: AIA Health Saver (200,000 plan) and AIA Infinite
-Care (new standard, 120M plan). The `_example-*.yaml` files are **fictional
-templates**, kept only to show the schema.
+Alpha. 17 plan records from AIA, Bangkok Life, Dhipaya, FWD, Krungthai-AXA,
+Muang Thai, Thai Life, and TQM/Thai Health, plus the three public schemes
+(สปสช. / ประกันสังคม / สิทธิข้าราชการ). The `_example-*.yaml` files are
+**fictional templates**, kept only to show the schema.
 
 What entering real data taught us:
 
-- **AIA publishes no full age-band rate table.** Only a few sample premiums are
-  public, so lifetime cost renders as incomplete. That is the state of the
-  public record, not a gap in this project.
-- **The host floor is 12,000 THB/year, and AIA publishes it.** The Issara Plus
-  brochure (p.5) states that minimum, at a 60,000 THB sum insured. It is the
-  cheapest AIA main policy with a published price. Three caveats travel with it:
-  AIA never says which main policies these riders attach to; Issara Plus accepts
-  entry only to age 70; and 12,000 is a floor, never a quote.
-- **AIA publishes no filed policy wording.** Terms come from the product page
-  and brochure, tagged `official_insurer`, never `filed_wording`. Each brochure
-  lists exactly three exclusions, recorded and labelled as partial.
-- **AIA contradicts itself, and the brochure wins.** Health Saver's 200,000 is
+- **Most insurers publish no full age-band rate table.** Only sample premiums
+  are public, so lifetime cost often renders as incomplete. That is the state
+  of the public record, not a gap in this project.
+- **The host policy premium is usually unpublished.** Where an insurer states a
+  minimum (AIA Issara Plus: 12,000 THB/year), we record it as a floor, never as
+  a quote, with the caveats attached to the record.
+- **Filed policy wording is rarely public.** Terms mostly come from product
+  pages and brochures, tagged `official_insurer`, never `filed_wording`.
+  Brochure exclusion lists are recorded and labelled as partial.
+- **Insurers contradict themselves, and the brochure wins.** A limit can be
   *per-confinement* in the benefit table and *per-policy-year* in the marketing
   copy. The schema carries `ipd_limit_basis` so the two are never compared as
   equals.
-- **A live PDF can still be stale.** An old Infinite Care brochure is still
-  online but no longer linked; it says the rider renews to 84. The linked one
-  says 98. Cite the document the product page links today.
+- **A live PDF can still be stale.** An unlinked brochure stays reachable long
+  after its numbers change. Cite the document the product page links today.
 
-Full sourcing trail, with verbatim Thai quotes and per-claim URLs:
-[docs/research/aia-rider-sourcing.md](./docs/research/aia-rider-sourcing.md).
+Full sourcing trail, with verbatim Thai quotes and per-claim URLs, is in
+[docs/research/](./docs/research/) — one file per insurer group.
 
 ## Contributing
 
