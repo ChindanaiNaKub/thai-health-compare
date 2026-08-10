@@ -1,6 +1,6 @@
 <svelte:head><title>วิธีเก็บข้อมูล — เทียบประกันสุขภาพไทย</title></svelte:head>
 
-<h1 class="text-3xl font-bold tracking-tight">วิธีเก็บข้อมูล</h1>
+<h1 class="text-xl font-bold tracking-tight">วิธีเก็บข้อมูล</h1>
 
 <div class="mt-4 max-w-2xl space-y-4">
 	<section>

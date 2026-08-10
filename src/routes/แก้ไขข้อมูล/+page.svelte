@@ -4,7 +4,7 @@
 
 <svelte:head><title>แจ้งแก้ไขข้อมูล — เทียบประกันสุขภาพไทย</title></svelte:head>
 
-<h1 class="text-3xl font-bold tracking-tight">แจ้งแก้ไขข้อมูล</h1>
+<h1 class="text-xl font-bold tracking-tight">แจ้งแก้ไขข้อมูล</h1>
 
 <div class="mt-4 max-w-2xl space-y-4">
 	<p class="text-muted">

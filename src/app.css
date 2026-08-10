@@ -67,17 +67,27 @@ body {
 	color: var(--color-muted);
 }
 
-/* Focus that survives on both grounds. */
-:where(a, button, input, select):focus-visible {
+/* Focus that survives on both grounds. Not :where() — a zero-specificity focus
+   ring is one utility class away from being silently removed. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
 	outline: 2px solid var(--color-accent);
 	outline-offset: 2px;
 }
 
+/*
+ * Reduced motion means less movement, not no transition. Colour and opacity
+ * changes carry meaning here — the baseline swap fading tells you the block was
+ * replaced. Kill travel and size change; keep the fade, faster.
+ */
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
 	*::after {
-		animation-duration: 0.01ms !important;
-		transition-duration: 0.01ms !important;
+		transition-property: opacity, color, background-color, border-color, outline-color;
+		transition-duration: 100ms;
+		animation: none !important;
 	}
 }

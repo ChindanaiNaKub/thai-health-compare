@@ -163,7 +163,11 @@
 </div>
 <p class="text-muted mt-2 text-sm">อยู่ในรายการนี้ไม่ได้แปลว่าแนะนำ</p>
 
-<div class="mt-4 overflow-x-auto">
+<!-- Scrolls sideways only below md. Above it the table fits, and dropping the
+     scroll container is what lets the sticky thead actually stick — an
+     overflow-x container clips sticky-top in both axes. Below md the thead is
+     sr-only anyway, so nothing is lost. -->
+<div class="mt-4 max-md:overflow-x-auto">
 	<table class="plans border-rule w-full border-collapse border text-sm">
 		<thead class="head sticky top-0 z-10">
 			<tr class="border-rule border-b-2">
@@ -235,6 +239,12 @@
 							<span class="tnum text-lg font-semibold"
 								>{baht.format((row.annualHealth ?? 0) + (row.annualHost ?? 0))}</span
 							><span class="text-muted ml-1 text-xs">฿</span>
+							<!-- A rider whose host premium is unpublished has no total. Printing the
+							     health figure alone as "เบี้ยปีแรก" understates the cheque, which is
+							     the exact error this site exists to correct. Mark it as a floor. -->
+							{#if row.plan.type === 'rider' && row.annualHost === null}
+								<p class="text-muted mt-0.5 text-xs">ยังไม่รวมสัญญาหลัก · จ่ายจริงมากกว่านี้</p>
+							{/if}
 						{/if}
 					</td>
 
@@ -252,6 +262,8 @@
 							<p class="text-muted mt-0.5 text-xs">
 								ถึงอายุ {row.plan.renewal_ceiling_age} ({row.years} ปี){row.lifetime.incomplete
 									? ' · บางช่วงอายุไม่มีข้อมูล'
+									: ''}{row.plan.type === 'rider' && row.lifetime.host_thb === 0
+									? ' · ยังไม่รวมสัญญาหลัก'
 									: ''}
 							</p>
 						{/if}
@@ -265,7 +277,7 @@
 							aria-controls="d-{id}"
 							onclick={() => (open[id] = !open[id])}
 						>
-							{open[id] ? '−' : '+'}
+							<span class="glyph block">+</span>
 							<span class="sr-only">รายละเอียดและแหล่งข้อมูล {row.plan.name.th}</span>
 						</button>
 					</td>
@@ -399,6 +411,17 @@
 
 	.toggle {
 		transition: transform 140ms var(--ease-out);
+	}
+
+	/* The glyph swapped from + to − in one frame while the panel below it took
+	   200ms to open. Rotating the same + into an × ties the affordance to the
+	   thing it controls, on the same curve and the same duration. */
+	.glyph {
+		transition: transform 200ms var(--ease-out);
+	}
+
+	.toggle[aria-expanded='true'] .glyph {
+		transform: rotate(45deg);
 	}
 
 	/* Changing baseline swaps a whole block of prose. Opacity only: this is text
