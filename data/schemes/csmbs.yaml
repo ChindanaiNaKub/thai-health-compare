@@ -1,0 +1,22 @@
+# TEMPLATE — content is illustrative and must be verified before publication.
+id: csmbs
+name:
+  th: สวัสดิการรักษาพยาบาลข้าราชการ
+  en: Civil Servant Medical Benefit Scheme
+who:
+  th: ข้าราชการ ลูกจ้างประจำ ผู้รับบำนาญ และบุคคลในครอบครัวตามเงื่อนไข
+  en: Civil servants, pensioners, and eligible family members
+covers:
+  - th: รักษาพยาบาลในสถานพยาบาลของรัฐ เบิกจ่ายตรงได้
+    en: null
+  - th: ครอบคลุมบิดามารดา คู่สมรส และบุตรตามเงื่อนไข
+    en: null
+gaps:
+  - th: โดยหลักใช้ได้กับสถานพยาบาลของรัฐ
+    en: null
+source:
+  url: https://www.cgd.go.th/
+  tier: official_insurer
+  verified_on: 2026-08-10
+  note: TEMPLATE — replace with the specific CGD page before publishing.
+verified_on: 2026-08-10

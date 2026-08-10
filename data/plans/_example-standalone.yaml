@@ -1,0 +1,52 @@
+# TEMPLATE — every number below is invented. Insurer and plan names are fictional.
+# Copy this file, replace all values with sourced ones, delete this header.
+id: example-standalone
+insurer:
+  th: บริษัทตัวอย่าง ประกันภัย (ข้อมูลสมมติ)
+  en: Example Insurance (fictional)
+name:
+  th: แผนตัวอย่าง ก — ประกันสุขภาพเดี่ยว
+  en: Example Plan A — standalone health
+
+type: standalone
+host_policy: null
+
+shape: lump_sum
+new_health_standard: true
+
+premium:
+  - { age_from: 21, age_to: 25, thb_per_year: 12000 }
+  - { age_from: 26, age_to: 30, thb_per_year: 14000 }
+  - { age_from: 31, age_to: 40, thb_per_year: 19000 }
+  - { age_from: 41, age_to: 50, thb_per_year: 31000 }
+  - { age_from: 51, age_to: 60, thb_per_year: 58000 }
+  - { age_from: 61, age_to: 70, thb_per_year: 104000 }
+  - { age_from: 71, age_to: 80, thb_per_year: 168000 }
+
+entry_age_min: 11
+entry_age_max: 70
+renewal_ceiling_age: 80
+
+ipd_annual_limit_thb: 5000000
+opd_annual_limit_thb: null
+room_board_thb_per_night: 6000
+deductible_thb: 0
+copay_percent: 0
+
+exclusions:
+  - th: โรคที่เป็นมาก่อนเอาประกันภัยและไม่ได้แถลง
+    en: null
+  - th: การรักษาเพื่อความสวยงาม
+    en: null
+waiting_period_days: 30
+
+premium_source:
+  url: https://example.com/rate-table
+  tier: official_insurer
+  verified_on: 2026-08-10
+terms_source:
+  url: https://example.com/policy-wording
+  tier: filed_wording
+  verified_on: 2026-08-10
+
+verified_on: 2026-08-10

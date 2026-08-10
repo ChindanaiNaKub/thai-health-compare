@@ -1,0 +1,68 @@
+# TEMPLATE — every number below is invented. Insurer and plan names are fictional.
+# This file exists to demonstrate the rider case: the health cover cannot be
+# bought alone, so the host life policy premium is part of the real cost.
+id: example-rider
+insurer:
+  th: บริษัทตัวอย่าง ประกันชีวิต (ข้อมูลสมมติ)
+  en: Example Life (fictional)
+name:
+  th: แผนตัวอย่าง ข — สัญญาเพิ่มเติมสุขภาพ
+  en: Example Plan B — health rider
+
+type: rider
+host_policy:
+  name:
+    th: สัญญาหลัก ประกันชีวิตตลอดชีพ (ข้อมูลสมมติ)
+    en: Host whole-life policy (fictional)
+  min_sum_insured_thb: 200000
+  premium:
+    - { age_from: 21, age_to: 30, thb_per_year: 9000 }
+    - { age_from: 31, age_to: 40, thb_per_year: 12000 }
+    - { age_from: 41, age_to: 50, thb_per_year: 17000 }
+    - { age_from: 51, age_to: 60, thb_per_year: 24000 }
+    - { age_from: 61, age_to: 85, thb_per_year: 33000 }
+  premium_unknown_reason: null
+  source:
+    url: https://example.com/host-policy-rates
+    tier: official_insurer
+    verified_on: 2026-08-10
+
+shape: lump_sum
+new_health_standard: true
+
+premium:
+  - { age_from: 21, age_to: 25, thb_per_year: 10000 }
+  - { age_from: 26, age_to: 30, thb_per_year: 12000 }
+  - { age_from: 31, age_to: 40, thb_per_year: 17000 }
+  - { age_from: 41, age_to: 50, thb_per_year: 28000 }
+  - { age_from: 51, age_to: 60, thb_per_year: 54000 }
+  - { age_from: 61, age_to: 85, thb_per_year: 112000 }
+
+entry_age_min: 6
+entry_age_max: 70
+renewal_ceiling_age: 85
+
+ipd_annual_limit_thb: 5000000
+opd_annual_limit_thb: 30000
+room_board_thb_per_night: 8000
+deductible_thb: 30000
+copay_percent: 0
+
+exclusions:
+  - th: โรคที่เป็นมาก่อนเอาประกันภัยและไม่ได้แถลง
+    en: null
+  - th: ภาวะแทรกซ้อนจากการตั้งครรภ์ในช่วงรอคอย
+    en: null
+waiting_period_days: 30
+
+premium_source:
+  url: https://example.com/rider-rates
+  tier: agent_site
+  verified_on: 2026-08-10
+  note: Premiums cross-checked against a second agent site.
+terms_source:
+  url: https://example.com/rider-wording
+  tier: filed_wording
+  verified_on: 2026-08-10
+
+verified_on: 2026-08-10

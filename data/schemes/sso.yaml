@@ -1,0 +1,24 @@
+# TEMPLATE — content is illustrative and must be verified before publication.
+id: sso
+name:
+  th: ประกันสังคม (มาตรา 33/39)
+  en: Social Security Scheme
+who:
+  th: ลูกจ้างที่นายจ้างขึ้นทะเบียนไว้ และผู้ประกันตนโดยสมัครใจ
+  en: Employees registered by their employer, and voluntary contributors
+covers:
+  - th: รักษาพยาบาลที่โรงพยาบาลตามสิทธิ ทั้งผู้ป่วยนอกและผู้ป่วยใน ไม่จำกัดวงเงิน
+    en: null
+  - th: กรณีฉุกเฉินเข้ารักษาโรงพยาบาลอื่นได้ตามเงื่อนไข
+    en: null
+gaps:
+  - th: ต้องใช้โรงพยาบาลตามสิทธิที่เลือกไว้ ยกเว้นกรณีฉุกเฉิน
+    en: null
+  - th: ไม่ครอบคลุมห้องพักพิเศษหรือโรงพยาบาลเอกชนนอกสิทธิ
+    en: null
+source:
+  url: https://www.sso.go.th/
+  tier: official_insurer
+  verified_on: 2026-08-10
+  note: TEMPLATE — replace with the specific SSO page before publishing.
+verified_on: 2026-08-10

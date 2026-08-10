@@ -1,0 +1,24 @@
+# TEMPLATE — content is illustrative and must be verified before publication.
+id: ucs
+name:
+  th: หลักประกันสุขภาพแห่งชาติ (บัตรทอง / สิทธิ 30 บาท)
+  en: Universal Coverage Scheme
+who:
+  th: คนไทยที่ไม่มีสิทธิประกันสังคมหรือสิทธิข้าราชการ
+  en: Thai nationals without SSO or civil-servant entitlement
+covers:
+  - th: รักษาพยาบาลทั่วไป ผู้ป่วยนอกและผู้ป่วยใน ที่หน่วยบริการตามสิทธิ
+    en: null
+  - th: ยาในบัญชียาหลักแห่งชาติ
+    en: null
+gaps:
+  - th: ต้องรักษาที่หน่วยบริการประจำ และมีระบบส่งต่อ
+    en: null
+  - th: เวลารอคอยอาจนาน และไม่ครอบคลุมโรงพยาบาลเอกชน
+    en: null
+source:
+  url: https://www.nhso.go.th/
+  tier: official_insurer
+  verified_on: 2026-08-10
+  note: TEMPLATE — replace with the specific NHSO page before publishing.
+verified_on: 2026-08-10

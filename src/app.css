@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+/*
+ * Semantic tokens, one definition each, using light-dark() so the theme
+ * follows the reader with no JS and no flash. Borrowed from Kumo's approach
+ * without borrowing Kumo, which is React-only.
+ *
+ * TODO: self-host a subsetted Thai webfont (Noto Sans Thai or IBM Plex Sans
+ * Thai) under static/fonts and add @font-face here. Thai fonts are heavy —
+ * subset to Thai + Latin + digits before shipping.
+ */
+@theme {
+	--font-sans:
+		'Noto Sans Thai', 'IBM Plex Sans Thai', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	--color-bg: light-dark(oklch(99% 0.004 260), oklch(17% 0.012 260));
+	--color-surface: light-dark(oklch(100% 0 0), oklch(21% 0.014 260));
+	--color-border: light-dark(oklch(90% 0.008 260), oklch(30% 0.016 260));
+	--color-ink: light-dark(oklch(24% 0.015 260), oklch(94% 0.008 260));
+	--color-muted: light-dark(oklch(50% 0.014 260), oklch(68% 0.012 260));
+	--color-accent: light-dark(oklch(48% 0.14 250), oklch(74% 0.12 250));
+	--color-warn-bg: light-dark(oklch(96% 0.045 85), oklch(28% 0.05 85));
+	--color-warn-ink: light-dark(oklch(40% 0.09 60), oklch(88% 0.07 85));
+}
+
+:root {
+	color-scheme: light dark;
+}
+
+html {
+	background: var(--color-bg);
+	color: var(--color-ink);
+	font-family: var(--font-sans);
+	-webkit-text-size-adjust: 100%;
+}
+
+/* Thai text needs more line height than Latin to keep tone marks legible. */
+body {
+	line-height: 1.7;
+}
