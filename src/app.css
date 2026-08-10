@@ -26,6 +26,13 @@
 	--color-host: light-dark(oklch(72% 0.11 60), oklch(72% 0.13 60));
 	--color-warn-bg: light-dark(oklch(95% 0.05 80), oklch(27% 0.055 75));
 	--color-warn-ink: light-dark(oklch(42% 0.1 55), oklch(88% 0.08 82));
+
+	/*
+	 * The site has one curve and almost no motion. Built-in ease-out is too
+	 * weak to read as deliberate; this is the strong variant. Anything that
+	 * enters, exits or responds to a press uses it. Nothing else moves.
+	 */
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 :root {

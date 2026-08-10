@@ -3,7 +3,7 @@
 	let { children } = $props();
 </script>
 
-<div class="mx-auto flex min-h-dvh max-w-5xl flex-col px-4">
+<div class="mx-auto flex min-h-dvh max-w-6xl flex-col px-4">
 	<header class="border-rule flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b-2 py-5">
 		<a href="/" class="text-lg font-bold tracking-tight">
 			<span class="text-accent font-mono">&gt;</span> เทียบประกันสุขภาพไทย
