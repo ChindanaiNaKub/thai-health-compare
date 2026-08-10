@@ -1,0 +1,74 @@
+# ประกันสุขภาพ HEALTH ME+ แผน 1 (1 ล้านบาท) — แผนถูกที่สุดในตระกูล
+# แผนนี้ซื้อแบบมีความรับผิดส่วนแรก 80,000 บาทไม่ได้ (บริษัทจำกัดไว้เฉพาะแผน 2-4)
+# บันทึกไว้เพื่อให้เห็นว่าเบี้ยของแผนวงเงินต่ำสุดยังสูงกว่าแผน 10 ล้านบาทของบางบริษัท
+id: mti-health-me-plus-1m
+insurer:
+  th: เมืองไทยประกันภัย
+  en: Muang Thai Insurance
+name:
+  th: ประกันสุขภาพ HEALTH ME+ — แผน 1 (1 ล้านบาท) ไม่มีความรับผิดส่วนแรก
+  en: Muang Thai Insurance HEALTH ME+ — Plan 1 (1M), no deductible
+
+type: standalone
+host_policy: null
+
+shape: lump_sum
+new_health_standard: true
+
+premium:
+  - { age_from: 11, age_to: 15, thb_per_year: 22432 }
+  - { age_from: 16, age_to: 20, thb_per_year: 20250 }
+  - { age_from: 21, age_to: 25, thb_per_year: 22503 }
+  - { age_from: 26, age_to: 30, thb_per_year: 23494 }
+  - { age_from: 31, age_to: 35, thb_per_year: 25166 }
+  - { age_from: 36, age_to: 40, thb_per_year: 26707 }
+  - { age_from: 41, age_to: 45, thb_per_year: 32243 }
+  - { age_from: 46, age_to: 50, thb_per_year: 34973 }
+  - { age_from: 51, age_to: 55, thb_per_year: 46579 }
+  - { age_from: 56, age_to: 60, thb_per_year: 59849 }
+  - { age_from: 61, age_to: 65, thb_per_year: 87720 }
+  - { age_from: 66, age_to: 70, thb_per_year: 124011 }
+
+entry_age_min: 11
+entry_age_max: 70
+renewal_ceiling_age: 80
+
+ipd_annual_limit_thb: 1000000
+ipd_limit_basis: per_confinement
+opd_annual_limit_thb: null
+room_board_thb_per_night: 8000
+deductible_thb: 0
+copay_percent: 0
+copay_on_renewal: >-
+  ปีแรกไม่มีค่าใช้จ่ายร่วม บริษัทระบุเพียงว่า "บริษัทฯ ขอสงวนสิทธิ์ในการปรับเบี้ยประกันภัย
+  สำหรับต่ออายุกรมธรรม์ตามช่วงอายุ และสงวนสิทธ์ในการพิจารณาเพิ่มเติมเงื่อนไขหรือกำหนด
+  ค่าใช้จ่ายร่วม (Copayment)" — ไม่ประกาศอัตรา ไม่ประกาศหลักเกณฑ์ และไม่ประกาศ
+  ระยะเวลาแจ้งล่วงหน้า จึงประเมินต้นทุนปีต่ออายุล่วงหน้าไม่ได้
+
+exclusions: []
+waiting_period_days: 30
+
+premium_source:
+  url: https://mticonnect-resources.muangthaiinsurance.com/product/files_01-2026_1767929124256.pdf
+  tier: official_insurer
+  verified_on: 2026-08-10
+  note: >-
+    โบรชัวร์ "Health ME Plus 2025 TH Final" ของเมืองไทยประกันภัย หน้า 5
+    ตาราง "เบี้ยประกันภัยรายปีรวมอากรแสตมป์" แถวความรับผิดส่วนแรก "ไม่มี ( 0 บาท )"
+    คอลัมน์ "แผน 1" ครบทั้ง 12 ช่วงอายุ ตรงกับหน้าผลิตภัณฑ์ HTML ของบริษัทที่
+    https://www.muangthaiinsurance.com/th/product/health-insurance ทุกตัว
+terms_source:
+  url: https://mticonnect-resources.muangthaiinsurance.com/product/files_01-2026_1767929124256.pdf
+  tier: official_insurer
+  verified_on: 2026-08-10
+  note: >-
+    โบรชัวร์หน้า 2 ตารางผลประโยชน์ คอลัมน์ "แผน 1": จำนวนเงินเอาประกันภัย 1 ล้านบาท
+    เป็น "ความคุ้มครองสูงสุดต่อการเข้าพักรักษาเป็นผู้ป่วยในครั้งใดครั้งหนึ่ง"
+    ค่าห้องและค่าอาหาร 8,000 บาทต่อวัน (ICU 16,000 บาทต่อวัน สูงสุด 15 วัน) สูงสุด 365 วัน
+    หมวด 9 ล้างไต 15,000 บาทต่อรอบปีกรมธรรม์ หมวด 10-11 อย่างละ 100,000 บาทต่อรอบปี
+    หน้า 3 ระบุว่าความรับผิดส่วนแรก 80,000 บาท "เลือกซื้อได้เฉพาะแผนความคุ้มครอง 2-4"
+    หน้า 4 ระบุอายุรับประกัน 11-70 ปี ต่ออายุถึง 80 ปี ระยะเวลาที่ไม่คุ้มครอง 30 วัน
+    และ 120 วันสำหรับ 8 โรค เงื่อนไขอาชีพต้องห้ามและการตรวจสุขภาพสำหรับผู้สมัครอายุ 65 ปีขึ้นไป
+    เหมือนกับแผน 4 ทุกประการ ข้อยกเว้นชุดเต็มไม่ถูกเผยแพร่ อยู่ในกรมธรรม์เท่านั้น
+
+verified_on: 2026-08-10
