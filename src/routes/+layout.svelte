@@ -3,12 +3,15 @@
 	let { children } = $props();
 </script>
 
-<div class="mx-auto flex min-h-dvh max-w-6xl flex-col px-4">
-	<header class="border-rule flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b-2 py-5">
+<div class="mx-auto flex min-h-dvh max-w-7xl flex-col px-4">
+	<header class="border-rule flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b-2 py-5">
 		<a href="/" class="text-lg font-bold tracking-tight">
 			<span class="text-accent font-mono">&gt;</span> เทียบประกันสุขภาพไทย
 		</a>
-		<span class="label">ข้อมูลล้วน ๆ / ไม่ขายของ</span>
+		<nav class="text-muted flex flex-wrap gap-x-4 gap-y-1 text-sm">
+			<a class="nav" href="/method">วิธีเก็บข้อมูล</a>
+			<a class="nav" href="/แก้ไขข้อมูล">แจ้งแก้ไขข้อมูล</a>
+		</nav>
 	</header>
 
 	<main class="flex-1 py-8">
@@ -35,5 +38,20 @@
 <style>
 	:global(a) {
 		color: inherit;
+	}
+
+	/* The two secondary pages were only reachable from the footer, which on a
+	   33-row table is a scroll away from anyone wondering where a number came
+	   from — the exact moment they want the method page. */
+	.nav {
+		text-underline-offset: 3px;
+		transition: color 120ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav:hover {
+			color: var(--color-ink);
+			text-decoration: underline;
+		}
 	}
 </style>

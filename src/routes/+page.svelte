@@ -21,13 +21,29 @@
 	let age = $state(22);
 	let sex = $state<Sex>('male');
 
+	// How the reader narrows 33 records down to the handful they can actually
+	// buy. Sorting is not ranking: the reader picks a column, the site never
+	// picks one for them, and no plan is ever scored against another.
+	type Kind = 'all' | 'standalone' | 'rider';
+	type Sort = 'premium' | 'lifetime' | 'ipd' | 'insurer';
+	let kind = $state<Kind>('all');
+	let sort = $state<Sort>('premium');
+	let pricedOnly = $state(false);
+
 	// Mirror the controls into the URL so any answer here is a link someone can
 	// cite. replaceState, not push: turning a dial is not navigation and must not
 	// fill the back button. The page is prerendered, so the query can only be
 	// read after hydration — defaults render server-side, the URL overrides them.
 	let mounted = false;
 	$effect(() => {
-		const next = new URLSearchParams({ มีสิทธิ: baseline, อายุ: String(age), เพศ: sex });
+		const next = new URLSearchParams({
+			มีสิทธิ: baseline,
+			อายุ: String(age),
+			เพศ: sex,
+			แบบ: kind,
+			เรียง: sort
+		});
+		if (pricedOnly) next.set('เฉพาะที่มีราคา', '1');
 		if (!mounted) {
 			mounted = true;
 			// Read, don't write: arriving at a bare URL should leave it bare.
@@ -36,6 +52,11 @@
 			if (b) baseline = b;
 			if (Number(q.get('อายุ'))) age = Number(q.get('อายุ'));
 			if (q.get('เพศ') === 'female') sex = 'female';
+			const k = (['all', 'standalone', 'rider'] as const).find((v) => v === q.get('แบบ'));
+			if (k) kind = k;
+			const s = (['premium', 'lifetime', 'ipd', 'insurer'] as const).find((v) => v === q.get('เรียง'));
+			if (s) sort = s;
+			if (q.get('เฉพาะที่มีราคา') === '1') pricedOnly = true;
 			return;
 		}
 		if (next.toString() !== page.url.searchParams.toString()) replaceState(`?${next}`, {});
@@ -45,26 +66,111 @@
 	// would defeat the point of putting them in a table.
 	let open = $state<Record<string, boolean>>({});
 
+	// The public schemes carry long, carefully-sourced bullets, and on a phone all
+	// of them together are a screen and a half of reading standing between the
+	// reader and the plans. Two per column is enough to establish what the block
+	// is; the rest is there for whoever wants it.
+	const SCHEME_CAP = 2;
+	let showAllScheme = $state(false);
+
 	// The build date, not the reader's clock — a clock the reader can change.
 	const builtOn = $derived(new Date(data.builtOn));
 
 	const scheme = $derived(data.schemes.find((s) => s.id === baseline) ?? null);
 
-	const rows = $derived(
+	const insurerCount = $derived(new Set(data.plans.map((p) => p.insurer.th)).size);
+
+	// Every plan the reader's age lets them buy, costed. Filtering and sorting
+	// happen downstream so the chip counts can be taken from here — a filter
+	// that hides its own count is a filter you have to click to understand.
+	const priced = $derived(
 		data.plans
 			.filter((p) => isEligible(p, age))
-			.map((p) => ({
-				plan: p,
-				stale: premiumIsStale(p.verified_on, builtOn),
-				annualHealth: healthPremiumAt(p, age, sex),
-				annualHost: hostPremiumAt(p, age, sex),
-				share: healthShare(p, age, sex),
-				lifetime: cumulativePremium(p, age, sex),
-				years: yearsOfCoverFrom(p, age)
-			}))
+			.map((p) => {
+				const stale = premiumIsStale(p.verified_on, builtOn);
+				const annualHealth = healthPremiumAt(p, age, sex);
+				const annualHost = hostPremiumAt(p, age, sex);
+				const withheld = stale || p.premium === null || annualHealth === null;
+				return {
+					plan: p,
+					stale,
+					annualHealth,
+					annualHost,
+					withheld,
+					// The cheque the reader actually writes in year one, or null when we
+					// refuse to print one. Null is never coerced to 0 — that is the lie
+					// this whole site exists to stop telling.
+					firstYear: withheld ? null : (annualHealth ?? 0) + (annualHost ?? 0),
+					share: healthShare(p, age, sex),
+					lifetime: cumulativePremium(p, age, sex),
+					years: yearsOfCoverFrom(p, age)
+				};
+			})
 	);
 
+	type Row = (typeof priced)[number];
+
+	const counts = $derived({
+		all: priced.length,
+		standalone: priced.filter((r) => r.plan.type === 'standalone').length,
+		rider: priced.filter((r) => r.plan.type === 'rider').length
+	});
+
+	function sortValue(r: Row, mode: Sort): number | null {
+		if (mode === 'premium') return r.firstYear;
+		if (mode === 'lifetime') return r.withheld ? null : (r.lifetime?.total_thb ?? null);
+		if (mode === 'ipd') return r.plan.ipd_annual_limit_thb;
+		return null;
+	}
+
+	const rows = $derived(
+		priced
+			.filter((r) => kind === 'all' || r.plan.type === kind)
+			.filter((r) => !pricedOnly || r.firstYear !== null)
+			.slice()
+			.sort((a, b) => {
+				const [x, y] = [sortValue(a, sort), sortValue(b, sort)];
+				// A withheld figure sorts last in every direction. Ordering an unknown
+				// as if it were zero would put the least-documented plans on top.
+				if (x === null && y === null) return a.plan.insurer.th.localeCompare(b.plan.insurer.th, 'th');
+				if (x === null) return 1;
+				if (y === null) return -1;
+				// Money ascending (cheapest first is what you came to see); coverage
+				// descending (a bigger ceiling is the thing being measured).
+				return sort === 'ipd' ? y - x : x - y;
+			})
+	);
+
+	// The two-second answer: how many, and how much, before any scrolling.
+	const span = $derived.by(() => {
+		const known = rows.map((r) => r.firstYear).filter((n): n is number => n !== null);
+		return known.length ? { low: Math.min(...known), high: Math.max(...known) } : null;
+	});
+
 	const baht = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 0 });
+
+	const SHAPE: Record<string, string> = {
+		lump_sum: 'เหมาจ่าย',
+		per_item_schedule: 'จ่ายตามรายการ',
+		deductible_first: 'มีส่วนแรกที่ต้องจ่ายเอง',
+		opd_inclusive: 'รวมผู้ป่วยนอก'
+	};
+
+	/**
+	 * Nine digits of baht in a table column is unreadable, and a reader comparing
+	 * 120,000,000 against 500,000 is counting commas. Thai counts in หมื่น / แสน /
+	 * ล้าน, and it steps at each one: 270,000 is 2.7 แสน, never 27 หมื่น.
+	 */
+	function compactBaht(n: number): string {
+		const step = (unit: number, word: string) => {
+			const v = n / unit;
+			return `${v % 1 === 0 ? v : v.toFixed(1)} ${word}`;
+		};
+		if (n >= 1_000_000) return step(1_000_000, 'ล้าน');
+		if (n >= 100_000) return step(100_000, 'แสน');
+		if (n >= 10_000) return step(10_000, 'หมื่น');
+		return baht.format(n);
+	}
 </script>
 
 <svelte:head>
@@ -75,15 +181,35 @@
 	/>
 </svelte:head>
 
-<h1 class="text-xl font-bold tracking-tight">คุณมีสิทธิอะไรอยู่แล้ว?</h1>
-<p class="text-muted mt-1 max-w-2xl text-sm">
-	ประกันเอกชนคือส่วนที่เพิ่มจากสิทธิเดิม ไม่ได้มาแทนที่สิทธิเดิม
-</p>
+<!-- The two-second block. A reader who leaves after this line should still know
+     what the site claims and why it is not trying to sell them anything. -->
+<section class="max-w-3xl">
+	<h1 class="text-2xl font-bold tracking-tight text-balance sm:text-3xl">
+		ประกันสุขภาพส่วนใหญ่ในไทย <span class="text-host-ink">บังคับให้ซื้อประกันชีวิตพ่วง</span>
+	</h1>
+	<p class="mt-3 text-base">
+		เว็บนี้แยกให้เห็นว่าเงินที่คุณจ่ายทั้งหมด <span class="text-accent font-semibold"
+			>เป็นค่าสุขภาพจริงกี่บาท</span
+		> และตลอดสัญญาต้องจ่ายรวมเท่าไหร่
+	</p>
+	<ul class="mt-4 flex flex-wrap gap-2">
+		<li class="chip chip-neutral">{data.plans.length} แผน · {insurerCount} บริษัท</li>
+		<li class="chip chip-neutral">ทุกตัวเลขมีลิงก์ต้นทาง</li>
+		<li class="chip chip-neutral">ไม่ขายของ ไม่มีนายหน้า</li>
+	</ul>
+</section>
+
+<div class="border-rule mt-10 border-t-2 pt-5">
+	<h2 class="text-lg font-bold tracking-tight">
+		<span class="step">1</span> คุณมีสิทธิอะไรอยู่แล้ว?
+	</h2>
+	<p class="text-muted mt-1 max-w-2xl">ประกันเอกชนคือส่วนที่เพิ่มจากสิทธิเดิม ไม่ได้มาแทนที่สิทธิเดิม</p>
+</div>
 
 <form class="border-rule bg-surface mt-4 grid gap-4 border p-4 sm:grid-cols-3">
 	<label class="grid gap-1.5">
 		<span class="label">สิทธิที่มีอยู่</span>
-		<select bind:value={baseline} class="control border-border bg-bg border px-3 py-2 text-sm">
+		<select bind:value={baseline} class="control border-border bg-bg border px-3 py-2">
 			<option value="sso">ประกันสังคม</option>
 			<option value="ucs">บัตรทอง</option>
 			<option value="csmbs">สิทธิข้าราชการ</option>
@@ -98,7 +224,7 @@
 			bind:value={age}
 			min="0"
 			max="80"
-			class="control border-border bg-bg tnum border px-3 py-2 text-sm"
+			class="control border-border bg-bg tnum border px-3 py-2"
 		/>
 		<!-- The number is the answer; the slider is how you look around. Dragging
 		     it moves every figure in the table 1:1, which is the only way to see
@@ -115,7 +241,7 @@
 
 	<label class="grid gap-1.5">
 		<span class="label">เพศตามตารางเบี้ย</span>
-		<select bind:value={sex} class="control border-border bg-bg border px-3 py-2 text-sm">
+		<select bind:value={sex} class="control border-border bg-bg border px-3 py-2">
 			<option value="male">ชาย</option>
 			<option value="female">หญิง</option>
 		</select>
@@ -126,124 +252,216 @@
 	<!-- Keyed on the scheme so switching baseline replaces the block rather than
 	     mutating it in place — which is what lets it fade instead of teleport. -->
 	{#key scheme.id}
-	<section class="swap border-rule bg-surface mt-4 border p-4">
-		<div class="flex flex-wrap items-baseline gap-x-3">
-			<h2 class="label !text-accent">ฐานที่คุณมีอยู่</h2>
-			<p class="font-semibold">{scheme.name.th}</p>
-		</div>
-		<div class="mt-3 grid gap-5 sm:grid-cols-2">
-			<div>
-				<h3 class="label">ครอบคลุมอยู่แล้ว</h3>
-				<ul class="mt-1.5 space-y-1 text-sm">
-					{#each scheme.covers as item (item.th)}
-						<li class="flex gap-2">
-							<span class="text-accent font-mono select-none">+</span>{item.th}
-						</li>
-					{/each}
-				</ul>
+		<section class="swap border-rule bg-surface mt-4 border p-4">
+			<div class="flex flex-wrap items-baseline gap-x-3">
+				<h3 class="label !text-accent">ฐานที่คุณมีอยู่</h3>
+				<p class="font-semibold">{scheme.name.th}</p>
 			</div>
-			<div>
-				<h3 class="label">ช่องว่างที่เหลือ</h3>
-				<ul class="mt-1.5 space-y-1 text-sm">
-					{#each scheme.gaps as item (item.th)}
-						<li class="flex gap-2">
-							<span class="text-host font-mono select-none">−</span>{item.th}
-						</li>
-					{/each}
-				</ul>
+			<div class="mt-3 grid gap-5 sm:grid-cols-2">
+				<div>
+					<h4 class="label">ครอบคลุมอยู่แล้ว ({scheme.covers.length})</h4>
+					<ul class="mt-1.5 space-y-1.5">
+						{#each showAllScheme ? scheme.covers : scheme.covers.slice(0, SCHEME_CAP) as item (item.th)}
+							<li class="flex gap-2">
+								<span class="text-accent font-mono select-none">+</span>{item.th}
+							</li>
+						{/each}
+					</ul>
+				</div>
+				<div>
+					<h4 class="label">ช่องว่างที่เหลือ ({scheme.gaps.length})</h4>
+					<ul class="mt-1.5 space-y-1.5">
+						{#each showAllScheme ? scheme.gaps : scheme.gaps.slice(0, SCHEME_CAP) as item (item.th)}
+							<li class="flex gap-2">
+								<span class="text-host-ink font-mono select-none">−</span>{item.th}
+							</li>
+						{/each}
+					</ul>
+				</div>
 			</div>
-		</div>
-	</section>
+
+			{#if scheme.covers.length > SCHEME_CAP || scheme.gaps.length > SCHEME_CAP}
+				<button
+					type="button"
+					class="more text-accent mt-3"
+					aria-expanded={showAllScheme}
+					onclick={() => (showAllScheme = !showAllScheme)}
+				>
+					{showAllScheme
+						? 'ย่อกลับ'
+						: `ดูทั้งหมด ${scheme.covers.length + scheme.gaps.length} ข้อ`}
+				</button>
+			{/if}
+		</section>
 	{/key}
 {/if}
 
-<div class="border-rule mt-10 flex flex-wrap items-baseline justify-between gap-2 border-b pb-2">
-	<h2 class="text-xl font-bold tracking-tight">แผนที่ซื้อเพิ่มได้</h2>
-	<span class="label">{rows.length} รายการ / เรียงตามชื่อบริษัท / ไม่ได้จัดอันดับ</span>
+<div class="border-rule mt-12 border-t-2 pt-5">
+	<h2 class="text-lg font-bold tracking-tight">
+		<span class="step">2</span> แผนที่ซื้อเพิ่มได้
+	</h2>
+	<!-- The answer, before any scrolling: how many, and the range of the cheque. -->
+	<p class="mt-1">
+		ที่อายุ <span class="tnum font-semibold">{age}</span> ซื้อได้
+		<span class="tnum font-semibold">{rows.length}</span> แผน{#if span}{' · '}เบี้ยปีแรก
+			<span class="tnum font-semibold">{baht.format(span.low)}</span>–<span
+				class="tnum font-semibold">{baht.format(span.high)}</span
+			> ฿/ปี{/if}
+	</p>
+	<p class="text-muted mt-1 text-sm">
+		อยู่ในรายการนี้ไม่ได้แปลว่าแนะนำ และการเรียงลำดับคือการเรียงตามตัวเลขที่คุณเลือก ไม่ใช่การจัดอันดับว่าแผนไหนดีกว่า
+	</p>
 </div>
-<p class="text-muted mt-2 text-sm">อยู่ในรายการนี้ไม่ได้แปลว่าแนะนำ</p>
+
+<!-- Filters carry their own counts and their own colour, so the bar doubles as
+     the legend for the chips inside the table. accent = health cover you can buy
+     alone, host = the life policy bolted on. No third hue is invented here. -->
+<div class="border-rule bg-surface mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 border p-3">
+	<div class="flex flex-wrap items-center gap-2">
+		<span class="label">แบบสัญญา</span>
+		<button
+			type="button"
+			class="filter filter-neutral"
+			aria-pressed={kind === 'all'}
+			onclick={() => (kind = 'all')}>ทั้งหมด <span class="tnum">{counts.all}</span></button
+		>
+		<button
+			type="button"
+			class="filter filter-standalone"
+			aria-pressed={kind === 'standalone'}
+			onclick={() => (kind = 'standalone')}
+			>ซื้อเดี่ยวได้ <span class="tnum">{counts.standalone}</span></button
+		>
+		<button
+			type="button"
+			class="filter filter-rider"
+			aria-pressed={kind === 'rider'}
+			onclick={() => (kind = 'rider')}
+			>ต้องซื้อพ่วง <span class="tnum">{counts.rider}</span></button
+		>
+	</div>
+
+	<label class="flex items-center gap-2">
+		<span class="label">เรียงตาม</span>
+		<select bind:value={sort} class="control border-border bg-bg border px-2 py-1.5 text-sm">
+			<option value="premium">เบี้ยปีแรก ถูก→แพง</option>
+			<option value="lifetime">จ่ายรวมตลอดสัญญา ถูก→แพง</option>
+			<option value="ipd">วงเงินผู้ป่วยใน สูง→ต่ำ</option>
+			<option value="insurer">ชื่อบริษัท</option>
+		</select>
+	</label>
+
+	<label class="flex items-center gap-2 text-sm">
+		<input type="checkbox" bind:checked={pricedOnly} class="accent-accent size-4" />
+		ซ่อนแผนที่ไม่มีตัวเลขเบี้ย
+	</label>
+</div>
 
 <!-- Scrolls sideways only below md. Above it the table fits, and dropping the
      scroll container is what lets the sticky thead actually stick — an
      overflow-x container clips sticky-top in both axes. Below md the thead is
      sr-only anyway, so nothing is lost. -->
 <div class="mt-4 max-md:overflow-x-auto">
-	<table class="plans border-rule w-full border-collapse border text-sm">
+	<table class="plans border-rule w-full border-collapse border">
 		<thead class="head sticky top-0 z-10">
 			<tr class="border-rule border-b-2">
-				<th class="label px-3 py-2 text-left">แผน</th>
+				<th class="label px-3 py-2.5 text-left">แผน</th>
 				<!-- The signature column: the whole argument, six bars deep. -->
-				<th class="label w-[34%] px-3 py-2 text-left">เงินที่เป็นค่าสุขภาพจริง</th>
-				<th class="label px-3 py-2 text-right">เบี้ยปีแรก</th>
-				<th class="label px-3 py-2 text-right">จ่ายรวมตลอดสัญญา</th>
-				<th class="w-10 px-3 py-2"><span class="sr-only">รายละเอียด</span></th>
+				<th class="label w-[24%] px-3 py-2.5 text-left">เงินที่เป็นค่าสุขภาพจริง</th>
+				<th class="label px-3 py-2.5 text-right whitespace-nowrap">วงเงินผู้ป่วยใน</th>
+				<th class="label px-3 py-2.5 text-right whitespace-nowrap">เบี้ยปีแรก</th>
+				<th class="label px-3 py-2.5 text-right whitespace-nowrap">จ่ายรวมตลอดสัญญา</th>
+				<th class="w-10 px-3 py-2.5"><span class="sr-only">รายละเอียด</span></th>
 			</tr>
 		</thead>
 
 		{#each rows as row (row.plan.id)}
 			{@const id = row.plan.id}
-			{@const withheld = row.stale || row.plan.premium === null || row.annualHealth === null}
+			{@const withheld = row.withheld}
 			<tbody class="border-border border-b">
-				<tr class="row">
+				<!-- The whole row is the target. A 24px "+" was the only way in, which
+				     is a hard thing to hit and an invisible thing to discover. The
+				     button stays as the real control so keyboard and AT still work. -->
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+				<tr class="row" onclick={() => (open[id] = !open[id])}>
 					<td class="px-3 py-3 align-top">
 						<div class="font-semibold">{row.plan.name.th}</div>
-						<div class="label mt-0.5">{row.plan.insurer.th}</div>
-						<div class="text-muted mt-1 font-mono text-[0.6875rem]">
-							{row.plan.type === 'rider' ? 'RIDER — ต้องซื้อสัญญาหลักด้วย' : 'STANDALONE — ซื้อเดี่ยวได้'}
+						<div class="text-muted mt-0.5 text-sm">{row.plan.insurer.th}</div>
+						<div class="mt-1.5 flex flex-wrap gap-1.5">
+							{#if row.plan.type === 'rider'}
+								<span class="chip chip-rider">ต้องซื้อพ่วง</span>
+							{:else}
+								<span class="chip chip-standalone">ซื้อเดี่ยวได้</span>
+							{/if}
+							<span class="chip chip-neutral">{SHAPE[row.plan.shape]}</span>
+							{#if row.plan.new_health_standard}
+								<span class="chip chip-neutral">มาตรฐานใหม่</span>
+							{/if}
 						</div>
 					</td>
 
 					<td class="px-3 py-3 align-top">
 						<span class="label cell-label">เงินที่เป็นค่าสุขภาพจริง</span>
 						{#if row.stale}
-							<p class="text-warn-ink bg-warn-bg border-host border-l-4 px-2 py-1.5 text-xs">
-								ไม่ได้ตรวจเบี้ยเกิน 18 เดือน จึงซ่อนตัวเลข (ตรวจล่าสุด {row.plan.verified_on})
+							<p class="text-warn-ink bg-warn-bg border-warn-ink border-l-4 px-2 py-1 text-sm">
+								ข้อมูลเก่าเกิน 18 เดือน จึงซ่อนตัวเลข
 							</p>
 						{:else if row.plan.premium === null}
-							<p class="text-warn-ink bg-warn-bg border-host border-l-4 px-2 py-1.5 text-xs">
-								บริษัทไม่ประกาศเบี้ยที่ผูกกับอายุ {row.plan.premium_unknown_reason}
+							<p class="text-warn-ink bg-warn-bg border-warn-ink border-l-4 px-2 py-1 text-sm">
+								บริษัทไม่ประกาศเบี้ย
 							</p>
 						{:else if row.annualHealth === null}
-							<p class="text-muted text-xs">ไม่มีตารางเบี้ยสำหรับอายุนี้</p>
+							<p class="text-muted text-sm">ไม่มีตารางเบี้ยสำหรับอายุนี้</p>
 						{:else if row.share !== null && row.annualHost !== null}
 							<figure>
 								<div class="border-border flex h-6 overflow-hidden border" role="presentation">
 									<div class="bg-accent split" style="width: {row.share * 100}%"></div>
 									<div class="bg-host flex-1"></div>
 								</div>
-								<figcaption class="mt-1 flex flex-wrap justify-between gap-x-3">
+								<figcaption class="mt-1.5 flex flex-wrap justify-between gap-x-3">
 									<span class="label !text-accent"
-										>สุขภาพ {Math.round(row.share * 100)}% · {baht.format(row.annualHealth)} ฿</span
+										>สุขภาพ {Math.round(row.share * 100)}%</span
 									>
-									<span class="label !text-host"
-										>สัญญาหลัก {100 - Math.round(row.share * 100)}% · {baht.format(
-											row.annualHost
-										)} ฿</span
+									<span class="label !text-host-ink"
+										>สัญญาหลัก {100 - Math.round(row.share * 100)}%</span
 									>
 								</figcaption>
 							</figure>
 						{:else if row.share === 1}
 							<!-- Standalone: nothing to split, so no bar. Saying so beats a full bar
 							     that would read as a score. -->
-							<p class="text-muted text-xs">ซื้อเดี่ยวได้ ไม่มีเบี้ยสัญญาหลักมาหาร เป็นค่าสุขภาพเต็ม 100%</p>
+							<p class="text-accent text-sm">เป็นค่าสุขภาพเต็ม 100%</p>
 						{:else}
-							<p class="text-muted text-xs">บริษัทไม่เปิดเผยเบี้ยสัญญาหลัก จึงแยกส่วนไม่ได้</p>
+							<p class="text-muted text-sm">บริษัทไม่เปิดเผยเบี้ยสัญญาหลัก</p>
+						{/if}
+					</td>
+
+					<td class="px-3 py-3 text-right align-top">
+						<span class="label cell-label">วงเงินผู้ป่วยใน</span>
+						{#if row.plan.ipd_annual_limit_thb === null}
+							<span class="text-muted font-mono">—</span>
+						{:else}
+							<span class="tnum font-semibold">{compactBaht(row.plan.ipd_annual_limit_thb)}</span>
+							<p class="text-muted text-xs">
+								{row.plan.ipd_limit_basis === 'per_confinement' ? 'ต่อการเข้าพัก' : 'ต่อปี'}
+							</p>
 						{/if}
 					</td>
 
 					<td class="px-3 py-3 text-right align-top">
 						<span class="label cell-label">เบี้ยปีแรก</span>
-						{#if withheld}
+						{#if row.firstYear === null}
 							<span class="text-muted font-mono">—</span>
 						{:else}
-							<span class="tnum text-lg font-semibold"
-								>{baht.format((row.annualHealth ?? 0) + (row.annualHost ?? 0))}</span
-							><span class="text-muted ml-1 text-xs">฿</span>
+							<span class="tnum text-lg font-semibold">{baht.format(row.firstYear)}</span><span
+								class="text-muted ml-1 text-xs">฿</span
+							>
 							<!-- A rider whose host premium is unpublished has no total. Printing the
 							     health figure alone as "เบี้ยปีแรก" understates the cheque, which is
 							     the exact error this site exists to correct. Mark it as a floor. -->
 							{#if row.plan.type === 'rider' && row.annualHost === null}
-								<p class="text-muted mt-0.5 text-xs">ยังไม่รวมสัญญาหลัก · จ่ายจริงมากกว่านี้</p>
+								<p class="text-host-ink text-xs">จ่ายจริงมากกว่านี้</p>
 							{/if}
 						{/if}
 					</td>
@@ -253,18 +471,11 @@
 						{#if withheld || row.lifetime === null}
 							<!-- A withheld figure must never be typeset like a figure. -->
 							<span class="text-muted font-mono">—</span>
-							{#if row.lifetime === null}
-								<p class="text-muted mt-1 text-xs">{row.plan.renewal_ceiling_unknown_reason}</p>
-							{/if}
 						{:else}
 							<span class="tnum text-lg font-semibold">{baht.format(row.lifetime.total_thb)}</span
 							><span class="text-muted ml-1 text-xs">฿</span>
-							<p class="text-muted mt-0.5 text-xs">
-								ถึงอายุ {row.plan.renewal_ceiling_age} ({row.years} ปี){row.lifetime.incomplete
-									? ' · บางช่วงอายุไม่มีข้อมูล'
-									: ''}{row.plan.type === 'rider' && row.lifetime.host_thb === 0
-									? ' · ยังไม่รวมสัญญาหลัก'
-									: ''}
+							<p class="text-muted text-xs">
+								ถึงอายุ {row.plan.renewal_ceiling_age} ({row.years} ปี)
 							</p>
 						{/if}
 					</td>
@@ -272,22 +483,31 @@
 					<td class="px-3 py-3 align-top">
 						<button
 							type="button"
-							class="toggle border-border text-muted hover:text-ink block border px-2 py-1 font-mono text-sm"
+							class="toggle border-border text-muted hover:text-ink block border px-2 py-1 font-mono"
 							aria-expanded={!!open[id]}
 							aria-controls="d-{id}"
-							onclick={() => (open[id] = !open[id])}
+							aria-label="รายละเอียดและแหล่งข้อมูล {row.plan.name.th}"
+							onclick={(e) => {
+								// The row handles the toggle; without this the two handlers
+								// fire in sequence and cancel each other out.
+								e.stopPropagation();
+								open[id] = !open[id];
+							}}
 						>
 							<span class="glyph block">+</span>
-							<span class="sr-only">รายละเอียดและแหล่งข้อมูล {row.plan.name.th}</span>
+							<!-- Below md the columns become a stacked card and this button is
+							     the last thing in it, orphaned at the left edge with no idea
+							     what it opens. On a phone it gets a name and the full width. -->
+							<span class="toggle-text">รายละเอียดและแหล่งข้อมูล</span>
 						</button>
 					</td>
 				</tr>
 
 				<tr>
-					<td colspan="5" class="p-0">
+					<td colspan="6" class="p-0">
 						<div class="detail" data-open={open[id] ? '' : undefined} id="d-{id}">
 							<div class="overflow-hidden">
-								<dl class="text-muted grid gap-x-8 px-3 py-3 text-sm sm:grid-cols-2">
+								<dl class="text-muted grid gap-x-8 px-3 py-3 sm:grid-cols-2">
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
 										<dt>ต่ออายุถึงอายุ</dt>
 										<dd class="text-ink tnum">
@@ -297,15 +517,19 @@
 										</dd>
 									</div>
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
-										<dt>
-											วงเงินผู้ป่วยใน{row.plan.ipd_limit_basis === 'per_confinement'
-												? '/การเข้าพักแต่ละครั้ง'
-												: '/ปี'}
-										</dt>
+										<dt>วงเงินผู้ป่วยนอก</dt>
 										<dd class="text-ink tnum">
-											{row.plan.ipd_annual_limit_thb === null
+											{row.plan.opd_annual_limit_thb === null
 												? '—'
-												: `${baht.format(row.plan.ipd_annual_limit_thb)} บาท`}
+												: `${baht.format(row.plan.opd_annual_limit_thb)} บาท`}
+										</dd>
+									</div>
+									<div class="border-border flex justify-between gap-2 border-b py-1.5">
+										<dt>ค่าห้องต่อคืน</dt>
+										<dd class="text-ink tnum">
+											{row.plan.room_board_thb_per_night === null
+												? '—'
+												: `${baht.format(row.plan.room_board_thb_per_night)} บาท`}
 										</dd>
 									</div>
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
@@ -316,21 +540,32 @@
 												: `${baht.format(row.plan.deductible_thb)} บาท`}
 										</dd>
 									</div>
-									<div class="border-border flex justify-between gap-2 border-b py-1.5">
-										<dt>มาตรฐานประกันสุขภาพแบบใหม่</dt>
-										<dd class="text-ink">{row.plan.new_health_standard ? 'ใช่' : 'ไม่ใช่'}</dd>
-									</div>
 								</dl>
 
-								{#if row.plan.host_policy}
-									<div class="text-muted space-y-1 px-3 pb-3 text-xs">
+								<!-- Prose lives here, never in the grid. A table cell that holds a
+								     sentence stops being a cell you can compare across rows. -->
+								<div class="text-muted space-y-1.5 px-3 pb-3 text-sm">
+									{#if row.stale}
+										<p>ไม่ได้ตรวจเบี้ยเกิน 18 เดือน จึงซ่อนตัวเลข (ตรวจล่าสุด {row.plan.verified_on})</p>
+									{/if}
+									{#if row.plan.premium === null && row.plan.premium_unknown_reason}
+										<p>{row.plan.premium_unknown_reason}</p>
+									{/if}
+									{#if row.lifetime === null && row.plan.renewal_ceiling_unknown_reason}
+										<p>{row.plan.renewal_ceiling_unknown_reason}</p>
+									{/if}
+									{#if row.lifetime !== null && !withheld && row.lifetime.incomplete}
+										<p>บางช่วงอายุไม่มีข้อมูลเบี้ย ยอดรวมจึงต่ำกว่าความจริง</p>
+									{/if}
+									{#if row.plan.host_policy}
 										<p>
 											สัญญาหลักที่ต้องซื้อพ่วง: {row.plan.host_policy.name.th}{#if row.plan.host_policy.min_sum_insured_thb !== null}
 												· ทุนประกันขั้นต่ำ {baht.format(
 													row.plan.host_policy.min_sum_insured_thb
 												)} บาท{/if}
-											· <a class="text-accent underline underline-offset-2" href={row.plan.host_policy.source.url}
-												>แหล่งข้อมูล</a
+											· <a
+												class="text-accent underline underline-offset-2"
+												href={row.plan.host_policy.source.url}>แหล่งข้อมูล</a
 											>
 										</p>
 										{#if row.annualHost !== null && !withheld}
@@ -342,23 +577,17 @@
 										{#if row.plan.host_policy.premium_unknown_reason}
 											<p>{row.plan.host_policy.premium_unknown_reason}</p>
 										{/if}
-									</div>
-								{/if}
-
-								{#if row.plan.copay_on_renewal}
-									<p class="text-muted px-3 pb-3 text-xs">{row.plan.copay_on_renewal}</p>
-								{/if}
-
-								{#if row.lifetime !== null && !withheld}
-									<p class="text-muted px-3 pb-3 text-xs">
-										ยอดรวมคิดจากเบี้ยปัจจุบัน ซึ่งบริษัทปรับขึ้นทั้งพอร์ตได้
-									</p>
-								{/if}
+									{/if}
+									{#if row.plan.copay_on_renewal}
+										<p>{row.plan.copay_on_renewal}</p>
+									{/if}
+									{#if row.lifetime !== null && !withheld}
+										<p>ยอดรวมคิดจากเบี้ยปัจจุบัน ซึ่งบริษัทปรับขึ้นทั้งพอร์ตได้</p>
+									{/if}
+								</div>
 
 								<!-- Provenance is not fine print: it is why the record is believable. -->
-								<div
-									class="border-border text-muted bg-bg/40 border-t px-3 py-2.5 font-mono text-xs"
-								>
+								<div class="border-border text-muted bg-bg/40 border-t px-3 py-2.5 font-mono text-sm">
 									เบี้ย: <a
 										class="text-accent underline underline-offset-2"
 										href={row.plan.premium_source.url}>แหล่งข้อมูล</a
@@ -379,9 +608,115 @@
 			</tbody>
 		{/each}
 	</table>
+
+	{#if rows.length === 0}
+		<p class="border-rule text-muted border border-t-0 p-6 text-center">
+			ไม่มีแผนที่ตรงกับตัวกรองนี้ ลองเลือก "ทั้งหมด" หรือเอาตัวกรองออก
+		</p>
+	{/if}
 </div>
 
 <style>
+	/* Step markers. The page is a sequence — your entitlement, then the delta on
+	   top of it — and readers were landing in the middle of it. */
+	.step {
+		display: inline-grid;
+		place-items: center;
+		width: 1.5rem;
+		height: 1.5rem;
+		margin-right: 0.25rem;
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		color: var(--color-bg);
+		background: var(--color-accent);
+		vertical-align: 0.05em;
+	}
+
+	/* Category tags. Only two carry colour, and they carry the same two the split
+	   bar does: accent is health cover, host is the life policy bolted on. Every
+	   other facet is a neutral outline, so colour never means "notable". */
+	.chip {
+		display: inline-block;
+		padding: 0.05rem 0.4rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		line-height: 1.6;
+		white-space: nowrap;
+		border: 1px solid;
+	}
+
+	.chip-neutral {
+		color: var(--color-muted);
+		border-color: var(--color-border);
+	}
+
+	.chip-standalone {
+		color: var(--color-accent);
+		border-color: color-mix(in oklch, var(--color-accent) 45%, transparent);
+		background: color-mix(in oklch, var(--color-accent) 8%, transparent);
+	}
+
+	.chip-rider {
+		color: var(--color-host-ink);
+		border-color: color-mix(in oklch, var(--color-host-ink) 45%, transparent);
+		background: color-mix(in oklch, var(--color-host) 12%, transparent);
+	}
+
+	/* Pressed state tints with the button's own colour rather than filling with
+	   it — accent needs light text and host needs dark, and a rule that flips
+	   text colour per chip is a rule that eventually ships an unreadable one. */
+	.filter {
+		padding: 0.2rem 0.7rem;
+		font-size: 0.9375rem;
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+		transition:
+			background-color 120ms ease,
+			border-color 120ms ease,
+			color 120ms ease,
+			transform 140ms var(--ease-out);
+	}
+
+	.filter[aria-pressed='true'] {
+		border-color: currentColor;
+		background: color-mix(in oklch, currentColor 12%, transparent);
+		font-weight: 600;
+	}
+
+	.filter-neutral[aria-pressed='true'] {
+		color: var(--color-ink);
+	}
+
+	.filter-standalone[aria-pressed='true'] {
+		color: var(--color-accent);
+	}
+
+	.filter-rider[aria-pressed='true'] {
+		color: var(--color-host-ink);
+	}
+
+	.filter:active {
+		transform: scale(0.97);
+	}
+
+	.more {
+		font-size: 0.9375rem;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: transform 140ms var(--ease-out);
+	}
+
+	.more:active {
+		transform: scale(0.97);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.filter:hover {
+			border-color: var(--color-rule);
+			color: var(--color-ink);
+		}
+	}
+
 	/* The only motion on the page. Everything else is instrumentation and should
 	   feel like it was already there. grid-template-rows animates to content
 	   height without measuring anything in JS. */
@@ -397,8 +732,12 @@
 		grid-template-rows: 1fr;
 	}
 
-	/* Hover is the only affordance saying a row does anything. Gate it: on touch
-	   it fires on tap and reads as a stuck selection. */
+	/* The row is the click target, so it has to say so. Gate hover: on touch it
+	   fires on tap and reads as a stuck selection. */
+	.row {
+		cursor: pointer;
+	}
+
 	@media (hover: hover) and (pointer: fine) {
 		.row {
 			transition: background-color 120ms ease;
@@ -480,7 +819,8 @@
 
 	/* Column headers carry the labels on desktop, so the per-cell ones are
 	   redundant there. */
-	.cell-label {
+	.cell-label,
+	.toggle-text {
 		display: none;
 	}
 
@@ -517,6 +857,21 @@
 
 		.plans .row td:not(:first-child) {
 			padding-top: 0;
+		}
+
+		.toggle {
+			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			padding-block: 0.5rem;
+		}
+
+		.toggle-text {
+			display: block;
+			font-family: var(--font-sans);
+			font-size: 0.9375rem;
 		}
 	}
 </style>
