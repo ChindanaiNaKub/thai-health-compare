@@ -77,7 +77,7 @@
 
 <h1 class="text-xl font-bold tracking-tight">คุณมีสิทธิอะไรอยู่แล้ว?</h1>
 <p class="text-muted mt-1 max-w-2xl text-sm">
-	ประกันเอกชนคือส่วนที่เพิ่มจากสิทธิเดิม ไม่ใช่ตัวแทนสิทธิเดิม
+	ประกันเอกชนคือส่วนที่เพิ่มจากสิทธิเดิม ไม่ได้มาแทนที่สิทธิเดิม
 </p>
 
 <form class="border-rule bg-surface mt-4 grid gap-4 border p-4 sm:grid-cols-3">
@@ -161,7 +161,7 @@
 	<h2 class="text-xl font-bold tracking-tight">แผนที่ซื้อเพิ่มได้</h2>
 	<span class="label">{rows.length} รายการ / เรียงตามชื่อบริษัท / ไม่ได้จัดอันดับ</span>
 </div>
-<p class="text-muted mt-2 text-sm">การมีอยู่ในรายการนี้ไม่ใช่การแนะนำ</p>
+<p class="text-muted mt-2 text-sm">อยู่ในรายการนี้ไม่ได้แปลว่าแนะนำ</p>
 
 <div class="mt-4 overflow-x-auto">
 	<table class="plans border-rule w-full border-collapse border text-sm">
@@ -197,7 +197,7 @@
 							</p>
 						{:else if row.plan.premium === null}
 							<p class="text-warn-ink bg-warn-bg border-host border-l-4 px-2 py-1.5 text-xs">
-								บริษัทไม่ประกาศเบี้ยที่ผูกกับอายุ — {row.plan.premium_unknown_reason}
+								บริษัทไม่ประกาศเบี้ยที่ผูกกับอายุ {row.plan.premium_unknown_reason}
 							</p>
 						{:else if row.annualHealth === null}
 							<p class="text-muted text-xs">ไม่มีตารางเบี้ยสำหรับอายุนี้</p>
@@ -221,7 +221,7 @@
 						{:else if row.share === 1}
 							<!-- Standalone: nothing to split, so no bar. Saying so beats a full bar
 							     that would read as a score. -->
-							<p class="text-muted text-xs">ซื้อเดี่ยวได้ ไม่มีเบี้ยสัญญาหลักมาหาร — 100%</p>
+							<p class="text-muted text-xs">ซื้อเดี่ยวได้ ไม่มีเบี้ยสัญญาหลักมาหาร เป็นค่าสุขภาพเต็ม 100%</p>
 						{:else}
 							<p class="text-muted text-xs">บริษัทไม่เปิดเผยเบี้ยสัญญาหลัก จึงแยกส่วนไม่ได้</p>
 						{/if}
@@ -324,7 +324,7 @@
 										{#if row.annualHost !== null && !withheld}
 											<p>
 												{baht.format(row.annualHost)} บาทคือ<strong>ราคาพื้น</strong> ไม่ใช่ใบเสนอราคา
-												— ถูกกว่านี้ซื้อไม่ได้ แต่ตัวแทนเสนอสัญญาหลักที่แพงกว่านี้ได้เสมอ
+												ถูกกว่านี้ซื้อไม่ได้ แต่ตัวแทนเสนอสัญญาหลักที่แพงกว่านี้ได้เสมอ
 											</p>
 										{/if}
 										{#if row.plan.host_policy.premium_unknown_reason}
@@ -339,7 +339,7 @@
 
 								{#if row.lifetime !== null && !withheld}
 									<p class="text-muted px-3 pb-3 text-xs">
-										ยอดรวมคิดจากเบี้ยปัจจุบัน บริษัทปรับเบี้ยทั้งพอร์ตได้
+										ยอดรวมคิดจากเบี้ยปัจจุบัน ซึ่งบริษัทปรับขึ้นทั้งพอร์ตได้
 									</p>
 								{/if}
 
@@ -352,7 +352,7 @@
 										href={row.plan.premium_source.url}>แหล่งข้อมูล</a
 									>
 									({row.plan.premium_source.tier === 'agent_site'
-										? 'เว็บตัวแทน — ความน่าเชื่อถือรองลงมา'
+										? 'เว็บตัวแทน น่าเชื่อถือรองลงมา'
 										: 'ทางการ'})
 									· เงื่อนไข:
 									<a class="text-accent underline underline-offset-2" href={row.plan.terms_source.url}

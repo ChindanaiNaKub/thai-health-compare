@@ -15,27 +15,27 @@
 	<section>
 		<h2 class="border-rule border-b pb-1 font-semibold">ช่องทาง</h2>
 		<p class="text-muted mt-1">
-			เปิด issue ที่ <a class="text-accent underline" href="{repo}/issues">{repo}</a> —
-			ต้องมีบัญชี GitHub (สมัครฟรี) ทุก issue เปิดเผยต่อสาธารณะ
+			เปิด issue ที่ <a class="text-accent underline" href="{repo}/issues">{repo}</a>
+			โดยต้องมีบัญชี GitHub (สมัครฟรี) ทุก issue เปิดเผยต่อสาธารณะ
 			จึงตรวจสอบได้ว่าเราตอบอะไรและแก้อะไรไปแล้วบ้าง
 		</p>
 	</section>
 
 	<section>
-		<h2 class="border-rule border-b pb-1 font-semibold">ช่วยแนบสิ่งนี้มาด้วย</h2>
+		<h2 class="border-rule border-b pb-1 font-semibold">ช่วยแนบข้อมูลพวกนี้มาด้วย</h2>
 		<ol class="text-muted mt-1 list-decimal pl-5">
 			<li>ชื่อแผนและตัวเลขที่คิดว่าผิด</li>
 			<li>ค่าที่ถูกต้อง</li>
-			<li>ลิงก์เอกสารต้นทาง — กรมธรรม์หรือหน้าเว็บบริษัท ไม่รับโบรชัวร์ขายของ</li>
+			<li>ลิงก์กรมธรรม์หรือหน้าเว็บบริษัทที่เป็นต้นทาง ไม่รับโบรชัวร์ขายของ</li>
 		</ol>
 	</section>
 
 	<section>
-		<h2 class="border-rule border-b pb-1 font-semibold">เราจะทำอะไรและภายในเมื่อไหร่</h2>
+		<h2 class="border-rule border-b pb-1 font-semibold">เราจะทำอะไร และภายในกี่วัน</h2>
 		<p class="text-muted">
-			ตอบรับภายใน 7 วัน และแก้ไขหรือชี้แจงเหตุผลที่ไม่แก้ภายใน 30 วันนับจากวันที่ได้รับแจ้ง
+			เราจะตอบรับภายใน 7 วันนับจากวันที่ได้รับแจ้ง และแก้ไขหรือชี้แจงเหตุผลที่ไม่แก้ภายใน 30 วัน
 			ถ้าข้อโต้แย้งยังหาข้อสรุปไม่ได้ เราจะซ่อนตัวเลขนั้นไว้ก่อนจนกว่าจะตรวจสอบเสร็จ
-			การแก้ไขทุกครั้งบันทึกอยู่ในประวัติ commit ของโครงการซึ่งเปิดให้ตรวจสอบได้
+			ประวัติ commit ของโครงการเก็บการแก้ไขทุกครั้งไว้ และเปิดให้ตรวจสอบได้
 		</p>
 	</section>
 </div>
