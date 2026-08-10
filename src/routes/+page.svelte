@@ -184,8 +184,9 @@
 					<div>
 						{#if row.lifetime === null}
 							<dt class="label">จ่ายรวมตลอดสัญญา</dt>
-							<dd class="text-muted mt-0.5 text-2xl font-semibold">คำนวณไม่ได้</dd>
-							<dd class="text-muted mt-1 text-xs">
+							<!-- A withheld figure must never be typeset like a figure. -->
+							<dd class="text-muted mt-1.5 font-mono text-base">— คำนวณไม่ได้</dd>
+							<dd class="text-muted mt-1.5 text-xs">
 								{row.plan.renewal_ceiling_unknown_reason}
 							</dd>
 						{:else}
@@ -212,6 +213,8 @@
 						</dd>
 						{#if row.plan.type === 'rider'}
 							<dd class="text-muted text-xs">ส่วนที่เหลือคือประกันชีวิตที่ต้องซื้อพ่วง</dd>
+						{:else}
+							<dd class="text-muted text-xs">ซื้อเดี่ยวได้ ไม่มีเบี้ยสัญญาหลักมาหาร</dd>
 						{/if}
 						{#if row.plan.host_policy}
 							<dd class="text-muted mt-1 text-xs">
