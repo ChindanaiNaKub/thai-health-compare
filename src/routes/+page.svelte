@@ -144,6 +144,11 @@
 					ยังไม่ได้ตรวจสอบเบี้ยประกันเกิน 18 เดือน จึงซ่อนตัวเลขไว้
 					ข้อมูลความคุ้มครองด้านล่างยังใช้อ้างอิงได้ (ตรวจล่าสุด {row.plan.verified_on})
 				</p>
+			{:else if row.plan.premium === null}
+				<p class="border-host bg-warn-bg text-warn-ink border-l-4 px-3 py-2 text-sm">
+					บริษัทไม่ประกาศเบี้ยประกันที่ผูกกับอายุ จึงไม่มีตัวเลขให้เทียบ —
+					{row.plan.premium_unknown_reason} ข้อมูลความคุ้มครองด้านล่างยังใช้อ้างอิงได้
+				</p>
 			{:else if row.annualHealth === null}
 				<p class="text-muted text-sm">ไม่มีตารางเบี้ยสำหรับอายุนี้</p>
 			{:else}
@@ -177,19 +182,27 @@
 					</div>
 
 					<div>
-						<dt class="label">
-							จ่ายรวมถึงอายุ {row.plan.renewal_ceiling_age} ({row.years} ปี)
-						</dt>
-						<dd class="tnum mt-0.5 text-2xl font-semibold">
-							{baht.format(row.lifetime.total_thb)}<span class="text-muted ml-1 text-sm font-normal"
-								>฿</span
-							>
-						</dd>
-						<dd class="text-muted mt-1 text-xs">
-							คิดจากเบี้ยปัจจุบัน บริษัทปรับเบี้ยทั้งพอร์ตได้{row.lifetime.incomplete
-								? ' · บางช่วงอายุไม่มีข้อมูล'
-								: ''}
-						</dd>
+						{#if row.lifetime === null}
+							<dt class="label">จ่ายรวมตลอดสัญญา</dt>
+							<dd class="text-muted mt-0.5 text-2xl font-semibold">คำนวณไม่ได้</dd>
+							<dd class="text-muted mt-1 text-xs">
+								{row.plan.renewal_ceiling_unknown_reason}
+							</dd>
+						{:else}
+							<dt class="label">
+								จ่ายรวมถึงอายุ {row.plan.renewal_ceiling_age} ({row.years} ปี)
+							</dt>
+							<dd class="tnum mt-0.5 text-2xl font-semibold">
+								{baht.format(row.lifetime.total_thb)}<span class="text-muted ml-1 text-sm font-normal"
+									>฿</span
+								>
+							</dd>
+							<dd class="text-muted mt-1 text-xs">
+								คิดจากเบี้ยปัจจุบัน บริษัทปรับเบี้ยทั้งพอร์ตได้{row.lifetime.incomplete
+									? ' · บางช่วงอายุไม่มีข้อมูล'
+									: ''}
+							</dd>
+						{/if}
 					</div>
 
 					<div>
@@ -225,7 +238,11 @@
 			<dl class="border-border text-muted mt-6 grid gap-x-8 border-t pt-3 text-sm sm:grid-cols-2">
 				<div class="border-border flex justify-between gap-2 border-b py-1.5">
 					<dt>ต่ออายุถึงอายุ</dt>
-					<dd class="text-ink tnum">{row.plan.renewal_ceiling_age} ปี</dd>
+					<dd class="text-ink tnum">
+						{row.plan.renewal_ceiling_age === null
+							? 'ไม่ประกาศ'
+							: `${row.plan.renewal_ceiling_age} ปี`}
+					</dd>
 				</div>
 				<div class="border-border flex justify-between gap-2 border-b py-1.5">
 					<dt>

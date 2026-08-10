@@ -15,6 +15,7 @@ function bandFor(table: Band[], age: number, sex: Sex): Band | null {
 
 /** Annual premium for the health cover alone, at this age. Null if out of range. */
 export function healthPremiumAt(plan: Plan, age: number, sex: Sex): number | null {
+	if (!plan.premium) return null;
 	return bandFor(plan.premium, age, sex)?.thb_per_year ?? null;
 }
 
@@ -49,12 +50,21 @@ export type Cumulative = {
 };
 
 /**
+ * A plan whose renewal ceiling the insurer won't publish has no computable
+ * total and no computable span. Callers get null and must say so.
+ */
+export function hasKnownSpan(plan: Plan): boolean {
+	return plan.renewal_ceiling_age !== null;
+}
+
+/**
  * Metric 1: what this plan costs in total from today until the insurer stops
  * renewing it. Agents quote the entry-age price; this is the whole bill,
  * at today's rates. Insurers can and do re-rate — the UI must say so.
  */
-export function cumulativePremium(plan: Plan, fromAge: number, sex: Sex): Cumulative {
+export function cumulativePremium(plan: Plan, fromAge: number, sex: Sex): Cumulative | null {
 	const toAge = plan.renewal_ceiling_age;
+	if (toAge === null) return null;
 	let health = 0;
 	let host = 0;
 	let incomplete = false;
@@ -73,7 +83,8 @@ export function cumulativePremium(plan: Plan, fromAge: number, sex: Sex): Cumula
 }
 
 /** Metric 2 is read straight off the record; this is the reader-facing framing. */
-export function yearsOfCoverFrom(plan: Plan, age: number): number {
+export function yearsOfCoverFrom(plan: Plan, age: number): number | null {
+	if (plan.renewal_ceiling_age === null) return null;
 	return Math.max(0, plan.renewal_ceiling_age - age + 1);
 }
 

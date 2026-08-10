@@ -1,5 +1,10 @@
 import assert from 'node:assert/strict';
-import { cumulativePremium, healthShare } from './metrics';
+import {
+	cumulativePremium,
+	healthPremiumAt,
+	healthShare,
+	yearsOfCoverFrom
+} from './metrics';
 import type { Plan } from './schema';
 
 /**
@@ -19,18 +24,30 @@ const plan = {
 } as unknown as Plan;
 
 // Ages 40,41,42 at 1000 + ages 43,44,45 at 2000 = 3000 + 6000.
-const c = cumulativePremium(plan, 40, 'male');
+const c = cumulativePremium(plan, 40, 'male')!;
 assert.equal(c.health_thb, 9000);
 assert.equal(c.host_thb, 3000); // six years at 500
 assert.equal(c.total_thb, 12000);
 assert.equal(c.incomplete, false);
 
 // A year with no published band is skipped and flagged, never guessed.
-const gapped = cumulativePremium(plan, 38, 'male');
+const gapped = cumulativePremium(plan, 38, 'male')!;
 assert.equal(gapped.health_thb, 9000);
 assert.equal(gapped.incomplete, true);
 
 // Host money is not health money: 1000 of 1500 buys cover.
 assert.equal(healthShare(plan, 40, 'male'), 1000 / 1500);
+
+// An insurer that publishes no premium, or no renewal ceiling, yields nothing
+// rather than a plausible number. This is the whole reason both fields are
+// nullable — a guessed total is worse than an absent one.
+const noCeiling = { ...plan, renewal_ceiling_age: null } as unknown as Plan;
+assert.equal(cumulativePremium(noCeiling, 40, 'male'), null);
+assert.equal(yearsOfCoverFrom(noCeiling, 40), null);
+
+const noPremium = { ...plan, premium: null } as unknown as Plan;
+assert.equal(healthPremiumAt(noPremium, 40, 'male'), null);
+assert.equal(healthShare(noPremium, 40, 'male'), null);
+assert.equal(cumulativePremium(noPremium, 40, 'male')?.incomplete, true);
 
 console.log('metrics ok');

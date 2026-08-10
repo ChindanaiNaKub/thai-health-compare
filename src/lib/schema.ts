@@ -72,11 +72,20 @@ export const Plan = z.object({
 	shape: z.enum(['lump_sum', 'per_item_schedule', 'deductible_first', 'opd_inclusive']),
 	new_health_standard: z.boolean(),
 
-	premium: PremiumTable,
+	/**
+	 * Null when the insurer publishes no premium tied to an age. Two of the
+	 * largest insurers in Thailand are in that position, and excluding them
+	 * silently would make this dataset a list of whoever ships a text-layer PDF.
+	 */
+	premium: PremiumTable.nullable(),
+	/** Required when premium is null. Shown verbatim to the reader. */
+	premium_unknown_reason: z.string().nullable().default(null),
 	entry_age_min: z.number().int().min(0),
 	entry_age_max: z.number().int().max(120),
 	/** ต่ออายุถึงอายุ — the age past which the insurer stops renewing. */
-	renewal_ceiling_age: z.number().int().min(1).max(120),
+	renewal_ceiling_age: z.number().int().min(1).max(120).nullable(),
+	/** Required when renewal_ceiling_age is null. Shown verbatim to the reader. */
+	renewal_ceiling_unknown_reason: z.string().nullable().default(null),
 
 	ipd_annual_limit_thb: z.number().int().nonnegative().nullable(),
 	/**
@@ -122,12 +131,26 @@ export const ValidatedPlan = Plan.superRefine((plan, ctx) => {
 			message: 'coverage terms and exclusions must come from filed policy wording, never an agent site'
 		});
 	}
-	if (plan.renewal_ceiling_age <= plan.entry_age_max) {
+	if (plan.renewal_ceiling_age !== null && plan.renewal_ceiling_age <= plan.entry_age_max) {
 		ctx.addIssue({
 			code: 'custom',
 			path: ['renewal_ceiling_age'],
 			message: 'renewal ceiling must be above the maximum entry age'
 		});
+	}
+	// A missing figure is a fact about the insurer, so it has to be stated, not
+	// left blank. Silence here is how a dataset starts lying by omission.
+	for (const [field, reason] of [
+		['premium', 'premium_unknown_reason'],
+		['renewal_ceiling_age', 'renewal_ceiling_unknown_reason']
+	] as const) {
+		if (plan[field] === null && !plan[reason]) {
+			ctx.addIssue({
+				code: 'custom',
+				path: [reason],
+				message: `${field} is null, so ${reason} must say what the insurer refuses to publish`
+			});
+		}
 	}
 });
 
