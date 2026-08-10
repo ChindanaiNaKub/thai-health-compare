@@ -10,6 +10,8 @@ sale, which is the only reason to trust it.
 Credit is the only ask. If a competitor's site accidentally tells a Thai person
 the truth about rider bundling, this project has done its job.
 
+**Live:** https://thai-health-compare.pages.dev
+
 ## What makes it different
 
 1. **Your existing entitlement comes first.** ประกันสังคม / บัตรทอง /

@@ -14,7 +14,9 @@ const DATA_DIR = join(process.cwd(), 'data');
 function loadDir(sub: string): unknown[] {
 	const dir = join(DATA_DIR, sub);
 	return readdirSync(dir)
-		.filter((f) => f.endsWith('.yaml'))
+		// A leading underscore marks a template with invented numbers. Loading one
+		// would put fictional premiums in front of a reader as if they were real.
+		.filter((f) => f.endsWith('.yaml') && !f.startsWith('_'))
 		.map((f) => ({ file: join(sub, f), doc: parse(readFileSync(join(dir, f), 'utf8')) }))
 		.map(({ file, doc }) => ({ ...(doc as object), __file: file }));
 }
