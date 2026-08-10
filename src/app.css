@@ -1,26 +1,31 @@
 @import 'tailwindcss';
 
 /*
- * Semantic tokens, one definition each, using light-dark() so the theme
- * follows the reader with no JS and no flash. Borrowed from Kumo's approach
- * without borrowing Kumo, which is React-only.
+ * Design tokens. See DESIGN.md for the why.
  *
- * TODO: self-host a subsetted Thai webfont (Noto Sans Thai or IBM Plex Sans
- * Thai) under static/fonts and add @font-face here. Thai fonts are heavy —
- * subset to Thai + Latin + digits before shipping.
+ * Semantic tokens, one definition each, using light-dark() so the theme
+ * follows the reader with no JS and no flash.
+ *
+ * TODO: self-host subsetted IBM Plex Sans Thai + Plex Mono under static/fonts
+ * and swap the @import above for @font-face. Subset to Thai + Latin + digits.
  */
 @theme {
-	--font-sans:
-		'Noto Sans Thai', 'IBM Plex Sans Thai', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	/* Unlooped Plex Sans Thai: the technical cut, not the schoolbook one. */
+	--font-sans: 'IBM Plex Sans Thai', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	/* Every number on this site is mono. Money lines up or it lies. */
+	--font-mono: 'IBM Plex Mono', 'IBM Plex Sans Thai', ui-monospace, monospace;
 
-	--color-bg: light-dark(oklch(99% 0.004 260), oklch(17% 0.012 260));
-	--color-surface: light-dark(oklch(100% 0 0), oklch(21% 0.014 260));
-	--color-border: light-dark(oklch(90% 0.008 260), oklch(30% 0.016 260));
-	--color-ink: light-dark(oklch(24% 0.015 260), oklch(94% 0.008 260));
-	--color-muted: light-dark(oklch(50% 0.014 260), oklch(68% 0.012 260));
-	--color-accent: light-dark(oklch(48% 0.14 250), oklch(74% 0.12 250));
-	--color-warn-bg: light-dark(oklch(96% 0.045 85), oklch(28% 0.05 85));
-	--color-warn-ink: light-dark(oklch(40% 0.09 60), oklch(88% 0.07 85));
+	/* Cold instrument palette: slate ground, one signal cyan, one signal amber. */
+	--color-bg: light-dark(oklch(97.5% 0.004 240), oklch(16% 0.016 250));
+	--color-surface: light-dark(oklch(100% 0 0), oklch(20% 0.018 250));
+	--color-border: light-dark(oklch(88% 0.01 245), oklch(30% 0.02 250));
+	--color-rule: light-dark(oklch(78% 0.014 245), oklch(40% 0.024 250));
+	--color-ink: light-dark(oklch(22% 0.018 250), oklch(93% 0.008 245));
+	--color-muted: light-dark(oklch(52% 0.016 245), oklch(66% 0.014 245));
+	--color-accent: light-dark(oklch(48% 0.13 232), oklch(80% 0.13 210));
+	--color-host: light-dark(oklch(72% 0.11 60), oklch(72% 0.13 60));
+	--color-warn-bg: light-dark(oklch(95% 0.05 80), oklch(27% 0.055 75));
+	--color-warn-ink: light-dark(oklch(42% 0.1 55), oklch(88% 0.08 82));
 }
 
 :root {
@@ -37,4 +42,35 @@ html {
 /* Thai text needs more line height than Latin to keep tone marks legible. */
 body {
 	line-height: 1.7;
+}
+
+/* Numerals never reflow between rows. */
+.tnum {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.01em;
+}
+
+/* Field labels in the spec sheets: small, spaced, unmistakably machine-set. */
+.label {
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+/* Focus that survives on both grounds. */
+:where(a, button, input, select):focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
 }

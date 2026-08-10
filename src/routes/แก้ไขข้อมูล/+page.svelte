@@ -4,7 +4,7 @@
 
 <svelte:head><title>แจ้งแก้ไขข้อมูล — เทียบประกันสุขภาพไทย</title></svelte:head>
 
-<h1 class="text-2xl font-semibold">แจ้งแก้ไขข้อมูล</h1>
+<h1 class="text-3xl font-bold tracking-tight">แจ้งแก้ไขข้อมูล</h1>
 
 <div class="mt-4 max-w-2xl space-y-4">
 	<p class="text-muted">
@@ -13,7 +13,7 @@
 	</p>
 
 	<section>
-		<h2 class="font-semibold">ช่องทาง</h2>
+		<h2 class="border-rule border-b pb-1 font-semibold">ช่องทาง</h2>
 		<p class="text-muted mt-1">
 			เปิด issue ที่ <a class="text-accent underline" href="{repo}/issues">{repo}</a> —
 			ต้องมีบัญชี GitHub (สมัครฟรี) ทุก issue เปิดเผยต่อสาธารณะ
@@ -22,7 +22,7 @@
 	</section>
 
 	<section>
-		<h2 class="font-semibold">ช่วยแนบสิ่งนี้มาด้วย</h2>
+		<h2 class="border-rule border-b pb-1 font-semibold">ช่วยแนบสิ่งนี้มาด้วย</h2>
 		<ol class="text-muted mt-1 list-decimal pl-5">
 			<li>ชื่อแผนและตัวเลขที่คิดว่าผิด</li>
 			<li>ค่าที่ถูกต้อง</li>
@@ -31,7 +31,7 @@
 	</section>
 
 	<section>
-		<h2 class="font-semibold">เราจะทำอะไรและภายในเมื่อไหร่</h2>
+		<h2 class="border-rule border-b pb-1 font-semibold">เราจะทำอะไรและภายในเมื่อไหร่</h2>
 		<p class="text-muted">
 			ตอบรับภายใน 7 วัน และแก้ไขหรือชี้แจงเหตุผลที่ไม่แก้ภายใน 30 วันนับจากวันที่ได้รับแจ้ง
 			ถ้าข้อโต้แย้งยังหาข้อสรุปไม่ได้ เราจะซ่อนตัวเลขนั้นไว้ก่อนจนกว่าจะตรวจสอบเสร็จ
