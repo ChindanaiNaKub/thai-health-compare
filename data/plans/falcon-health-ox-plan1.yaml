@@ -1,0 +1,92 @@
+# Falcon Insurance Health O-X Plan, Plan 1 (the cheaper of two coverage tiers
+# shown in the published benefit table). Built for Non-Immigrant "O-X" visa
+# applicants (elderly long-stay), sold directly by Falcon — standalone, not
+# group/corporate.
+#
+# premium is null: the only premium figure Falcon publishes anywhere is a
+# single marketing headline — "Start THB23,235 per year (Age 50-59 years old
+# for Plan4)" — used as the page's meta description/SEO teaser. That figure
+# belongs to Plan 4, whose own coverage limits are not published anywhere
+# (the benefit-table image only shows Plan 1 and Plan 2). There is no public
+# number to attach to Plan 1's own premium, so it is left null with the
+# reason stated rather than borrowing Plan 4's unrelated figure.
+id: falcon-health-ox-plan1
+insurer:
+  th: ฟอลคอนประกันภัย
+  en: Falcon Insurance PCL
+
+name:
+  th: ประกันสุขภาพ Health O-X Plan แผน 1
+  en: Health O-X Plan — Plan 1
+
+type: standalone
+host_policy: null
+
+shape: per_item_schedule
+# "มาตรฐานประกันสุขภาพแบบใหม่" not found anywhere on the page. Recorded true on
+# the structure: the benefit table's Section 1-13 list is the identical
+# 13-item template (room/board, dx, doctor fee, surgery, day surgery,
+# pre/post-OPD, accident OPD, rehab, dialysis, radiotherapy, chemo,
+# ambulance, minor surgery) used word-for-word by Chubb Samaggi and Allianz
+# Ayudhya's new-standard products in this dataset — the deductible is framed
+# "per each medical treatment" rather than "per confinement," but the section
+# list itself is diagnostic of the same template. Same call made elsewhere
+# in this project for insurers that use the structure without the phrase.
+new_health_standard: true
+
+premium: null
+premium_unknown_reason: >-
+  ฟอลคอนไม่เผยแพร่ตารางเบี้ยของแผน 1 ที่ใดเลย ตัวเลขเบี้ยเดียวที่พบทั้งเว็บไซต์คือ
+  ข้อความโฆษณา/meta description "Start THB23,235 per year (Age 50-59 years old
+  for Plan4)" ซึ่งเป็นของแผน 4 ไม่ใช่แผน 1 และตารางผลประโยชน์ที่เผยแพร่แสดงเฉพาะ
+  แผน 1 กับแผน 2 เท่านั้น ไม่มีตารางผลประโยชน์ของแผน 4 ให้จับคู่กับตัวเลขนี้ได้
+  จึงไม่ยืมตัวเลขของแผนอื่นมาใช้แทน
+
+entry_age_min: 50
+entry_age_max: 70
+renewal_ceiling_age: 80
+
+ipd_annual_limit_thb: 800000
+ipd_limit_basis: per_policy_year # ตารางระบุแยกอีกวงเงินหนึ่ง "Maximum benefit per confinement" 80,000 บาท ต่อครั้ง — บันทึกไว้ใน terms_source.note เพราะฟิลด์นี้เก็บได้ค่าเดียว
+opd_annual_limit_thb: null # OPD จ่ายต่อครั้ง (สูงสุด 1 ครั้ง/วัน 30 ครั้ง/ปี) ไม่ใช่วงเงินรวมต่อปี — มีเพียงวงเงินย่อยค่ายาที่บ้าน 1,500 บาท
+room_board_thb_per_night: 5000
+deductible_thb: 50000 # "Deductible per each medical treatment" — ไม่ระบุชัดว่าต่อครั้งเข้าพักหรือต่อการรักษาแต่ละครั้งภายในการเข้าพักเดียวกัน
+copay_percent: 0 # "Copayment: Nil" ทั้งหมวดผู้ป่วยในและผู้ป่วยนอก
+copay_on_renewal: null
+
+exclusions:
+  - th: โรคที่เป็นมาก่อนการเอาประกันภัย ความผิดปกติแต่กำเนิด ความผิดปกติของพัฒนาการ และโรคทางพันธุกรรม
+    en: Pre-existing conditions, congenital abnormalities, growth development abnormalities, and genetic disorders.
+  - th: เอดส์ หรือโรคติดต่อทางเพศสัมพันธ์
+    en: AIDS or sexually transmitted diseases.
+
+# 30 วันทั่วไป; 120 วันสำหรับ เนื้องอก/ถุงน้ำ/มะเร็งทุกชนิด, ริดสีดวงทวาร, ไส้เลื่อนทุกชนิด,
+# ต้อเนื้อ/ต้อกระจก, ตัดทอนซิล/อดีนอยด์, นิ่วทุกชนิด, เส้นเลือดขอดที่ขา, เยื่อบุโพรงมดลูก
+# เจริญผิดที่ — ไม่ใช่ตัวเลขเดียวจึงบันทึกเป็นข้อความแทนการเพิ่มฟิลด์ใหม่
+waiting_period_days: 30
+
+premium_source:
+  url: https://falconinsurance.co.th/accident-health/health-o-x-plan
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    ตรวจสอบ HTML ของหน้าเว็บโดยตรงวันนี้ (ไม่ใช่ผ่านตัวสรุปของบุคคลที่สาม) พบตัวเลขเบี้ย
+    เพียงจุดเดียวคือ "Start THB23,235 per year (Age 50-59 years old for Plan4)"
+    ซึ่งปรากฏใน meta description และ og:description ไม่มีตารางเบี้ยแบบเต็มที่ใดเลย
+terms_source:
+  url: https://cms.falconinsurance.co.th/wp-content/uploads/2022/11/Health-OX-Plan_coverage_coverage.jpg
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    ภาพตารางผลประโยชน์ (coverage table) โฮสต์บนโดเมนย่อยของฟอลคอนเอง (cms.falconinsurance.co.th)
+    ไม่พบเอกสารกรมธรรม์หรือสรุปสาระสำคัญเผยแพร่ที่ใดเลย — หน้าดาวน์โหลด
+    (falconinsurance.co.th/other-services/download) มีเฉพาะแบบฟอร์มเคลมและวีซ่า
+    หน้า FAQ ของผลิตภัณฑ์เองระบุว่ากรมธรรม์ (Policy Wording) จะได้รับ "once the
+    transaction is complete" เท่านั้น คือหลังซื้อ ไม่ใช่ก่อนตัดสินใจ วงเงินผู้ป่วยใน
+    800,000 บาทต่อปี (แผน 1) และ 80,000 บาทต่อครั้ง ค่าห้อง 5,000 บาท/วัน (ICU 10,000
+    บาท/วัน สูงสุด 15 วัน) ความรับผิดส่วนแรก 50,000 บาทต่อการรักษาแต่ละครั้ง ไม่มีค่าใช้จ่ายร่วม
+    มาจากตารางผลประโยชน์นี้ทั้งหมด ระยะเวลาที่ไม่คุ้มครองและอายุรับประกัน/ต่ออายุจากหน้าผลิตภัณฑ์
+    (falconinsurance.co.th/accident-health/health-o-x-plan) เนื้อหาเผยแพร่เป็นภาษาอังกฤษ
+    เท่านั้นแม้ URL จะอยู่ในหมวดภาษาไทย
+
+verified_on: 2026-08-11
