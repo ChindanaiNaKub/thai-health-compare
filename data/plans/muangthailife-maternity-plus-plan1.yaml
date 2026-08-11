@@ -1,0 +1,140 @@
+# เมืองไทยประกันชีวิต (Muang Thai Life Assurance, muangthai.co.th) — NOT the same
+# company as เมืองไทยประกันภัย (Muang Thai Insurance, muangthaiinsurance.com)
+# already in this dataset as the mti-health-me-plus-*.yaml records. Different
+# insurer, different คปภ. licence, coincidentally similar Thai name.
+#
+# This is a rider-on-a-rider: Maternity Plus is a บันทึกสลักหลัง (endorsement)
+# that can only be bought attached to an in-force Elite Health Plus health
+# rider, which is itself a UDR rider deducted from an underlying unit-linked
+# life policy. The schema's host_policy models one level of "what you must
+# already own"; Elite Health Plus is recorded as that host. Its own premium
+# (and the life policy beneath it) is not published anywhere on muangthai.co.th
+# — see premium_unknown_reason below — so host_policy.premium is null, the
+# same shape as every other rider in this dataset with an unpublished host.
+#
+# D Health Plus (a non-UDR alternative host named in an older Maternity Plus
+# brochure) was checked and ruled out: muangthai.co.th/th/health-insurance/
+# d-health-plus now serves "ขออภัย ไม่พบหน้าที่คุณต้องการ" (page gone), and
+# cms-corpweb-prod.muangthai.co.th/th/health-insurance/d-health-plus 404s too
+# — consistent with docs/research/mtl-bla-sourcing.md §3a, which already found
+# this URL redirecting away from D Health Plus in the 2026-08-10 round. Elite
+# Health Plus's own live product page, fetched today, states in its own words
+# that Maternity Plus "ต้องซื้อแนบกับสัญญาเพิ่มเติมการประกันภัยสุขภาพแบบ อีลิท
+# เฮลท์ พลัส ที่มีผลบังคับอยู่เท่านั้น" — Elite Health Plus is the current,
+# live, sole valid host.
+id: muangthailife-maternity-plus-plan1
+insurer:
+  th: เมืองไทยประกันชีวิต
+  en: Muang Thai Life Assurance
+
+name:
+  th: บันทึกสลักหลังความคุ้มครองการคลอดบุตร พลัส (Maternity Plus) — แผน 1
+  en: Maternity Plus endorsement — Plan 1 (attached to Elite Health Plus)
+
+type: rider
+host_policy:
+  name:
+    th: สัญญาเพิ่มเติมการประกันภัยสุขภาพแบบ อีลิท เฮลท์ พลัส (Elite Health Plus)
+    en: Elite Health Plus health rider (UDR, premium deducted from an underlying unit-linked life policy)
+  min_sum_insured_thb: null
+  premium: null
+  premium_unknown_reason: >-
+    Elite Health Plus เป็นสัญญาเพิ่มเติมแบบ UDR ที่หักค่าเบี้ยจากมูลค่าการลงทุนของ
+    กรมธรรม์ประกันชีวิตควบการลงทุน (ยูนิเวอร์แซลไลฟ์ / ยูนิตลิงก์) ที่แนบท้ายอยู่
+    เอกสารทางการของบริษัท (โบรชัวร์ Elite Health Plus และหน้าผลิตภัณฑ์บน
+    muangthai.co.th) ไม่เผยแพร่ตารางเบี้ยรายอายุของ Elite Health Plus เอง และไม่
+    เผยแพร่เบี้ยของกรมธรรม์หลักที่ต้องซื้อคู่กันเลย จึงไม่มีตัวเลขให้บันทึกในสนามนี้
+  source:
+    url: https://www.muangthai.co.th/th/health-insurance/elite-health-plus
+    tier: official_insurer
+    verified_on: 2026-08-12
+    note: >-
+      หน้าผลิตภัณฑ์ทางการของ Elite Health Plus ระบุ "เลือกซื้อความคุ้มครองเพิ่มได้
+      ตามต้องการ ทั้งความคุ้มครองการคลอดบุตร พลัส หรือ สุขภาพดี พลัส" และเงื่อนไข
+      "บันทึกสลักหลังความคุ้มครองการคลอดบุตร พลัส (Maternity Plus)... ต้องซื้อแนบท้าย
+      สัญญาเพิ่มเติมการประกันภัยสุขภาพแบบ อีลิท เฮลท์ พลัส เท่านั้น" — ยืนยันตรงกับ
+      โบรชัวร์ปัจจุบัน 04-0480_ EliteHealthPlus_TH_20250221.pdf หน้า 14
+      (https://www.muangthai.co.th/filestorage/brochures/04-0480_%20EliteHealthPlus_TH_20250221.pdf)
+
+shape: per_item_schedule
+new_health_standard: true
+
+# ตารางเบี้ย (บาท/ปี) แผน 1 — cross-checked byte-for-byte on two independent
+# agent-portal domains (muangthai-agent.com, muangthailife-online.com), both
+# templated MTL agent storefronts but on different domains/operators; every
+# figure matches exactly. Elite Health Plus's own official brochure documents
+# the benefit table these premiums buy but never prints a premium figure for
+# Maternity Plus itself, which is why premium_source below is agent_site, not
+# official_insurer — the same gap the project's other agent-sourced premiums
+# fill, cross-checked per CONTRIBUTING.md.
+premium:
+  - { age_from: 15, age_to: 19, thb_per_year: 54482, sex: female }
+  - { age_from: 20, age_to: 24, thb_per_year: 66480, sex: female }
+  - { age_from: 25, age_to: 34, thb_per_year: 60681, sex: female }
+  - { age_from: 35, age_to: 49, thb_per_year: 58135, sex: female }
+
+entry_age_min: 15
+entry_age_max: 49
+renewal_ceiling_age: 50
+
+# ผลประโยชน์สูงสุดต่อรอบปีกรมธรรม์ แผน 1 — the overall annual cap across
+# childbirth, D&C/miscarriage, and pregnancy/postpartum-complication claims
+# combined. Recorded here as the plan's one annual ceiling; the per-delivery
+# sub-limits (60,000 บาท natural birth, 80,000 บาท medically-indicated
+# C-section) sit inside it and are not separately representable by the schema.
+ipd_annual_limit_thb: 2000000
+ipd_limit_basis: per_policy_year
+opd_annual_limit_thb: null
+room_board_thb_per_night: null
+deductible_thb: 0
+copay_percent: 0
+copay_on_renewal: null
+
+# Maternity Plus's own brochure section publishes no exclusions list of its
+# own — only the waiting periods and the Thailand-only territory limit below.
+# A 21-item exclusion list ("แบบมาตรฐานใหม่ มีทั้งหมด 21 ข้อ") appears later in
+# the same document, but under the heading for Elite Health Plus itself, not
+# extended in writing to this endorsement. Copying it here would assert
+# something the source does not — same call docs/research/mtl-bla-sourcing.md
+# §2g made for MTI: record what is actually published, not a neighbouring
+# insurer's or neighbouring product's list.
+exclusions: []
+# 280 days gates the core benefit (childbirth itself and its complications).
+# A second, shorter 90-day wait applies only to dilation & curettage /
+# miscarriage curettage — the schema has one waiting_period_days field, so the
+# dominant figure a reader needs first is recorded; the 90-day exception is
+# documented here in the source note instead of silently dropped.
+waiting_period_days: 280
+
+premium_source:
+  url: https://www.muangthai-agent.com/product/318094/maternity-plus
+  tier: agent_site
+  verified_on: 2026-08-12
+  note: >-
+    ตาราง "ตารางเบี้ย (บาท/ปี)" อายุ 15-19 / 20-24 / 25-34 / 35-49 แผน 1: 54,482 /
+    66,480 / 60,681 / 58,135 บาท/ปี — ตัวเลขเดียวกันทุกตัวปรากฏบน
+    https://www.muangthailife-online.com/product/28944-34265/maternity-plus
+    (สืบค้นวันเดียวกัน, byte-exact ทั้งสองหน้า) หมายเหตุบนหน้าเดิม: "เบี้ยนี้ไม่รวม
+    ประกันชีวิต และประกันสุขภาพที่ต้องทำพร้อมกัน" ยืนยันว่าตัวเลขนี้คือเบี้ยของ
+    Maternity Plus เพียงอย่างเดียว ไม่รวมเบี้ย Elite Health Plus หรือกรมธรรม์หลัก
+terms_source:
+  url: https://www.muangthai.co.th/filestorage/brochures/04-0480_%20EliteHealthPlus_TH_20250221.pdf
+  tier: official_insurer
+  verified_on: 2026-08-12
+  note: >-
+    โบรชัวร์ทางการ "04-0480_ EliteHealthPlus_TH_20250221.pdf" หน้า 14 ตาราง
+    "ความคุ้มครองการคลอดบุตร พลัส (Maternity Plus)" แผน 1: ค่าคลอดธรรมชาติ/ผ่าคลอด
+    ไม่มีข้อบ่งชี้ทางการแพทย์ 60,000 บาท, ผ่าคลอดมีข้อบ่งชี้ทางการแพทย์ 80,000 บาท,
+    ถ่างขยายปากมดลูก/ขูดมดลูกกรณีแท้ง "จ่ายตามจริง", ผลประโยชน์สูงสุดต่อรอบปี
+    กรมธรรม์ 2,000,000 บาท. ระยะเวลาที่ไม่คุ้มครอง: การคลอดบุตรและภาวะแทรกซ้อน
+    ภายหลัง 280 วัน, การถ่างขยายปากมดลูกและขูดมดลูกกรณีแท้งบุตร ภายหลัง 90 วัน,
+    นับแต่วันเริ่มมีผลคุ้มครอง. อาณาเขตความคุ้มครองเฉพาะประเทศไทย. หน้า 15
+    ตาราง "เงื่อนไขการรับประกันภัย": บันทึกสลักหลังนี้ "สมัครได้ตั้งแต่อายุ 15-49 ปี
+    ต่ออายุได้ถึงอายุ 49 ปี ระยะเวลาคุ้มครองถึงอายุ 50 ปี หรือจนกระทั่งแบบประกันภัย
+    หลักหรือสัญญาเพิ่มเติมสิ้นผลบังคับ". หน้า 15 ยังระบุว่า "ข้อยกเว้นความคุ้มครอง
+    สัญญาเพิ่มเติมการประกันภัยสุขภาพแบบ อีลิท เฮลท์ พลัส (แบบมาตรฐานใหม่) มีทั้งหมด
+    21 ข้อ" — คำว่า "แบบมาตรฐานใหม่" เป็นที่มาของ new_health_standard: true
+    (สังเกตว่าข้อยกเว้นชุดนี้ตั้งชื่อเฉพาะ Elite Health Plus ไม่ได้ตั้งชื่อ
+    Maternity Plus ด้วย จึงไม่นำมาใส่ใน exclusions ของแผนนี้ — ดูหมายเหตุที่ฟิลด์นั้น)
+
+verified_on: 2026-08-12
