@@ -1,0 +1,106 @@
+# Allianz Ayudhya General Insurance — Basic Care, Plan 1 (the cheapest of three
+# tiers). Standalone, no host life policy required. Allianz Ayudhya is the live
+# successor to Aetna Thailand's book (absorbed 2022) — see
+# docs/research/round3-health-specialists-sourcing.md §3b.
+#
+# premium is null: Allianz Ayudhya publishes no age-band rate table for this
+# product anywhere — not on the product page's quote tool, not in the brochure,
+# not in the 44-page filed policy wording. Schema comment on `premium` exists
+# for exactly this case: excluding an insurer this large because it won't
+# publish a number would bias the dataset toward whoever ships a rate table.
+# Unlike a rider with a second null (host premium), this is standalone — one
+# null, not two.
+id: allianzayudhya-basic-care-plan1
+insurer:
+  th: อลิอันซ์ อยุธยา ประกันภัย
+  en: Allianz Ayudhya General Insurance
+
+name:
+  th: ประกันภัยสุขภาพและอุบัติเหตุส่วนบุคคล เบสิก แคร์ แผน 1
+  en: Basic Care — Plan 1
+
+type: standalone
+host_policy: null
+
+shape: per_item_schedule
+# "มาตรฐานประกันสุขภาพแบบใหม่" appears nowhere in the product page, brochure, or
+# the 44-page filed wording. Recorded true on the structure — the filed
+# wording's "ข้อยกเว้นเพิ่มเติม" (health-only exclusion rider, p.16-17) and
+# "ระยะเวลาที่ไม่คุ้มครอง" (waiting period, p.15) sections use the same
+# templated clauses as every other new-standard insurer in this dataset,
+# including the identical 120-day specified-disease list. Same call made
+# elsewhere in this project for insurers that use the structure without
+# quoting the phrase.
+new_health_standard: true
+
+premium: null
+premium_unknown_reason: >-
+  อลิอันซ์ อยุธยาไม่เผยแพร่ตารางเบี้ยประกันภัยตามช่วงอายุที่ใดเลย ทั้งในเครื่องมือคำนวณเบี้ย
+  บนหน้าผลิตภัณฑ์ (which only returns "This premium is an approximate based on
+  minimum sum insured only" without a figure), โบรชัวร์การตลาด (BasicCare-BP-EN-03),
+  และกรมธรรม์ที่ยื่นจดทะเบียนฉบับเต็ม 44 หน้า
+
+entry_age_min: 11
+entry_age_max: 65
+renewal_ceiling_age: null
+renewal_ceiling_unknown_reason: >-
+  ไม่ใช่ตัวเลขเดียว ขึ้นอยู่กับอายุที่สมัคร: ข้อ 11.2 ของกรมธรรม์ระบุว่าต่ออายุได้ถึง
+  80 ปี "เว้นแต่กรมธรรม์ประกันภัยนี้มีผลบังคับใช้ก่อนผู้ได้รับความคุ้มครองจะมีอายุครบ 60
+  ปีบริบูรณ์ ผู้ได้รับความคุ้มครองจะได้รับสิทธิการต่ออายุกรมธรรม์ประกันภัยได้ตลอดชีวิต
+  ภายใต้เงื่อนไขการชำระเบี้ยประกันภัยทุกประการงดเว้น" — กล่าวคือผู้สมัครก่อนอายุ 60 ปี
+  ต่ออายุได้ตลอดชีวิตแบบไม่ระบุเพดาน ส่วนผู้สมัครอายุ 60-65 ปี ต่ออายุได้ถึง 80 ปีเท่านั้น
+  บันทึกเป็น null แทนการเลือกตัวเลขใดตัวเลขหนึ่งซึ่งจะทำให้เข้าใจผิดสำหรับอีกกลุ่มหนึ่ง
+
+ipd_annual_limit_thb: 350000
+ipd_limit_basis: per_policy_year
+opd_annual_limit_thb: null # OPD เป็นความคุ้มครองเสริมที่ต้องซื้อเพิ่ม จ่ายต่อครั้งเยี่ยม (1,000/1,500/2,000 บาท สูงสุด 30 ครั้ง/ปี) ไม่ใช่วงเงินรวมต่อปี
+room_board_thb_per_night: 2000
+deductible_thb: 0
+copay_percent: 0
+copay_on_renewal: null
+
+exclusions:
+  - th: >-
+      ภาวะที่เป็นผลจากความผิดปกติที่เกิดขึ้นแต่กำเนิด หรือระบบการสร้างอวัยวะของร่างกาย
+      ไม่สมบูรณ์แต่กำเนิด หรือโรคทางพันธุกรรม เว้นแต่กรมธรรม์ประกันภัยนี้มีผลคุ้มครองมาไม่น้อยกว่า
+      1 ปี และปรากฏอาการหลังผู้ได้รับความคุ้มครองมีอายุครบ 16 ปีบริบูรณ์
+    en: null
+  - th: การตรวจรักษาหรือการผ่าตัดเพื่อเสริมสวย หรือแก้ไขปัญหาผิวพรรณ สิว ฝ้า กระ รังแค ผมร่วง หรือการควบคุมน้ำหนักตัว
+    en: null
+  - th: >-
+      การตั้งครรภ์ แท้งบุตร ทำแท้งบุตร โรคแทรกซ้อนจากการตั้งครรภ์ การแก้ไขปัญหาการมีบุตรยาก
+      การทำหมันหรือการคุมกำเนิด ยกเว้นมะเร็งไข่ปลาอุก (Choriocarcinoma)
+    en: null
+  - th: โรคเอดส์ หรือกามโรคหรือโรคติดต่อทางเพศสัมพันธ์ รวมถึงภูมิคุ้มกันบกพร่อง (Acquired Immune Deficiency Syndrome)
+    en: null
+
+# 30 วันทั่วไป; 120 วันสำหรับกลุ่มโรคที่ระบุ (เนื้องอก/ถุงน้ำ/มะเร็งทุกชนิด, ริดสีดวงทวาร,
+# ไส้เลื่อนทุกชนิด, ต้อเนื้อ/ต้อกระจก, ตัดทอนซิล/อดีนอยด์, นิ่วทุกชนิด, เส้นเลือดขอดที่ขา,
+# เยื่อบุโพรงมดลูกเจริญผิดที่) ไม่ใช่ตัวเลขเดียวจึงบันทึกเป็นข้อความแทนการเพิ่มฟิลด์ใหม่
+waiting_period_days: 30
+
+premium_source:
+  url: https://www.allianz.co.th/en_TH/health/lump-sum/basic-care.html
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    ยืนยันวันนี้ว่าหน้าผลิตภัณฑ์และเครื่องมือคำนวณเบี้ยไม่แสดงตัวเลขเบี้ยประกันภัย
+    มีเพียงข้อความว่า "This premium is an approximate based on minimum sum
+    insured only" โบรชัวร์ (BasicCare-BP-EN-03) และกรมธรรม์ 44 หน้าก็ไม่มีตารางเบี้ย
+    เช่นกัน — ตรวจสอบทั้งสามแหล่งแล้วไม่พบตัวเลขใดๆ
+terms_source:
+  url: https://www.allianz.co.th/content/dam/onemarketing/azay/allianz-co-th/document-download/forms/Allianz%20Policy%20-%20Basic%20Care_TH.pdf
+  tier: filed_wording
+  verified_on: 2026-08-11
+  note: >-
+    กรมธรรม์ประกันภัยสุขภาพและอุบัติเหตุส่วนบุคคล (จ่ายผลประโยชน์สูงสุดต่อรอบปีกรมธรรม์)
+    รหัสเอกสาร BasicCare-PW-TH-01 Rev.02 ดาวน์โหลดจากหน้า "ดาวน์โหลดกรมธรรม์ประกันภัย"
+    (https://www.allianz.co.th/th_TH/services/form-download.html) ไม่ใช่โบรชัวร์การตลาด
+    ข้อ 11.2 (หน้า 7/44) ระบุอายุต่ออายุ; ข้อ 3-4 หมวดความคุ้มครองการประกันภัยสุขภาพ
+    (หน้า 15/44) ระบุสภาพที่เป็นมาก่อนการเอาประกันภัยและระยะเวลาที่ไม่คุ้มครอง; ข้อยกเว้น
+    เพิ่มเติม 15 ข้อ (หน้า 16-17/44) เป็นแหล่งข้อยกเว้นที่บันทึกไว้ข้างต้น วงเงินผู้ป่วยใน
+    350,000 บาทต่อปี ค่าห้อง 2,000 บาท/วัน มาจากตารางผลประโยชน์ในโบรชัวร์ (เอกสารกรมธรรม์
+    ฉบับนี้ไม่มีตารางผลประโยชน์แนบ อ้างอิงจากหน้าตารางผลประโยชน์แยกต่างหาก) อายุรับสมัคร
+    11-65 ปี จากโบรชัวร์เดียวกัน
+
+verified_on: 2026-08-11

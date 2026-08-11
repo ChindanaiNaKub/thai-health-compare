@@ -1,0 +1,80 @@
+# Viriyah Insurance V Prestige Care, Plan 1 (the cheapest of six tiers), base
+# coverage with no optional deductible or copayment selected. Standalone.
+#
+# Only one age band (26-30) is published with a premium figure anywhere on
+# Viriyah's site or brochure — this is the state of the public record, not a
+# gap in this project (see README "What entering real data taught us").
+id: viriyah-v-prestige-care-plan1
+insurer:
+  th: วิริยะประกันภัย
+  en: Viriyah Insurance
+
+name:
+  th: ประกันสุขภาพและอุบัติเหตุส่วนบุคคล V Prestige Care แผน 1
+  en: V Prestige Care — Plan 1
+
+type: standalone
+host_policy: null
+
+shape: per_item_schedule
+# "มาตรฐานประกันสุขภาพแบบใหม่" not found anywhere in the site or the 10-page
+# brochure. Recorded true on the structure — numbered หมวดที่ 1-13 benefit
+# categories and the identical 30/120-day waiting-period list used by every
+# new-standard insurer in this dataset. Same call made elsewhere in this
+# project for insurers using the structure without quoting the phrase.
+new_health_standard: true
+
+premium:
+  - { age_from: 26, age_to: 30, thb_per_year: 20112 }
+
+entry_age_min: 0 # สมัครได้ตั้งแต่อายุ 15 วัน
+entry_age_max: 65
+renewal_ceiling_age: null
+renewal_ceiling_unknown_reason: >-
+  ไม่ใช่ตัวเลขเดียว ขึ้นอยู่กับอายุที่สมัคร — โบรชัวร์หน้า 9 "เงื่อนไขการรับประกัน" ระบุ
+  "ผู้เอาประกันภัยอายุไม่เกิน 60 ปี กรณีต่ออายุกรมธรรม์อย่างต่อเนื่องสามารถต่ออายุได้ถึง
+  100 ปี" และแยกต่างหาก "ผู้เอาประกันภัยอายุ 61 – 65 ปี กรณีต่ออายุกรมธรรม์อย่างต่อเนื่อง
+  สามารถต่ออายุได้ถึง 80 ปี" บันทึกเป็น null แทนการเลือกตัวเลขใดตัวเลขหนึ่งซึ่งจะทำให้
+  เข้าใจผิดสำหรับอีกกลุ่มหนึ่ง
+
+ipd_annual_limit_thb: 440000
+ipd_limit_basis: per_confinement # "ผลประโยชน์สูงสุดต่อการเข้าพักรักษาเป็นผู้ป่วยในครั้งใดครั้งหนึ่ง"; เว็บไซต์ระบุแยกว่า "ไม่จำกัดจำนวนครั้งในการรักษาต่อปี"
+opd_annual_limit_thb: null # OPD เป็นความคุ้มครองเสริมจ่ายต่อครั้ง (1,000/1,500/2,500 บาท สูงสุด 30 ครั้ง/ปี) ไม่ใช่วงเงินรวมต่อปี
+room_board_thb_per_night: 3000
+deductible_thb: 0
+copay_percent: 0 # อายุ 11-65 ปีเลือกได้ว่าจะมีค่าใช้จ่ายร่วมหรือไม่ — บันทึกแบบไม่มีค่าใช้จ่ายร่วม (0%) เป็นฐาน
+copay_on_renewal: null
+
+exclusions:
+  - th: โรคที่เป็นมาแต่กำเนิด โรคเรื้อรัง การบาดเจ็บหรือการเจ็บป่วยที่ยังมิได้รักษาให้หายก่อนวันทำสัญญาประกันภัย
+    en: null
+
+# 30 วันทั่วไป; 120 วันสำหรับ เนื้องอก/ถุงน้ำ/มะเร็งทุกชนิด, ริดสีดวงทวาร, ไส้เลื่อนทุกชนิด,
+# ต้อเนื้อ/ต้อกระจก, ตัดทอนซิล/อดีนอยด์, นิ่วทุกชนิด, เส้นเลือดขอดที่ขา, เยื่อบุโพรงมดลูก
+# เจริญผิดที่ — ไม่ใช่ตัวเลขเดียวจึงบันทึกเป็นข้อความแทนการเพิ่มฟิลด์ใหม่
+waiting_period_days: 30
+
+premium_source:
+  url: https://vinsure.viriyah.co.th/insurance/health/v-prestige-care
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    ตารางเบี้ยตัวอย่างอายุ 26-30 ปีบนหน้าผลิตภัณฑ์: แผน 1 = 1,676 บาท/เดือน (20,112
+    บาท/ปี), แผน 2 = 1,927, แผน 3 = 2,092, แผน 4 = 2,515, แผน 5 = 2,852, แผน 6
+    = 3,304 บาท/เดือน. ไม่มีตารางเบี้ยเต็มทุกช่วงอายุที่ใดเลย ทั้งบนเว็บไซต์และในโบรชัวร์
+    10 หน้า (BrochureDeduct/v-prestige-care-deduct-coverage-aug.pdf, Effective
+    Date: August 2026) ซึ่งมีเพียงตัวอย่างการคำนวณสิทธิเมื่อเลือกความรับผิดส่วนแรก/
+    ค่าใช้จ่ายร่วม ไม่ใช่ตารางเบี้ยตามช่วงอายุ
+terms_source:
+  url: https://vinsure.viriyah.co.th/VHealth/media/Brochure/BrochureDeduct/v-prestige-care-deduct-coverage-aug.pdf
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    โบรชัวร์บนโดเมนของวิริยะเอง (vinsure.viriyah.co.th) ไม่พบเอกสารกรมธรรม์หรือ
+    สรุปสาระสำคัญแยกต่างหากที่เผยแพร่บนเว็บไซต์ — ชื่อเมทาดาทาของไฟล์เองระบุว่าเป็น
+    "โบชัวร์V Prestige Care". วงเงินผู้ป่วยใน 440,000 บาทต่อครั้ง (แผน 1) ค่าห้อง 3,000
+    บาท/วัน มาจากตารางผลประโยชน์หน้า 3. เงื่อนไขการรับประกันและอายุต่ออายุจากหน้า 9.
+    ระยะเวลาที่ไม่คุ้มครองและข้อยกเว้นจากหน้า 9 "เงื่อนไขและข้อยกเว้นที่สำคัญ" และ
+    "หมายเหตุ"
+
+verified_on: 2026-08-11
