@@ -197,6 +197,11 @@
 		<li class="chip chip-neutral">ทุกตัวเลขมีลิงก์ต้นทาง</li>
 		<li class="chip chip-neutral">ไม่ขายของ ไม่มีนายหน้า</li>
 	</ul>
+	<p class="text-muted mt-3 text-sm">
+		เว็บนี้ไม่ใช่นายหน้าประกันภัย ไม่ได้รับใบอนุญาตจาก คปภ. ตัวเลขบางตัว
+		อย่างยอดรวมตลอดสัญญา คำนวณจากอัตราที่บริษัทประกาศ ไม่ใช่ดึงมาตรงๆ
+		<a class="text-accent underline underline-offset-2" href="/method">ดูวิธีเก็บข้อมูล</a>
+	</p>
 </section>
 
 <div class="border-rule mt-10 border-t-2 pt-5">
