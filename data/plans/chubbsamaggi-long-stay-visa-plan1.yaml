@@ -1,0 +1,109 @@
+# Chubb Samaggi Long Stay Visa Health Plan, Plan 1, 100,000 THB deductible tier
+# (the cheapest of six variants: 3 plan tiers x 2 deductible tiers). Built for
+# Non-Immigrant "O-A" visa applicants per the 2019 Cabinet Resolution, but sold
+# as ordinary standalone individual health insurance — nothing in the source
+# document restricts it to visa holders.
+#
+# Chubb is the live successor to Cigna's Thai retail health book (sold 2022);
+# there is no current "Cigna" Thai health product to cite. See
+# docs/research/standalone-health-sourcing.md §5 and
+# docs/research/round3-health-specialists-sourcing.md §3.
+#
+# The source PDF is Chubb's own brochure, not filed policy wording — it says so
+# itself ("This document is not part of any insurance policy... Other terms,
+# conditions and exclusions subject to original Personal Health Insurance
+# (Universal) policy"). No filed-wording URL is published anywhere on chubb.com
+# for this product. Recorded as official_insurer tier (Chubb's own domain),
+# which the schema permits for terms, with that caveat carried in the note.
+id: chubbsamaggi-long-stay-visa-plan1
+insurer:
+  th: ชับบ์สามัคคีประกันภัย
+  en: Chubb Samaggi Insurance
+
+name:
+  th: แผนประกันสุขภาพลองสเตย์วีซ่า แผน 1 (ความรับผิดส่วนแรก 100,000 บาท)
+  en: Long Stay Visa Health Plan — Plan 1 (100,000 THB deductible)
+
+type: standalone
+host_policy: null
+
+shape: deductible_first
+# The brochure never writes "มาตรฐานประกันสุขภาพแบบใหม่" anywhere in its 6 pages.
+# Recorded true on the structure — numbered Module 1-13 benefit categories,
+# per-confinement deductible, no age-tiered coinsurance — the same call made for
+# every insurer in this dataset that uses that structure without quoting the
+# phrase (see docs/research/round2-insurers-sourcing.md, round3-*-sourcing.md).
+new_health_standard: true
+
+premium:
+  - { age_from: 18, age_to: 50, thb_per_year: 7900 }
+  - { age_from: 51, age_to: 60, thb_per_year: 11900 }
+  - { age_from: 61, age_to: 70, thb_per_year: 15200 }
+  - { age_from: 71, age_to: 80, thb_per_year: 22700 }
+  - { age_from: 81, age_to: 100, thb_per_year: 33800 } # renewal only, per brochure remark 2
+
+entry_age_min: 18
+entry_age_max: 80
+renewal_ceiling_age: 100
+
+ipd_annual_limit_thb: 400000
+ipd_limit_basis: per_policy_year
+opd_annual_limit_thb: 40000
+room_board_thb_per_night: 4000
+deductible_thb: 100000
+copay_percent: 0
+# Brochure remark 7 lets Chubb re-rate the renewal premium by claims loss ratio,
+# or decline to renew an individual insured with 30 days' notice — that is a
+# premium/non-renewal mechanism, not a copayment percentage. No coinsurance
+# clause is published anywhere in the document, so this is left null rather
+# than invented.
+copay_on_renewal: null
+
+exclusions:
+  - th: โรคที่เป็นมาก่อนการเอาประกันภัย ความผิดปกติแต่กำเนิด ความผิดปกติของพัฒนาการ และโรคทางพันธุกรรม
+    en: Pre-existing conditions, congenital abnormalities, growth development abnormalities, and genetic disorders.
+  - th: การรักษาหรือการผ่าตัดเพื่อความสวยงาม รวมถึงการรักษาสิว ฝ้า รังแค การลดหรือเพิ่มน้ำหนัก และผมร่วง (การผ่าตัดเพื่อฟื้นฟูสภาพยกเว้นกรณีเกิดจากอุบัติเหตุ)
+    en: Any cosmetic surgery or beautification treatment including treatment of acne, freckles, dandruff, weight reduction and weight gain, hair loss. Reconstructive surgery is also excluded unless injury is sustained as a result of an accident.
+  - th: ค่าใช้จ่ายที่เกี่ยวข้องกับภาวะมีบุตรยาก การตั้งครรภ์ การคลอดบุตร การแท้งบุตร หรือสาเหตุที่เกี่ยวข้องกับการตั้งครรภ์ การทำหมัน หรือการตรวจเรื่องการทำหมัน
+    en: Services in connection with infertility, pregnancy, childbirth, abortion or miscarriage, or any causes related to pregnancy, sterilization or investigation of sterilization.
+  - th: เอดส์ โรคที่เกี่ยวเนื่องจากเอดส์ หรือโรคติดต่อทางเพศสัมพันธ์
+    en: AIDS, related or sexually transmitted diseases (STD).
+
+# 30-day general wait; 120-day wait for a specified-disease list (tumours,
+# hemorrhoids, hernias, pterygium/cataract, tonsillectomy/adenoidectomy,
+# stones, varicose veins, endometriosis) is not representable as a single
+# number and is recorded here in prose instead of invented as a second field.
+waiting_period_days: 30
+
+premium_source:
+  url: https://www.chubb.com/content/dam/chubb-sites/chubb-com/th-th/cl/long-stay-visa/long-stay-visa.pdf
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    หน้า 4 ตาราง "Net premium (per person per year)" คอลัมน์ Plan 1 ที่ความรับผิดส่วนแรก
+    100,000 บาทต่อการเข้าพักรักษาตัวครั้งใดครั้งหนึ่ง: 18-50 ปี 7,900 บาท, 51-60 ปี
+    11,900 บาท, 61-70 ปี 15,200 บาท, 71-80 ปี 22,700 บาท, 81-100 ปี (ต่ออายุเท่านั้น)
+    33,800 บาท. หมายเหตุ 7 ในหน้าเดียวกันระบุว่าเบี้ยปีต่ออายุอาจปรับสูงขึ้นตามอัตราการ
+    เคลม (Loss Ratio) ของปีก่อนหน้า หรือบริษัทอาจไม่ต่ออายุเป็นรายบุคคลโดยแจ้งล่วงหน้า
+    30 วัน ตัวเลขข้างต้นจึงเป็นเบี้ยมาตรฐานปีแรกเท่านั้น ไม่ใช่ตลอดสัญญาที่รับประกันราคาคงที่.
+terms_source:
+  url: https://www.chubb.com/content/dam/chubb-sites/chubb-com/th-th/cl/long-stay-visa/long-stay-visa.pdf
+  tier: official_insurer
+  verified_on: 2026-08-11
+  note: >-
+    เอกสารนี้คือโบรชัวร์ของชับบ์สามัคคีเอง ไม่ใช่กรมธรรม์ที่ยื่นจดทะเบียน — หมายเหตุ 13
+    ในหน้า 4 ระบุเองว่า "This document is not part of any insurance policy" และหน้า 5
+    ระบุว่าเงื่อนไข/ข้อยกเว้นอื่นให้ยึดตาม "original Personal Health Insurance
+    (Universal) policy" ซึ่งไม่มีลิงก์เผยแพร่แยกต่างหากที่ใดบนเว็บไซต์ chubb.com
+    วงเงินผู้ป่วยใน 400,000 บาทต่อปี (แผน 1) และผู้ป่วยนอก 40,000 บาทต่อปี
+    (สูงสุด 1 ครั้ง/วัน, 30 ครั้ง/ปี) มาจากตารางผลประโยชน์หน้า 2-3 ค่าห้อง 4,000
+    บาท/วัน (Module 1) จากหน้า 2. อายุรับประกัน 18-80 ปี ต่ออายุถึง 100 ปี จาก
+    หน้า 1 ("Entry age up to 80 years old and renewal to age 100 years") และหมายเหตุ
+    2 หน้า 4. ระยะเวลาที่ไม่คุ้มครอง 30 วันทั่วไป และ 120 วันสำหรับกลุ่มโรคที่ระบุ
+    (เนื้องอก/มะเร็ง, ริดสีดวงทวาร, ไส้เลื่อน, ต้อเนื้อ/ต้อกระจก, ตัดทอนซิล/อดีนอยด์,
+    นิ่ว, เส้นเลือดขอด, เยื่อบุโพรงมดลูกเจริญผิดที่) จากหน้า 5 ข้อ 1-2 ของหัวข้อ
+    "Waiting Period and pre-existing conditions" ข้อยกเว้นที่บันทึกไว้เป็นเพียง
+    ตัวอย่างบางส่วนจากบรรทัด "Some Examples of Personal Health Insurance (File and
+    use) Exclusion" ไม่ใช่รายการฉบับเต็ม.
+
+verified_on: 2026-08-11

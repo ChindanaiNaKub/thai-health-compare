@@ -55,11 +55,11 @@ bun run build          # static output in build/
 
 ## Status
 
-Alpha. 33 plan records from 12 insurers — AIA, Bangkok Life, Dhipaya, FWD,
-Generali, Krungthai-AXA, Muang Thai, Navakij, Ocean Life, Pacific Cross, Thai
-Life, and Thai Health — plus the three public schemes (สปสช. / ประกันสังคม /
-สิทธิข้าราชการ), drawn from 39 cited sources. The `_example-*.yaml` files are
-**fictional templates**, kept only to show the schema.
+Alpha. 34 plan records from 13 insurers — AIA, Bangkok Life, Chubb Samaggi,
+Dhipaya, FWD, Generali, Krungthai-AXA, Muang Thai, Navakij, Ocean Life, Pacific
+Cross, Thai Life, and Thai Health — plus the three public schemes (สปสช. /
+ประกันสังคม / สิทธิข้าราชการ), drawn from 39 cited sources. The `_example-*.yaml`
+files are **fictional templates**, kept only to show the schema.
 
 Nine records now carry a premium for every year from entry to the renewal
 ceiling, so their lifetime cost is complete rather than partial. Seven cite
