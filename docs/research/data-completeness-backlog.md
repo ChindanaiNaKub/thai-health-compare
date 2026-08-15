@@ -67,6 +67,12 @@ to age 80 for entry ages 60–65; Viriyah V Prestige Care stores lifetime renewa
 through entry age 60 and renewal to age 80 for entry ages 61–65. Dhipaya TIP
 Non Chill remains the only renewal ceiling with no public value.
 
+The complete 32-record filed-wording audit is now recorded in
+[`filed-wording-audit-all.md`](filed-wording-audit-all.md). It found no matching
+policy wording or complete summary document safe to promote; the next actionable
+step is still external document acquisition from the insurer or an authorized
+disclosure channel, one exact product/version at a time.
+
 ## Ranked work
 
 1. **Reconcile filed terms for the 32 affected records.** This is the highest
