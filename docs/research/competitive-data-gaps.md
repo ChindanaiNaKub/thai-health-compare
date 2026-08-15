@@ -1,7 +1,8 @@
 # Competitive data gaps — what we still lack for the site
 
 Research synthesis date: 2026-08-12 (revised same day to hard-gate every item
-against README / CONTRIBUTING / site disclaimers). Sources:
+against README / CONTRIBUTING / site disclaimers). Tracking issue: [#8](https://github.com/ChindanaiNaKub/thai-health-compare/issues/8).
+Sources:
 [`competitor-landscape.md`](./competitor-landscape.md),
 [`round4-gap-analysis.md`](./round4-gap-analysis.md), round-5 follow-ups, and a
 machine count of `data/plans/` (40 real plans, excluding `_example-*`).
@@ -62,6 +63,10 @@ premiums, brochure-as-contract.
 
 Closing gaps = more citable rows and fewer blank cells. It is not feature-parity
 with commission sites.
+
+This document is a research brief, not a decision to expand the product scope.
+Each candidate still needs its own primary-source review and an explicit
+taxonomy decision before it can become a plan record or a UI feature.
 
 ---
 
