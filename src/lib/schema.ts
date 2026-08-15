@@ -56,6 +56,8 @@ export const CoverageRecord = z
 		id: z.string().regex(/^[a-z0-9-]+$/),
 		insurer: Bilingual,
 		license_no: z.string().nullable().default(null),
+		/** OIC company code; distinct from a license number and only populated when verified. */
+		oic_company_code: z.string().regex(/^\d{4}$/).nullable().default(null),
 		insurer_class: InsurerClass,
 		domain: z.url(),
 		category: ProductCategory,
@@ -85,6 +87,15 @@ export const CoverageRecord = z
 	});
 
 export type CoverageRecord = z.infer<typeof CoverageRecord>;
+
+/** A dated snapshot of the insurer-universe work, kept separate from candidate records. */
+export const CoverageMatrix = z.object({
+	as_of: z.iso.date(),
+	source: Sourced,
+	records: z.array(CoverageRecord).min(1)
+});
+
+export type CoverageMatrix = z.infer<typeof CoverageMatrix>;
 
 /** One age band of premium, inclusive on both ends, in THB per year. */
 const PremiumBand = z.object({

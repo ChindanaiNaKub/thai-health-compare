@@ -1,0 +1,39 @@
+id: axa-health-candidates
+insurer:
+  th: แอกซ่าประกันภัย / AXA Thailand
+  en: AXA Thailand
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://www.axa.co.th
+category: medical_expense
+product_name:
+  th: SmartCare Essential, SmartCare Value, EasyCare Visa, SwitchCare
+  en: SmartCare Essential, SmartCare Value, EasyCare Visa, SwitchCare
+status: insufficient_data
+checked_on: 2026-08-15
+finding: >-
+  AXA's official pages confirm a relevant product family. EasyCare Visa publishes
+  eligibility, renewal, benefit and waiting-period information; SmartCare Value
+  publishes eligibility and benefit limits; SmartCare Essential and SwitchCare
+  publish product descriptions and require a quote. The accessible official
+  pages do not provide a complete age-banded premium table tied to filed wording
+  for the same product version.
+not_entered_reason: >-
+  No AXA medical-expense plan is entered until a complete age-banded premium
+  source and the matching filed policy wording can be verified together.
+sources:
+  - url: https://www.axa.co.th/en/personal/health-insurance
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official AXA product-family page.
+  - url: https://www.axa.co.th/th/personal/health-insurance/visa-plan
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: EasyCare Visa eligibility, benefits and terms summary; no complete public premium bands.
+  - url: https://www.axa.co.th/th/personal/health-insurance/value-plan
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: SmartCare Value eligibility and benefit limits.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/axa-bangkok-insurance-pilot.md
+

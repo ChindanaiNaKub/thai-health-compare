@@ -1,18 +1,25 @@
 import assert from 'node:assert/strict';
-import { loadCoverage, loadPlans } from './data.server';
+import { loadCoverage, loadCoverageMatrix, loadPlans } from './data.server';
 import { CoverageRecord } from './schema';
 
 /** Tests the public validation boundary used by the data loader. */
 const coverage = loadCoverage();
-assert.equal(coverage.length, 1);
-assert.equal(coverage[0].status, 'insufficient_data');
-const notEnteredReason = coverage[0].not_entered_reason;
+assert.equal(coverage.length, 4);
+const scb = coverage.find((record) => record.id === 'scb-life-health-candidates');
+assert.ok(scb);
+assert.equal(scb.status, 'insufficient_data');
+const notEnteredReason = scb.not_entered_reason;
 assert.ok(notEnteredReason);
 assert.match(notEnteredReason, /terms_source/);
-assert.equal(CoverageRecord.safeParse(coverage[0]).success, true);
+assert.equal(CoverageRecord.safeParse(scb).success, true);
+
+const matrix = loadCoverageMatrix();
+assert.equal(matrix.records.length, 19);
+assert.equal(matrix.records.filter((record) => record.status === 'in_dataset').length, 19);
+assert.equal(matrix.records.every((record) => record.oic_company_code === null), true);
 
 const missingReason = CoverageRecord.safeParse({
-	...coverage[0],
+	...scb,
 	status: 'not_found',
 	not_entered_reason: null
 });

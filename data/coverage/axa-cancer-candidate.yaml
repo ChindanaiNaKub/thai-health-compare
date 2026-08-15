@@ -1,0 +1,30 @@
+id: axa-smartcare-cancer
+insurer:
+  th: แอกซ่า ประกันภัย / AXA Thailand
+  en: AXA Thailand
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://www.axa.co.th
+category: cancer
+product_name:
+  th: SmartCare Cancer
+  en: SmartCare Cancer
+status: insufficient_data
+checked_on: 2026-08-15
+finding: >-
+  AXA's official cancer page describes a lump-sum cancer product with entry and
+  renewal ages and a maximum benefit, but it is not a medical-expense plan and
+  the accessible page does not expose a complete age-banded premium table tied
+  to filed wording.
+not_entered_reason: >-
+  Keep this candidate out of the medical-expense comparison until the cancer
+  category has its own comparison contract and the filed wording/premium source
+  pair is verified.
+sources:
+  - url: https://www.axa.co.th/th/personal/health-insurance/cancer
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official AXA SmartCare Cancer page.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/axa-bangkok-insurance-pilot.md
+

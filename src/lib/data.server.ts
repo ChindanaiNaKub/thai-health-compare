@@ -3,9 +3,11 @@ import { join } from 'node:path';
 import { parse } from 'yaml';
 import {
 	CoverageRecord,
+	CoverageMatrix,
 	Scheme,
 	ValidatedPlan,
 	type CoverageRecord as CoverageRecordType,
+	type CoverageMatrix as CoverageMatrixType,
 	type Plan,
 	type Scheme as SchemeType
 } from './schema';
@@ -55,4 +57,14 @@ export function loadCoverage(): CoverageRecordType[] {
 	return parseAll<CoverageRecordType>(loadDir('coverage'), CoverageRecord).sort((a, b) =>
 		a.insurer.th.localeCompare(b.insurer.th, 'th')
 	);
+}
+
+export function loadCoverageMatrix(): CoverageMatrixType {
+	const file = 'coverage-matrix/oic-matrix.yaml';
+	const raw = parse(readFileSync(join(DATA_DIR, 'coverage-matrix', 'oic-matrix.yaml'), 'utf8'));
+	const result = CoverageMatrix.safeParse(raw);
+	if (!result.success) {
+		throw new Error(`${file} failed validation:\n${JSON.stringify(result.error, null, 2)}`);
+	}
+	return result.data;
 }

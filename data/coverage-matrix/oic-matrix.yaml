@@ -1,0 +1,295 @@
+as_of: 2026-08-15
+source:
+  url: https://oiceservice.oic.or.th/company/life.php
+  tier: official_insurer
+  verified_on: 2026-08-15
+  note: >-
+    Official OIC company directory entry point. The live company selector is
+    client-rendered; this snapshot records the dataset's current insurer set
+    while license and OIC company-code verification remains open.
+records:
+  - id: oic-bangkok-life
+    insurer: { th: กรุงเทพประกันชีวิต, en: Bangkok Life Assurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.bangkoklife.com
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Bangkok Life medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-krungthai-axa-life
+    insurer: { th: กรุงไทย-แอกซ่า ประกันชีวิต, en: Krungthai-AXA Life Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.krungthai-axa.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Krungthai-AXA medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-generali-life
+    insurer: { th: เจนเนอราลี่ ประกันชีวิต (ไทยแลนด์), en: Generali Life Assurance (Thailand) PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://generali.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 3 Generali medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-chubb-samaggi
+    insurer: { th: ชับบ์สามัคคีประกันภัย, en: Chubb Samaggi Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.chubb.com
+    category: visa_expat
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Chubb Samaggi visa/expat plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-dhipaya
+    insurer: { th: ทิพยประกันภัย, en: Dhipaya Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.dhipaya.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 4 Dhipaya medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-thai-life
+    insurer: { th: ไทยประกันชีวิต, en: Thai Life Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.thailife.com
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 3 Thai Life medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-thai-health
+    insurer: { th: ไทยประกันสุขภาพ, en: Thai Health Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.thaihealth.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 2 Thai Health medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-ocean-life
+    insurer: { th: ไทยสมุทรประกันชีวิต, en: Ocean Life Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.ocean.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 3 Ocean Life medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-navakij
+    insurer: { th: นวกิจประกันภัย, en: Navakij Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.navakij.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 5 Navakij medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-pacific-cross
+    insurer: { th: แปซิฟิค ครอส ประกันสุขภาพ, en: Pacific Cross Health Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.pacificcross.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 5 Pacific Cross medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-falcon
+    insurer: { th: ฟอลคอนประกันภัย, en: Falcon Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://falconinsurance.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Falcon medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-muang-thai-life
+    insurer: { th: เมืองไทยประกันชีวิต, en: Muang Thai Life Assurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.muangthai.co.th
+    category: maternity
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Muang Thai Life maternity plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-muang-thai-insurance
+    insurer: { th: เมืองไทยประกันภัย, en: Muang Thai Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.muangthaiinsurance.com
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 2 Muang Thai Insurance medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-rabbit-life
+    insurer: { th: แรบบิท ประกันชีวิต, en: Rabbit Life Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.rabbitlife.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Rabbit Life medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-viriyah
+    insurer: { th: วิริยะประกันภัย, en: Viriyah Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.viriyah.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Viriyah medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-allianz-ayudhya
+    insurer: { th: อลิอันซ์ อยุธยา ประกันภัย, en: Allianz Ayudhya General Insurance }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.allianz.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Allianz Ayudhya medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/non_life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-southeast-life
+    insurer: { th: อาคเนย์ประกันชีวิต (SE Life), en: Southeast Life Insurance PCL (SE Life) }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.southeastlife.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 1 Southeast Life medical-expense plan; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-fwd-life
+    insurer: { th: เอฟดับบลิวดี ประกันชีวิต, en: FWD Life Insurance (Thailand) }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.fwd.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 2 FWD medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md
+  - id: oic-aia-thailand
+    insurer: { th: เอไอเอ ประเทศไทย, en: AIA Thailand }
+    license_no: null
+    oic_company_code: null
+    insurer_class: life
+    domain: https://www.aia.co.th
+    category: medical_expense
+    product_name: null
+    status: in_dataset
+    checked_on: 2026-08-15
+    finding: Dataset contains 2 AIA medical-expense plans; OIC license and company code still require live directory verification.
+    not_entered_reason: null
+    sources:
+      - { url: https://oiceservice.oic.or.th/company/life.php, tier: official_insurer, verified_on: 2026-08-15 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/oic-coverage-matrix.md

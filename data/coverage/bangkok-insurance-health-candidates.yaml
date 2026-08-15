@@ -1,0 +1,38 @@
+id: bangkok-insurance-health-candidates
+insurer:
+  th: กรุงเทพประกันภัย
+  en: Bangkok Insurance PCL
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://www.bangkokinsurance.com
+category: medical_expense
+product_name:
+  th: Classic Care, Superior Care, Premier Care
+  en: Classic Care, Superior Care, Premier Care
+status: insufficient_data
+checked_on: 2026-08-15
+finding: >-
+  Bangkok Insurance's official health pages publish a three-tier product family,
+  public age bands, annual premiums, and benefit tables for versions with and
+  without OPD. The accessible material is a current web register and selling
+  kits; it does not yet establish the matching filed policy wording/version for
+  every premium table.
+not_entered_reason: >-
+  This is the strongest next data-entry candidate, but no plan is entered until
+  the age-band table, product version, premium conditions, and filed wording are
+  reconciled. Entering the selling-kit figures alone would overstate certainty.
+sources:
+  - url: https://www.bangkokinsurance.com/th/product/health/new
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official product-family page for Classic, Superior and Premier Care.
+  - url: https://www.bangkokinsurance.com/product/health/new/register?care_name=CASUPERIOR
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official register with age bands and annual premium tables.
+  - url: https://www.bangkokinsurance.com/download/AIS/selling-kit/Selling%20kit%20สุขภาพ%20Superior.pdf
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official Superior Care selling kit; benefit/premium reference, not filed wording.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/axa-bangkok-insurance-pilot.md
