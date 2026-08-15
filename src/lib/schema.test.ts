@@ -30,6 +30,20 @@ const ktaxa = plans.find((plan) => plan.id === 'ktaxa-ihealthy-ultra-gold');
 assert.deepEqual(ktaxa?.host_policy?.premium, [
 	{ age_from: 35, age_to: 35, thb_per_year: 750, sex: 'female' }
 ]);
+const allianz = plans.find((plan) => plan.id === 'allianzayudhya-basic-care-plan1');
+assert.deepEqual(allianz?.renewal_ceiling_by_entry_age, [
+	{ entry_age_from: 11, entry_age_to: 59, renewal_ceiling_age: null, renewal_ceiling_kind: 'lifetime' },
+	{ entry_age_from: 60, entry_age_to: 65, renewal_ceiling_age: 80, renewal_ceiling_kind: 'fixed' }
+]);
+const viriyah = plans.find((plan) => plan.id === 'viriyah-v-prestige-care-plan1');
+assert.deepEqual(viriyah?.renewal_ceiling_by_entry_age, [
+	{ entry_age_from: 0, entry_age_to: 60, renewal_ceiling_age: null, renewal_ceiling_kind: 'lifetime' },
+	{ entry_age_from: 61, entry_age_to: 65, renewal_ceiling_age: 80, renewal_ceiling_kind: 'fixed' }
+]);
+assert.equal(
+	plans.find((plan) => plan.id === 'dhipaya-tip-non-chill-1')?.renewal_ceiling_by_entry_age.length,
+	0
+);
 assert.equal(
 	plans.find((plan) => plan.id === 'muangthailife-maternity-plus-plan1')?.category,
 	'maternity'

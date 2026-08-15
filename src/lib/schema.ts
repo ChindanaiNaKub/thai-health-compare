@@ -97,6 +97,26 @@ export const CoverageMatrix = z.object({
 
 export type CoverageMatrix = z.infer<typeof CoverageMatrix>;
 
+/** Renewal can depend on the age at which the policy first starts. */
+const RenewalRule = z
+	.object({
+		entry_age_from: z.number().int().min(0).max(120),
+		entry_age_to: z.number().int().min(0).max(120),
+		renewal_ceiling_age: z.number().int().min(1).max(120).nullable(),
+		renewal_ceiling_kind: z.enum(['fixed', 'lifetime'])
+	})
+	.superRefine((rule, ctx) => {
+		if (rule.entry_age_to < rule.entry_age_from) {
+			ctx.addIssue({ code: 'custom', message: 'renewal entry-age rule is inverted' });
+		}
+		if (rule.renewal_ceiling_kind === 'fixed' && rule.renewal_ceiling_age === null) {
+			ctx.addIssue({ code: 'custom', path: ['renewal_ceiling_age'], message: 'fixed renewal rule needs a ceiling age' });
+		}
+		if (rule.renewal_ceiling_kind === 'lifetime' && rule.renewal_ceiling_age !== null) {
+			ctx.addIssue({ code: 'custom', path: ['renewal_ceiling_age'], message: 'lifetime renewal rule cannot have a numeric ceiling' });
+		}
+	});
+
 /** One age band of premium, inclusive on both ends, in THB per year. */
 const PremiumBand = z.object({
 	age_from: z.number().int().min(0).max(120),
@@ -166,7 +186,9 @@ export const Plan = z.object({
 	entry_age_max: z.number().int().max(120),
 	/** ต่ออายุถึงอายุ — the age past which the insurer stops renewing. */
 	renewal_ceiling_age: z.number().int().min(1).max(120).nullable(),
-	/** Required when renewal_ceiling_age is null. Shown verbatim to the reader. */
+	/** Use when the renewal ceiling differs by entry age; avoids forcing one misleading scalar. */
+	renewal_ceiling_by_entry_age: z.array(RenewalRule).default([]),
+	/** Required when renewal_ceiling_age is null unless entry-age rules explain it. */
 	renewal_ceiling_unknown_reason: z.string().nullable().default(null),
 
 	ipd_annual_limit_thb: z.number().int().nonnegative().nullable(),
@@ -226,7 +248,11 @@ export const ValidatedPlan = Plan.superRefine((plan, ctx) => {
 		['premium', 'premium_unknown_reason'],
 		['renewal_ceiling_age', 'renewal_ceiling_unknown_reason']
 	] as const) {
-		if (plan[field] === null && !plan[reason]) {
+		if (
+			plan[field] === null &&
+			!plan[reason] &&
+			!(field === 'renewal_ceiling_age' && plan.renewal_ceiling_by_entry_age.length > 0)
+		) {
 			ctx.addIssue({
 				code: 'custom',
 				path: [reason],

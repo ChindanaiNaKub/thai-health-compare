@@ -43,13 +43,10 @@ premium_unknown_reason: >-
 entry_age_min: 11
 entry_age_max: 65
 renewal_ceiling_age: null
-renewal_ceiling_unknown_reason: >-
-  ไม่ใช่ตัวเลขเดียว ขึ้นอยู่กับอายุที่สมัคร: ข้อ 11.2 ของกรมธรรม์ระบุว่าต่ออายุได้ถึง
-  80 ปี "เว้นแต่กรมธรรม์ประกันภัยนี้มีผลบังคับใช้ก่อนผู้ได้รับความคุ้มครองจะมีอายุครบ 60
-  ปีบริบูรณ์ ผู้ได้รับความคุ้มครองจะได้รับสิทธิการต่ออายุกรมธรรม์ประกันภัยได้ตลอดชีวิต
-  ภายใต้เงื่อนไขการชำระเบี้ยประกันภัยทุกประการงดเว้น" — กล่าวคือผู้สมัครก่อนอายุ 60 ปี
-  ต่ออายุได้ตลอดชีวิตแบบไม่ระบุเพดาน ส่วนผู้สมัครอายุ 60-65 ปี ต่ออายุได้ถึง 80 ปีเท่านั้น
-  บันทึกเป็น null แทนการเลือกตัวเลขใดตัวเลขหนึ่งซึ่งจะทำให้เข้าใจผิดสำหรับอีกกลุ่มหนึ่ง
+renewal_ceiling_by_entry_age:
+  - { entry_age_from: 11, entry_age_to: 59, renewal_ceiling_age: null, renewal_ceiling_kind: lifetime }
+  - { entry_age_from: 60, entry_age_to: 65, renewal_ceiling_age: 80, renewal_ceiling_kind: fixed }
+renewal_ceiling_unknown_reason: null
 
 ipd_annual_limit_thb: 350000
 ipd_limit_basis: per_policy_year

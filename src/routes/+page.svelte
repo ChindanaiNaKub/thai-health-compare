@@ -8,6 +8,8 @@
 		hostPremiumAt,
 		isEligible,
 		premiumIsStale,
+		renewalCeilingAt,
+		renewalKindAt,
 		yearsOfCoverFrom,
 		type Sex
 	} from '$lib/metrics';
@@ -121,7 +123,9 @@
 					firstYear: withheld ? null : (annualHealth ?? 0) + (annualHost ?? 0),
 					share: healthShare(p, age, sex),
 					lifetime: cumulativePremium(p, age, sex),
-					years: yearsOfCoverFrom(p, age)
+					years: yearsOfCoverFrom(p, age),
+					renewalKind: renewalKindAt(p, age),
+					renewalCeiling: renewalCeilingAt(p, age)
 				};
 			})
 	);
@@ -504,12 +508,16 @@
 						<span class="label cell-label">จ่ายรวมตลอดสัญญา</span>
 						{#if withheld || row.lifetime === null}
 							<!-- A withheld figure must never be typeset like a figure. -->
-							<span class="text-muted font-mono">—</span>
+							{#if !withheld && row.renewalKind === 'lifetime'}
+								<span class="text-muted">ตลอดชีวิต</span>
+							{:else}
+								<span class="text-muted font-mono">—</span>
+							{/if}
 						{:else}
 							<span class="tnum text-lg font-semibold">{baht.format(row.lifetime.total_thb)}</span
 							><span class="text-muted ml-1 text-xs">฿</span>
 							<p class="text-muted text-xs">
-								ถึงอายุ {row.plan.renewal_ceiling_age} ({row.years} ปี)
+								ถึงอายุ {row.renewalCeiling} ({row.years} ปี)
 							</p>
 						{/if}
 					</td>
@@ -545,9 +553,13 @@
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
 										<dt>ต่ออายุถึงอายุ</dt>
 										<dd class="text-ink tnum">
-											{row.plan.renewal_ceiling_age === null
-												? 'ไม่ประกาศ'
-												: `${row.plan.renewal_ceiling_age} ปี`}
+							{#if row.renewalKind === 'lifetime'}
+								ตลอดชีวิต
+							{:else if row.renewalCeiling !== null}
+								{row.renewalCeiling} ปี
+							{:else}
+								ไม่ประกาศ
+							{/if}
 										</dd>
 									</div>
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
@@ -585,9 +597,12 @@
 									{#if row.plan.premium === null && row.plan.premium_unknown_reason}
 										<p>{row.plan.premium_unknown_reason}</p>
 									{/if}
-									{#if row.lifetime === null && row.plan.renewal_ceiling_unknown_reason}
-										<p>{row.plan.renewal_ceiling_unknown_reason}</p>
-									{/if}
+					{#if row.renewalKind === 'unknown' && row.plan.renewal_ceiling_unknown_reason}
+						<p>{row.plan.renewal_ceiling_unknown_reason}</p>
+					{/if}
+					{#if row.plan.renewal_ceiling_by_entry_age.length > 0}
+						<p>เงื่อนไขต่ออายุขึ้นอยู่กับอายุแรกเข้า; ตัวเลขด้านบนใช้ช่วงอายุของคุณ</p>
+					{/if}
 									{#if row.lifetime !== null && !withheld && row.lifetime.incomplete}
 										<p>บางช่วงอายุไม่มีข้อมูลเบี้ย ยอดรวมจึงต่ำกว่าความจริง</p>
 									{/if}

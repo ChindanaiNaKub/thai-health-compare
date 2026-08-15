@@ -3,6 +3,8 @@ import {
 	cumulativePremium,
 	healthPremiumAt,
 	healthShare,
+	renewalCeilingAt,
+	renewalKindAt,
 	yearsOfCoverFrom
 } from './metrics';
 import type { Plan } from './schema';
@@ -44,6 +46,29 @@ assert.equal(healthShare(plan, 40, 'male'), 1000 / 1500);
 const noCeiling = { ...plan, renewal_ceiling_age: null } as unknown as Plan;
 assert.equal(cumulativePremium(noCeiling, 40, 'male'), null);
 assert.equal(yearsOfCoverFrom(noCeiling, 40), null);
+
+const conditionalFixed = {
+	...plan,
+	renewal_ceiling_age: null,
+	renewal_ceiling_by_entry_age: [
+		{ entry_age_from: 40, entry_age_to: 60, renewal_ceiling_age: 45, renewal_ceiling_kind: 'fixed' as const }
+	]
+} as unknown as Plan;
+assert.equal(renewalKindAt(conditionalFixed, 40), 'fixed');
+assert.equal(renewalCeilingAt(conditionalFixed, 40), 45);
+assert.equal(yearsOfCoverFrom(conditionalFixed, 40), 6);
+assert.equal(cumulativePremium(conditionalFixed, 40, 'male')?.to_age, 45);
+
+const conditionalLifetime = {
+	...plan,
+	renewal_ceiling_age: null,
+	renewal_ceiling_by_entry_age: [
+		{ entry_age_from: 0, entry_age_to: 59, renewal_ceiling_age: null, renewal_ceiling_kind: 'lifetime' as const }
+	]
+} as unknown as Plan;
+assert.equal(renewalKindAt(conditionalLifetime, 40), 'lifetime');
+assert.equal(renewalCeilingAt(conditionalLifetime, 40), null);
+assert.equal(yearsOfCoverFrom(conditionalLifetime, 40), null);
 
 const noPremium = { ...plan, premium: null } as unknown as Plan;
 assert.equal(healthPremiumAt(noPremium, 40, 'male'), null);

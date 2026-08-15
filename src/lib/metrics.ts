@@ -5,6 +5,7 @@ export const PREMIUM_STALE_AFTER_MONTHS = 18;
 
 type Band = { age_from: number; age_to: number; thb_per_year: number; sex: 'any' | 'male' | 'female' };
 export type Sex = 'male' | 'female';
+export type RenewalKind = 'fixed' | 'lifetime' | 'unknown';
 
 function bandFor(table: Band[], age: number, sex: Sex): Band | null {
 	return (
@@ -49,12 +50,34 @@ export type Cumulative = {
 	incomplete: boolean;
 };
 
+/** The renewal rule that applies to a reader's entry age, if published. */
+export function renewalRuleAt(plan: Plan, entryAge: number) {
+	return (
+		(plan.renewal_ceiling_by_entry_age ?? []).find(
+			(rule) => entryAge >= rule.entry_age_from && entryAge <= rule.entry_age_to
+		) ?? null
+	);
+}
+
+/** Renewal type at entry age; lifetime has no numeric endpoint. */
+export function renewalKindAt(plan: Plan, entryAge: number): RenewalKind {
+	if (plan.renewal_ceiling_age !== null) return 'fixed';
+	return renewalRuleAt(plan, entryAge)?.renewal_ceiling_kind ?? 'unknown';
+}
+
+/** Numeric renewal endpoint at entry age; null means lifetime or unknown. */
+export function renewalCeilingAt(plan: Plan, entryAge: number): number | null {
+	if (plan.renewal_ceiling_age !== null) return plan.renewal_ceiling_age;
+	return renewalRuleAt(plan, entryAge)?.renewal_ceiling_age ?? null;
+}
+
 /**
- * A plan whose renewal ceiling the insurer won't publish has no computable
- * total and no computable span. Callers get null and must say so.
+ * A plan whose applicable renewal rule has no numeric endpoint has no
+ * computable total and no computable numeric span. Callers get null and must
+ * distinguish lifetime from unknown using renewalKindAt.
  */
-export function hasKnownSpan(plan: Plan): boolean {
-	return plan.renewal_ceiling_age !== null;
+export function hasKnownSpan(plan: Plan, entryAge = plan.entry_age_min): boolean {
+	return renewalCeilingAt(plan, entryAge) !== null;
 }
 
 /**
@@ -63,7 +86,7 @@ export function hasKnownSpan(plan: Plan): boolean {
  * at today's rates. Insurers can and do re-rate — the UI must say so.
  */
 export function cumulativePremium(plan: Plan, fromAge: number, sex: Sex): Cumulative | null {
-	const toAge = plan.renewal_ceiling_age;
+	const toAge = renewalCeilingAt(plan, fromAge);
 	if (toAge === null) return null;
 	let health = 0;
 	let host = 0;
@@ -84,8 +107,9 @@ export function cumulativePremium(plan: Plan, fromAge: number, sex: Sex): Cumula
 
 /** Metric 2 is read straight off the record; this is the reader-facing framing. */
 export function yearsOfCoverFrom(plan: Plan, age: number): number | null {
-	if (plan.renewal_ceiling_age === null) return null;
-	return Math.max(0, plan.renewal_ceiling_age - age + 1);
+	const toAge = renewalCeilingAt(plan, age);
+	if (toAge === null) return null;
+	return Math.max(0, toAge - age + 1);
 }
 
 export function isEligible(plan: Plan, age: number): boolean {

@@ -30,12 +30,10 @@ premium:
 entry_age_min: 0 # สมัครได้ตั้งแต่อายุ 15 วัน
 entry_age_max: 65
 renewal_ceiling_age: null
-renewal_ceiling_unknown_reason: >-
-  ไม่ใช่ตัวเลขเดียว ขึ้นอยู่กับอายุที่สมัคร — โบรชัวร์หน้า 9 "เงื่อนไขการรับประกัน" ระบุ
-  "ผู้เอาประกันภัยอายุไม่เกิน 60 ปี กรณีต่ออายุกรมธรรม์อย่างต่อเนื่องสามารถต่ออายุได้ถึง
-  100 ปี" และแยกต่างหาก "ผู้เอาประกันภัยอายุ 61 – 65 ปี กรณีต่ออายุกรมธรรม์อย่างต่อเนื่อง
-  สามารถต่ออายุได้ถึง 80 ปี" บันทึกเป็น null แทนการเลือกตัวเลขใดตัวเลขหนึ่งซึ่งจะทำให้
-  เข้าใจผิดสำหรับอีกกลุ่มหนึ่ง
+renewal_ceiling_by_entry_age:
+  - { entry_age_from: 0, entry_age_to: 60, renewal_ceiling_age: null, renewal_ceiling_kind: lifetime }
+  - { entry_age_from: 61, entry_age_to: 65, renewal_ceiling_age: 80, renewal_ceiling_kind: fixed }
+renewal_ceiling_unknown_reason: null
 
 ipd_annual_limit_thb: 440000
 ipd_limit_basis: per_confinement # "ผลประโยชน์สูงสุดต่อการเข้าพักรักษาเป็นผู้ป่วยในครั้งใดครั้งหนึ่ง"; เว็บไซต์ระบุแยกว่า "ไม่จำกัดจำนวนครั้งในการรักษาต่อปี"

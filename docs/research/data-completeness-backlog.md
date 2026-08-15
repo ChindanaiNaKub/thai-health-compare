@@ -24,7 +24,7 @@ the data rather than becoming another hand-maintained number.
 | Exclusions list empty | 19 |
 | IPD annual limit missing | 7 |
 | OPD annual limit missing | 24 |
-| Renewal ceiling unknown | 3 |
+| Renewal ceiling unknown | 1 |
 
 The age-gap check counts ages from entry age through renewal ceiling that are not
 covered by any published premium band. It found the largest gaps in:
@@ -60,6 +60,12 @@ gives a Life Ready host example at 50,000 THB sum insured: female age 35,
 other ages or sexes. The remaining 14 host premiums stay explicitly unknown
 because their public material is bundled, quote-only, names no host, or gives a
 different plan.
+
+The renewal pass resolved two scalar unknowns without inventing a single age:
+Allianz Basic Care now stores lifetime renewal for entry ages 11–59 and renewal
+to age 80 for entry ages 60–65; Viriyah V Prestige Care stores lifetime renewal
+through entry age 60 and renewal to age 80 for entry ages 61–65. Dhipaya TIP
+Non Chill remains the only renewal ceiling with no public value.
 
 ## Ranked work
 

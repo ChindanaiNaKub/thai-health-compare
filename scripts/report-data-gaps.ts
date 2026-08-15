@@ -23,7 +23,7 @@ const rows = plans.map((plan) => ({
 	ipd_limit_thb: plan.ipd_annual_limit_thb,
 	ipd_missing: plan.ipd_annual_limit_thb === null,
 	opd_missing: plan.opd_annual_limit_thb === null,
-	renewal_unknown: plan.renewal_ceiling_age === null,
+	renewal_unknown: plan.renewal_ceiling_age === null && plan.renewal_ceiling_by_entry_age.length === 0,
 	age_gap: ageGap(plan)
 }));
 
