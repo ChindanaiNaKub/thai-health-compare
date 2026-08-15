@@ -71,11 +71,11 @@ different plan.
 2. **Fill the 14 remaining missing host-policy premiums.** A rider without its required
    host cost understates the price to the reader. Add the cheapest accepted host
    and its premium table, or keep the explicit unknown reason.
-3. **Audit the ten largest numeric age gaps.** First confirm whether the table
-   is incomplete, entry-age-only, or genuinely sparse. Do not interpolate bands.
-4. **Resolve the 3 missing standalone premiums and 3 unknown renewal ceilings.**
+3. **Resolve the 3 missing standalone premiums and 3 unknown renewal ceilings.**
    These are high-impact comparison fields. A quote-only disposition is valid
    when recorded with a source and reason.
+4. **Extend the age-band audit beyond the first ten rows when new source
+   material appears.** The first ten are source-limited; do not interpolate bands.
 5. **Fill IPD/OPD and exclusions where the matching source exists.** The 24 OPD
    blanks and 19 empty exclusion lists are useful follow-up batches, but lower
    priority than price and contract validity.
@@ -84,8 +84,8 @@ different plan.
 
 - **Batch A — contract trust:** filed wording for all 32 non-filed records.
 - **Batch B — price completeness:** the 3 missing premiums and 14 remaining rider hosts.
-- **Batch C — age-band integrity:** the ten largest gaps, followed by the
-  remaining non-zero gaps.
+- **Batch C — age-band integrity:** remaining non-zero gaps only when a new
+  source publishes the missing ages; the first ten are documented as sparse.
 - **Batch D — benefit detail:** IPD/OPD, room limits, exclusions, and renewal
   notes.
 
