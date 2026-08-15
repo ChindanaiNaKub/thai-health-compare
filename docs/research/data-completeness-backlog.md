@@ -46,6 +46,11 @@ An age gap is a verification task, not proof that the insurer refuses coverage:
 some public tables may be entry-age tables, renewal-only tables, or truncated
 extracts. The next edit must be source-backed.
 
+The first contract-trust pass reviewed the ten highest-impact records. None had
+a complete public filed wording that could safely replace the current official
+summary source, so no contract field was promoted. Details are recorded in
+[`filed-wording-audit.md`](filed-wording-audit.md).
+
 ## Pricing pass result
 
 The first pricing pass resolved one rider-host gap. Krungthai-AXA's [official
