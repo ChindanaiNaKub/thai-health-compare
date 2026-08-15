@@ -26,6 +26,10 @@ const missingReason = CoverageRecord.safeParse({
 assert.equal(missingReason.success, false);
 
 const plans = loadPlans();
+const ktaxa = plans.find((plan) => plan.id === 'ktaxa-ihealthy-ultra-gold');
+assert.deepEqual(ktaxa?.host_policy?.premium, [
+	{ age_from: 35, age_to: 35, thb_per_year: 750, sex: 'female' }
+]);
 assert.equal(
 	plans.find((plan) => plan.id === 'muangthailife-maternity-plus-plan1')?.category,
 	'maternity'

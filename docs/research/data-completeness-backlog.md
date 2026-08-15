@@ -19,7 +19,7 @@ the data rather than becoming another hand-maintained number.
 | Gap | Records |
 | --- | ---: |
 | Any premium missing | 3 |
-| Rider host premium missing | 15 |
+| Rider host premium missing | 14 |
 | Terms source is not filed wording | 32 |
 | Exclusions list empty | 19 |
 | IPD annual limit missing | 7 |
@@ -46,6 +46,16 @@ An age gap is a verification task, not proof that the insurer refuses coverage:
 some public tables may be entry-age tables, renewal-only tables, or truncated
 extracts. The next edit must be source-backed.
 
+## Pricing pass result
+
+The first pricing pass resolved one rider-host gap. Krungthai-AXA's [official
+Health Ultra brochure](https://thailandgi-ktaxa.cdn.prismic.io/thailandgi-ktaxa/aRs0prpReVYa4jIi_AG_A4_Brochure_HealthUltra.pdf)
+gives a Life Ready host example at 50,000 THB sum insured: female age 35,
+750 THB/year. It is stored as a single explicit sample, not extrapolated into
+other ages or sexes. The remaining 14 host premiums stay explicitly unknown
+because their public material is bundled, quote-only, names no host, or gives a
+different plan.
+
 ## Ranked work
 
 1. **Reconcile filed terms for the 32 affected records.** This is the highest
@@ -53,7 +63,7 @@ extracts. The next edit must be source-backed.
    change the apparent ranking. Preserve the current values until the matching
    filed wording is found; then update `terms_source`, `exclusions`, and
    `verified_on` together.
-2. **Fill the 15 missing host-policy premiums.** A rider without its required
+2. **Fill the 14 remaining missing host-policy premiums.** A rider without its required
    host cost understates the price to the reader. Add the cheapest accepted host
    and its premium table, or keep the explicit unknown reason.
 3. **Audit the ten largest numeric age gaps.** First confirm whether the table
@@ -68,7 +78,7 @@ extracts. The next edit must be source-backed.
 ## Working batches
 
 - **Batch A — contract trust:** filed wording for all 32 non-filed records.
-- **Batch B — price completeness:** the 3 missing premiums and 15 rider hosts.
+- **Batch B — price completeness:** the 3 missing premiums and 14 remaining rider hosts.
 - **Batch C — age-band integrity:** the ten largest gaps, followed by the
   remaining non-zero gaps.
 - **Batch D — benefit detail:** IPD/OPD, room limits, exclusions, and renewal
@@ -77,4 +87,3 @@ extracts. The next edit must be source-backed.
 Do not close the related issues merely because a candidate was found. A product
 enters `data/plans/` only when the premium source and matching filed wording pass
 the schema's sourcing rules.
-
