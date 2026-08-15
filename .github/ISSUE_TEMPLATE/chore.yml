@@ -1,0 +1,68 @@
+name: Chore
+description: Propose maintenance with no user-facing behavior change.
+title: "[Chore] "
+labels:
+  - type: chore
+  - needs-triage
+body:
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: This work has no intended user-facing behavior change.
+          required: true
+        - label: I checked existing issues and documentation for duplicates.
+          required: true
+        - label: I identified a safe verification command or review method.
+          required: true
+        - label: I described any data or source integrity risk.
+          required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Maintenance task
+    validations:
+      required: true
+  - type: dropdown
+    id: maintenance_type
+    attributes:
+      label: Type of maintenance
+      options:
+        - Dependency or tooling
+        - CI or deployment
+        - Documentation
+        - Repository hygiene
+        - Data audit
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current state
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed work
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area affected
+      options:
+        - Source data
+        - Validation
+        - CI or deployment
+        - Documentation
+        - Tooling
+    validations:
+      required: true

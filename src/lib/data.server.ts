@@ -1,7 +1,14 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
-import { Scheme, ValidatedPlan, type Plan, type Scheme as SchemeType } from './schema';
+import {
+	CoverageRecord,
+	Scheme,
+	ValidatedPlan,
+	type CoverageRecord as CoverageRecordType,
+	type Plan,
+	type Scheme as SchemeType
+} from './schema';
 
 /**
  * Data lives as YAML in the repo, not in a database. The CMS is a text editor
@@ -42,4 +49,10 @@ export function loadPlans(): Plan[] {
 
 export function loadSchemes(): SchemeType[] {
 	return parseAll<SchemeType>(loadDir('schemes'), Scheme);
+}
+
+export function loadCoverage(): CoverageRecordType[] {
+	return parseAll<CoverageRecordType>(loadDir('coverage'), CoverageRecord).sort((a, b) =>
+		a.insurer.th.localeCompare(b.insurer.th, 'th')
+	);
 }

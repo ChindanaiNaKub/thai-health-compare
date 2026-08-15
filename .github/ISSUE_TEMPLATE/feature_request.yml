@@ -1,0 +1,105 @@
+name: Feature request
+description: Propose a new user-facing capability or product category.
+title: "[Feature] "
+labels:
+  - feature-request
+  - needs-review
+body:
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked existing issues and documentation for duplicates.
+          required: true
+        - label: I kept this proposal within the project's no-advice and no-lead-capture rules.
+          required: true
+        - label: I identified primary sources or explained why this is a design-only proposal.
+          required: true
+        - label: I will not add estimated premiums or terms from a brochure.
+          required: true
+  - type: input
+    id: feature_name
+    attributes:
+      label: Feature name
+    validations:
+      required: true
+  - type: dropdown
+    id: addition_type
+    attributes:
+      label: Type of addition
+      options:
+        - Data or research
+        - Schema or validation
+        - UI or accessibility
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What is missing or misleading for a reader today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: What should be added?
+      description: Describe the behavior or data with a concrete example.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope of changes
+      description: List expected files, data sources, schema changes, and systems affected.
+    validations:
+      required: true
+  - type: textarea
+    id: user_stories
+    attributes:
+      label: User stories
+      placeholder: "1. As a ... I want ... so that ...\n2. As a ... I want ... so that ..."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use testable conditions.
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Applicable runtime
+      options:
+        - Browser and SvelteKit
+        - Data validation only
+        - Documentation only
+        - Not applicable
+    validations:
+      required: true
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Breaking changes
+      options:
+        - No
+        - Yes, described below
+    validations:
+      required: true
+  - type: textarea
+    id: maintenance
+    attributes:
+      label: Maintenance burden
+      description: What ongoing verification, sourcing, or UI maintenance will this require?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: true

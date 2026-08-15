@@ -11,6 +11,7 @@
 		yearsOfCoverFrom,
 		type Sex
 	} from '$lib/metrics';
+	import type { Plan } from '$lib/schema';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -26,6 +27,19 @@
 	// picks one for them, and no plan is ever scored against another.
 	type Kind = 'all' | 'standalone' | 'rider';
 	type Sort = 'premium' | 'lifetime' | 'ipd' | 'insurer';
+	type Category = Plan['category'];
+	const CATEGORY_LABEL: Record<Category, string> = {
+		medical_expense: 'ค่ารักษาพยาบาล',
+		critical_illness: 'โรคร้ายแรง',
+		cancer: 'มะเร็ง',
+		dental: 'ทันตกรรม',
+		maternity: 'คลอดบุตร',
+		mental_health: 'สุขภาพจิต',
+		visa_expat: 'วีซ่า / ชาวต่างชาติ',
+		group: 'กลุ่ม / นายจ้าง'
+	};
+	const CATEGORIES = Object.keys(CATEGORY_LABEL) as Category[];
+	let category = $state<Category>('medical_expense');
 	let kind = $state<Kind>('all');
 	let sort = $state<Sort>('premium');
 	let pricedOnly = $state(false);
@@ -40,6 +54,7 @@
 			มีสิทธิ: baseline,
 			อายุ: String(age),
 			เพศ: sex,
+			หมวด: category,
 			แบบ: kind,
 			เรียง: sort
 		});
@@ -52,6 +67,8 @@
 			if (b) baseline = b;
 			if (Number(q.get('อายุ'))) age = Number(q.get('อายุ'));
 			if (q.get('เพศ') === 'female') sex = 'female';
+			const c = CATEGORIES.find((v) => v === q.get('หมวด'));
+			if (c) category = c;
 			const k = (['all', 'standalone', 'rider'] as const).find((v) => v === q.get('แบบ'));
 			if (k) kind = k;
 			const s = (['premium', 'lifetime', 'ipd', 'insurer'] as const).find((v) => v === q.get('เรียง'));
@@ -78,13 +95,14 @@
 
 	const scheme = $derived(data.schemes.find((s) => s.id === baseline) ?? null);
 
-	const insurerCount = $derived(new Set(data.plans.map((p) => p.insurer.th)).size);
+	const categoryPlans = $derived(data.plans.filter((p) => p.category === category));
+	const insurerCount = $derived(new Set(categoryPlans.map((p) => p.insurer.th)).size);
 
 	// Every plan the reader's age lets them buy, costed. Filtering and sorting
 	// happen downstream so the chip counts can be taken from here — a filter
 	// that hides its own count is a filter you have to click to understand.
 	const priced = $derived(
-		data.plans
+		categoryPlans
 			.filter((p) => isEligible(p, age))
 			.map((p) => {
 				const stale = premiumIsStale(p.verified_on, builtOn);
@@ -193,7 +211,7 @@
 		> และตลอดสัญญาต้องจ่ายรวมเท่าไหร่
 	</p>
 	<ul class="mt-4 flex flex-wrap gap-2">
-		<li class="chip chip-neutral">{data.plans.length} แผน · {insurerCount} บริษัท</li>
+		<li class="chip chip-neutral">{categoryPlans.length} แผนในหมวดนี้ · {insurerCount} บริษัท</li>
 		<li class="chip chip-neutral">ทุกตัวเลขมีลิงก์ต้นทาง</li>
 		<li class="chip chip-neutral">ไม่ขายของ ไม่มีนายหน้า</li>
 	</ul>
@@ -322,6 +340,17 @@
      the legend for the chips inside the table. accent = health cover you can buy
      alone, host = the life policy bolted on. No third hue is invented here. -->
 <div class="border-rule bg-surface mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 border p-3">
+	<label class="flex items-center gap-2">
+		<span class="label">หมวดข้อมูล</span>
+		<select bind:value={category} class="control border-border bg-bg border px-2 py-1.5 text-sm">
+			{#each CATEGORIES as option}
+				<option value={option}>
+					{CATEGORY_LABEL[option]} ({data.plans.filter((p) => p.category === option).length})
+				</option>
+			{/each}
+		</select>
+	</label>
+
 	<div class="flex flex-wrap items-center gap-2">
 		<span class="label">แบบสัญญา</span>
 		<button

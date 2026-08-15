@@ -22,6 +22,70 @@ const Sourced = z.object({
 	note: z.string().optional()
 });
 
+/** Primary product category. Products are compared only within one category. */
+export const ProductCategory = z.enum([
+	'medical_expense',
+	'critical_illness',
+	'cancer',
+	'dental',
+	'maternity',
+	'mental_health',
+	'visa_expat',
+	'group'
+]);
+export type ProductCategory = z.infer<typeof ProductCategory>;
+
+export const CoverageStatus = z.enum([
+	'in_dataset',
+	'insufficient_data',
+	'not_found',
+	'not_verified',
+	'out_of_scope'
+]);
+export type CoverageStatus = z.infer<typeof CoverageStatus>;
+
+const InsurerClass = z.enum(['life', 'nonlife', 'unknown']);
+
+/**
+ * A researched candidate, including candidates deliberately not entered as a
+ * plan. This keeps a negative result auditable instead of making it look like
+ * the insurer was forgotten.
+ */
+export const CoverageRecord = z
+	.object({
+		id: z.string().regex(/^[a-z0-9-]+$/),
+		insurer: Bilingual,
+		license_no: z.string().nullable().default(null),
+		insurer_class: InsurerClass,
+		domain: z.url(),
+		category: ProductCategory,
+		product_name: Bilingual.nullable().default(null),
+		status: CoverageStatus,
+		checked_on: z.iso.date(),
+		finding: z.string().min(1),
+		not_entered_reason: z.string().min(1).nullable().default(null),
+		sources: z.array(Sourced).min(1),
+		research_url: z.url().nullable().default(null)
+	})
+	.superRefine((record, ctx) => {
+		if (record.status === 'in_dataset' && record.not_entered_reason !== null) {
+			ctx.addIssue({
+				code: 'custom',
+				path: ['not_entered_reason'],
+				message: 'in-dataset records cannot have a not-entered reason'
+			});
+		}
+		if (record.status !== 'in_dataset' && record.not_entered_reason === null) {
+			ctx.addIssue({
+				code: 'custom',
+				path: ['not_entered_reason'],
+				message: `${record.status} records must explain why no plan was entered`
+			});
+		}
+	});
+
+export type CoverageRecord = z.infer<typeof CoverageRecord>;
+
 /** One age band of premium, inclusive on both ends, in THB per year. */
 const PremiumBand = z.object({
 	age_from: z.number().int().min(0).max(120),
@@ -72,6 +136,8 @@ export const Plan = z.object({
 	/** standalone = buyable on its own. rider = requires a host life policy. */
 	type: z.enum(['standalone', 'rider']),
 	host_policy: HostPolicy.nullable().default(null),
+	/** Primary product category; secondary benefits stay in sourced fields/notes. */
+	category: ProductCategory.default('medical_expense'),
 
 	/** เหมาจ่าย lump-sum vs per-item schedule vs deductible-first. */
 	shape: z.enum(['lump_sum', 'per_item_schedule', 'deductible_first', 'opd_inclusive']),
