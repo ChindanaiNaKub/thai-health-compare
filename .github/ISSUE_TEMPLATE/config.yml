@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the contribution rules
+    url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/CONTRIBUTING.md
+    about: Check sourcing, scope, and issue-first requirements before opening work.

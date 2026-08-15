@@ -11,7 +11,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check-staleness": "tsx scripts/check-staleness.ts",
     "validate-data": "tsx scripts/validate-data.ts",
-    "test": "tsx src/lib/metrics.test.ts"
+    "test": "tsx src/lib/metrics.test.ts && tsx src/lib/schema.test.ts"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.9",

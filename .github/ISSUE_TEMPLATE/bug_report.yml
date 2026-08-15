@@ -1,0 +1,83 @@
+name: Bug report
+description: Report incorrect behavior, validation, calculation, or rendering.
+title: "[Bug] "
+labels:
+  - bug
+  - needs-triage
+body:
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      options:
+        - Production site
+        - Local development
+        - Data validation script
+        - CI
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS and browser
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js or Bun version
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Frequency
+      options:
+        - Always
+        - Often
+        - Sometimes
+        - Once
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Blocks data validation or deployment
+        - Incorrect information shown to readers
+        - Broken feature with workaround
+        - Cosmetic
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed personal, health, contact, and policyholder information from this report.
+          required: true

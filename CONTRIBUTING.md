@@ -56,6 +56,29 @@ vocabulary unless you define it in the same sentence. State facts; never write
 "ดีที่สุด", "คุ้มที่สุด" or any comparative verdict — the arithmetic is allowed
 to be damning, we are not.
 
+## Issue-first contribution workflow
+
+Every change starts with an issue so scope and evidence can be reviewed before
+implementation.
+
+1. Open the closest issue template and fill every required field. A research
+   issue must say what was checked, what counts as evidence, and what happens
+   when evidence is missing.
+2. A maintainer applies `needs-review` (or `needs-triage` for a bug/chore) and
+   records the decision in the issue. Feature and enhancement work needs
+   `approved-feature` or `approved-enhancement` before implementation starts.
+   A bug fix needs `confirmed-bug`.
+3. Open a typed PR from the matching template. It must contain `Closes #N`,
+   `Fixes #N`, or `Refs #N`, explain the evidence, and state what was tested.
+4. Keep one concern per PR. User-facing changes need a `.changeset/*.md` file;
+   research-only and data-only changes may use the `no-changelog` label.
+5. Do not add a plan from a brochure, an unbanded quote, or a source that cannot
+   support the fields being entered. Record the result as `insufficient_data`,
+   `not_found`, or `not_verified` when appropriate.
+
+The category definitions and comparison boundaries are documented in
+[`docs/research/product-taxonomy.md`](docs/research/product-taxonomy.md).
+
 ## What we will not merge
 
 - Affiliate or referral links, in any form

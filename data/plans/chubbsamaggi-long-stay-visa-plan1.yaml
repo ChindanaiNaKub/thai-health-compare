@@ -24,6 +24,7 @@ name:
   th: แผนประกันสุขภาพลองสเตย์วีซ่า แผน 1 (ความรับผิดส่วนแรก 100,000 บาท)
   en: Long Stay Visa Health Plan — Plan 1 (100,000 THB deductible)
 
+category: visa_expat
 type: standalone
 host_policy: null
 

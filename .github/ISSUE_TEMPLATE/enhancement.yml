@@ -1,0 +1,76 @@
+name: Enhancement
+description: Improve an existing comparison, data, validation, or documentation behavior.
+title: "[Enhancement] "
+labels:
+  - enhancement
+  - needs-review
+body:
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked existing issues and documentation for duplicates.
+          required: true
+        - label: I described the current behavior with a concrete example.
+          required: true
+        - label: I kept the proposal within the project's sourcing and no-advice rules.
+          required: true
+        - label: I identified how the result will be verified.
+          required: true
+  - type: textarea
+    id: existing
+    attributes:
+      label: What existing behavior is being improved?
+    validations:
+      required: true
+  - type: textarea
+    id: current_example
+    attributes:
+      label: Current behavior
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: benefit
+    attributes:
+      label: Reason and benefit
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope of changes
+    validations:
+      required: true
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Breaking changes
+      options:
+        - No
+        - Yes, described below
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area affected
+      options:
+        - Data or research
+        - Schema or validation
+        - UI or accessibility
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: true

@@ -1,0 +1,35 @@
+id: scb-life-health-candidates
+insurer:
+  th: ไทยพาณิชย์ประกันชีวิต / ผลิตภัณฑ์ประกันผ่าน SCB
+  en: SCB Life / insurance products distributed through SCB
+license_no: null
+insurer_class: unknown
+domain: https://scblife.co.th/
+category: medical_expense
+product_name:
+  th: SCB M Health Protection และ SCB Health Elite
+  en: SCB M Health Protection and SCB Health Elite
+status: insufficient_data
+checked_on: 2026-08-15
+finding: >-
+  SCB's official pages expose current health products. SCB M Health Protection
+  has published age bands and annual premiums, but the public source is a
+  brochure and does not identify a filed policy wording or an underwriter. The
+  current SCB Health Elite page identifies FWD Life as the insurer, not SCB
+  Life, and publishes eligibility and plan limits but no public age-band premium
+  table. No SCB Life plan is entered until the underwriter, filed wording, and
+  complete source set can be verified together.
+not_entered_reason: >-
+  The available public material is not enough to populate the project's required
+  terms_source and insurer identity without guessing. The SCB M Health brochure
+  can guide a later follow-up, but it cannot by itself support a plan record.
+sources:
+  - url: https://www.scb.co.th/content/dam/scb/personal-banking/insurance/scb-m-insurance/documents/scb-m-health.pdf?MRK_CMPG_SOURCE=gk_hl
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official SCB brochure with benefits and age-banded annual premiums; not filed policy wording.
+  - url: https://www.scb.co.th/th/personal-banking/insurance/health-insurance/scb-health-elite.html
+    tier: official_insurer
+    verified_on: 2026-08-15
+    note: Official SCB Health Elite page; names FWD Life as underwriter and gives eligibility/plan limits.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/scb-life-sourcing.md
