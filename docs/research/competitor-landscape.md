@@ -303,3 +303,11 @@ Ranked by how directly they extend the existing schema and scope, not by market 
    deliberately rejects the one pattern every competitor above relies on (a lead
    form / "best for you" pick), which is correctly identified in README/DESIGN.md as
    the reason to trust it over them.
+
+---
+
+## Follow-up
+
+Prioritized “what to put on the site next,” merged with round-4/5 insurer outcomes and
+a live count of blanks in `data/plans/`, is in
+[`competitive-data-gaps.md`](./competitive-data-gaps.md).
