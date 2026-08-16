@@ -18,11 +18,46 @@
 
 	let { data }: { data: PageData } = $props();
 
-	// The two inputs that actually change the answer, plus sex because Thai
-	// rate tables are sex-banded and a wrong figure is worse than no figure.
-	let baseline = $state<'ucs' | 'sso' | 'csmbs' | 'none'>('sso');
-	let age = $state(22);
-	let sex = $state<Sex>('male');
+	// Never manufacture a reader. Age and the sex used in an insurer's rate table
+	// change the premium; an invented value is worse than a blank one. Entitlement
+	// is separate: "none" is a meaningful answer, while "unknown" means we have
+	// not been told yet.
+	type Baseline = 'unknown' | 'ucs' | 'sso' | 'csmbs' | 'none';
+	let baseline = $state<Baseline>('unknown');
+	let age = $state<number | null>(null);
+	let sex = $state<Sex | null>(null);
+	const PROFILE_STORAGE_KEY = 'thai-health-compare.profile.v1';
+	let profileHydrated = $state(false);
+
+	type StoredProfile = { baseline: Baseline; age: number | null; sex: Sex | null };
+
+	function readStoredProfile(): StoredProfile | null {
+		try {
+			const value: unknown = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY) ?? 'null');
+			if (!value || typeof value !== 'object') return null;
+			const profile = value as Partial<StoredProfile>;
+			const validBaseline = ['unknown', 'ucs', 'sso', 'csmbs', 'none'].includes(profile.baseline ?? '')
+				? (profile.baseline as Baseline)
+				: 'unknown';
+			const validAge =
+				typeof profile.age === 'number' && Number.isInteger(profile.age) && profile.age >= 0 && profile.age <= 80
+					? profile.age
+					: null;
+			const validSex = profile.sex === 'male' || profile.sex === 'female' ? profile.sex : null;
+			return { baseline: validBaseline, age: validAge, sex: validSex };
+		} catch {
+			// Private browsing or corrupted storage must leave the catalogue usable.
+			return null;
+		}
+	}
+
+	function saveProfile(profile: StoredProfile) {
+		try {
+			localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+		} catch {
+			// Storage can be unavailable; this is convenience, never a requirement.
+		}
+	}
 
 	// How the reader narrows 33 records down to the handful they can actually
 	// buy. Sorting is not ranking: the reader picks a column, the site never
@@ -52,23 +87,28 @@
 	// read after hydration — defaults render server-side, the URL overrides them.
 	let mounted = false;
 	$effect(() => {
-		const next = new URLSearchParams({
-			มีสิทธิ: baseline,
-			อายุ: String(age),
-			เพศ: sex,
-			หมวด: category,
-			แบบ: kind,
-			เรียง: sort
-		});
+		const next = new URLSearchParams({ หมวด: category, แบบ: kind, เรียง: sort });
+		if (baseline !== 'unknown') next.set('มีสิทธิ', baseline);
+		if (age !== null) next.set('อายุ', String(age));
+		if (sex !== null) next.set('เพศ', sex);
 		if (pricedOnly) next.set('เฉพาะที่มีราคา', '1');
 		if (!mounted) {
 			mounted = true;
-			// Read, don't write: arriving at a bare URL should leave it bare.
+			// A shared URL is authoritative; otherwise restore this browser's last
+			// profile before rendering a personalised comparison.
 			const q = new URLSearchParams(location.search);
-			const b = (['ucs', 'sso', 'csmbs', 'none'] as const).find((v) => v === q.get('มีสิทธิ'));
-			if (b) baseline = b;
-			if (Number(q.get('อายุ'))) age = Number(q.get('อายุ'));
-			if (q.get('เพศ') === 'female') sex = 'female';
+			const hasProfileInUrl = q.has('มีสิทธิ') || q.has('อายุ') || q.has('เพศ');
+			if (hasProfileInUrl) {
+				const b = (['ucs', 'sso', 'csmbs', 'none'] as const).find((v) => v === q.get('มีสิทธิ'));
+				if (b) baseline = b;
+				const queryAge = Number(q.get('อายุ'));
+				if (Number.isInteger(queryAge) && queryAge >= 0 && queryAge <= 80) age = queryAge;
+				const querySex = q.get('เพศ');
+				if (querySex === 'male' || querySex === 'female') sex = querySex;
+			} else {
+				const saved = readStoredProfile();
+				if (saved) ({ baseline, age, sex } = saved);
+			}
 			const c = CATEGORIES.find((v) => v === q.get('หมวด'));
 			if (c) category = c;
 			const k = (['all', 'standalone', 'rider'] as const).find((v) => v === q.get('แบบ'));
@@ -76,6 +116,7 @@
 			const s = (['premium', 'lifetime', 'ipd', 'insurer'] as const).find((v) => v === q.get('เรียง'));
 			if (s) sort = s;
 			if (q.get('เฉพาะที่มีราคา') === '1') pricedOnly = true;
+			profileHydrated = true;
 			return;
 		}
 		if (next.toString() !== page.url.searchParams.toString()) replaceState(`?${next}`, {});
@@ -95,7 +136,20 @@
 	// The build date, not the reader's clock — a clock the reader can change.
 	const builtOn = $derived(new Date(data.builtOn));
 
-	const scheme = $derived(data.schemes.find((s) => s.id === baseline) ?? null);
+	const hasPricingProfile = $derived(age !== null && sex !== null);
+	const scheme = $derived(baseline === 'unknown' ? null : (data.schemes.find((s) => s.id === baseline) ?? null));
+
+	// Kept locally for return visits. The key deliberately holds only the three
+	// values the controls need; there is no account, backend, or analytics call.
+	$effect(() => {
+		if (profileHydrated) saveProfile({ baseline, age, sex });
+	});
+
+	// A price-only filter without a rate profile would hide every record, which
+	// reads like an empty catalogue rather than an unfinished setting.
+	$effect(() => {
+		if (!hasPricingProfile && pricedOnly) pricedOnly = false;
+	});
 
 	const categoryPlans = $derived(data.plans.filter((p) => p.category === category));
 	const insurerCount = $derived(new Set(categoryPlans.map((p) => p.insurer.th)).size);
@@ -105,11 +159,11 @@
 	// that hides its own count is a filter you have to click to understand.
 	const priced = $derived(
 		categoryPlans
-			.filter((p) => isEligible(p, age))
+			.filter((p) => age === null || isEligible(p, age))
 			.map((p) => {
 				const stale = premiumIsStale(p.verified_on, builtOn);
-				const annualHealth = healthPremiumAt(p, age, sex);
-				const annualHost = hostPremiumAt(p, age, sex);
+				const annualHealth = age !== null && sex !== null ? healthPremiumAt(p, age, sex) : null;
+				const annualHost = age !== null && sex !== null ? hostPremiumAt(p, age, sex) : null;
 				const withheld = stale || p.premium === null || annualHealth === null;
 				return {
 					plan: p,
@@ -121,11 +175,11 @@
 					// refuse to print one. Null is never coerced to 0 — that is the lie
 					// this whole site exists to stop telling.
 					firstYear: withheld ? null : (annualHealth ?? 0) + (annualHost ?? 0),
-					share: healthShare(p, age, sex),
-					lifetime: cumulativePremium(p, age, sex),
-					years: yearsOfCoverFrom(p, age),
-					renewalKind: renewalKindAt(p, age),
-					renewalCeiling: renewalCeilingAt(p, age)
+					share: age !== null && sex !== null ? healthShare(p, age, sex) : null,
+					lifetime: age !== null && sex !== null ? cumulativePremium(p, age, sex) : null,
+					years: age === null ? null : yearsOfCoverFrom(p, age),
+					renewalKind: age === null ? null : renewalKindAt(p, age),
+					renewalCeiling: age === null ? null : renewalCeilingAt(p, age)
 				};
 			})
 	);
@@ -228,19 +282,25 @@
 
 <div class="border-rule mt-10 border-t-2 pt-5">
 	<h2 class="text-lg font-bold tracking-tight">
-		<span class="step">1</span> คุณมีสิทธิอะไรอยู่แล้ว?
+		<span class="step">1</span> ตั้งค่าข้อมูลของคุณ
 	</h2>
-	<p class="text-muted mt-1 max-w-2xl">ประกันเอกชนคือส่วนที่เพิ่มจากสิทธิเดิม ไม่ได้มาแทนที่สิทธิเดิม</p>
+	<p class="text-muted mt-1 max-w-2xl">
+		ไม่แน่ใจได้ — แต่กรอกอายุ เพศตามตารางเบี้ย และสิทธิเดิมเมื่อพร้อม เพื่อให้ตัวเลขตรงกับคุณ
+	</p>
 </div>
 
-<form class="border-rule bg-surface mt-4 grid gap-4 border p-4 sm:grid-cols-3">
+<!-- At three columns, the age field has an extra slider. Align grid items at
+     their natural height so its input shares a baseline with the two selects
+     instead of stretching the neighbouring field grids. -->
+<form class="border-rule bg-surface mt-4 grid gap-4 border p-4 sm:grid-cols-3 sm:items-start" aria-describedby="profile-note">
 	<label class="grid gap-1.5">
 		<span class="label">สิทธิที่มีอยู่</span>
 		<select bind:value={baseline} class="control border-border bg-bg border px-3 py-2">
+			<option value="unknown">ไม่แน่ใจ / เลือกภายหลัง</option>
 			<option value="sso">ประกันสังคม</option>
 			<option value="ucs">บัตรทอง</option>
 			<option value="csmbs">สิทธิข้าราชการ</option>
-			<option value="none">ไม่มี / ไม่แน่ใจ</option>
+			<option value="none">ไม่มีสิทธิ</option>
 		</select>
 	</label>
 
@@ -248,31 +308,52 @@
 		<span class="label">อายุ</span>
 		<input
 			type="number"
-			bind:value={age}
+			value={age ?? ''}
 			min="0"
 			max="80"
+			placeholder="เช่น 22"
+			oninput={(event) => {
+				const value = event.currentTarget.valueAsNumber;
+				age = Number.isInteger(value) && value >= 0 && value <= 80 ? value : null;
+			}}
 			class="control border-border bg-bg tnum border px-3 py-2"
 		/>
 		<!-- The number is the answer; the slider is how you look around. Dragging
 		     it moves every figure in the table 1:1, which is the only way to see
 		     that a premium curve is a curve and not a price. -->
-		<input
-			type="range"
-			bind:value={age}
-			min="0"
-			max="80"
-			aria-label="อายุ (เลื่อนเพื่อดูเบี้ยตามอายุ)"
-			class="age-range w-full"
-		/>
+		{#if age !== null}
+			<input
+				type="range"
+				bind:value={age}
+				min="0"
+				max="80"
+				aria-label="อายุ (เลื่อนเพื่อดูเบี้ยตามอายุ)"
+				class="age-range w-full"
+			/>
+		{/if}
 	</label>
 
 	<label class="grid gap-1.5">
 		<span class="label">เพศตามตารางเบี้ย</span>
 		<select bind:value={sex} class="control border-border bg-bg border px-3 py-2">
+			<option value={null}>ไม่แน่ใจ / เลือกภายหลัง</option>
 			<option value="male">ชาย</option>
 			<option value="female">หญิง</option>
 		</select>
 	</label>
+
+	<div id="profile-note" class="profile-note sm:col-span-3">
+		<span class="label">สถานะตัวเลข</span>
+		<p>
+			{#if !hasPricingProfile}
+				<strong>ยังไม่คำนวณเบี้ยเฉพาะคุณ</strong><span>กรอกอายุและเพศตามตารางเบี้ย เพื่อดูแผนที่สมัครได้ เบี้ยปีแรก และยอดรวม</span>
+			{:else if baseline === 'unknown'}
+				<strong>คำนวณเบี้ยตามอายุและเพศแล้ว</strong><span>เลือกสิทธิเดิมเพิ่มได้ หากต้องการดูสิ่งที่ประกันเอกชนเข้ามาเติม</span>
+			{:else}
+				<strong>ข้อมูลครบสำหรับการเปรียบเทียบนี้</strong><span>เบี้ยและสิทธิเดิมใช้ค่าที่เลือกไว้ในอุปกรณ์นี้</span>
+			{/if}
+		</p>
+	</div>
 </form>
 
 {#if scheme}
@@ -328,13 +409,20 @@
 		<span class="step">2</span> แผนที่ซื้อเพิ่มได้
 	</h2>
 	<!-- The answer, before any scrolling: how many, and the range of the cheque. -->
-	<p class="mt-1">
-		ที่อายุ <span class="tnum font-semibold">{age}</span> ซื้อได้
-		<span class="tnum font-semibold">{rows.length}</span> แผน{#if span}{' · '}เบี้ยปีแรก
-			<span class="tnum font-semibold">{baht.format(span.low)}</span>–<span
-				class="tnum font-semibold">{baht.format(span.high)}</span
-			> ฿/ปี{/if}
-	</p>
+	{#if hasPricingProfile}
+		<p class="mt-1">
+			ที่อายุ <span class="tnum font-semibold">{age}</span> ซื้อได้
+			<span class="tnum font-semibold">{rows.length}</span> แผน{#if span}{' · '}เบี้ยปีแรก
+				<span class="tnum font-semibold">{baht.format(span.low)}</span>–<span
+					class="tnum font-semibold">{baht.format(span.high)}</span
+				> ฿/ปี{/if}
+		</p>
+	{:else}
+		<p class="mt-1">
+			แสดง <span class="tnum font-semibold">{rows.length}</span> แผนในหมวดนี้ ·
+			<span class="text-muted">กรอกอายุและเพศเพื่อคัดแผนที่ซื้อได้และแสดงเบี้ยของคุณ</span>
+		</p>
+	{/if}
 	<p class="text-muted mt-1 text-sm">
 		อยู่ในรายการนี้ไม่ได้แปลว่าแนะนำ และการเรียงลำดับคือการเรียงตามตัวเลขที่คุณเลือก ไม่ใช่การจัดอันดับว่าแผนไหนดีกว่า
 	</p>
@@ -389,8 +477,8 @@
 		</select>
 	</label>
 
-	<label class="flex items-center gap-2 text-sm">
-		<input type="checkbox" bind:checked={pricedOnly} class="accent-accent size-4" />
+	<label class="flex items-center gap-2 text-sm" class:opacity-50={!hasPricingProfile}>
+		<input type="checkbox" bind:checked={pricedOnly} disabled={!hasPricingProfile} class="accent-accent size-4" />
 		ซ่อนแผนที่ไม่มีตัวเลขเบี้ย
 	</label>
 </div>
@@ -441,16 +529,14 @@
 
 					<td class="px-3 py-3 align-top">
 						<span class="label cell-label">เงินที่เป็นค่าสุขภาพจริง</span>
-						{#if row.stale}
-							<p class="text-warn-ink bg-warn-bg border-warn-ink border-l-4 px-2 py-1 text-sm">
-								ข้อมูลเก่าเกิน 18 เดือน จึงซ่อนตัวเลข
-							</p>
+						{#if !hasPricingProfile}
+							<span class="data-state font-mono">—</span>
+						{:else if row.stale}
+							<span class="data-state data-state-stale">ข้อมูลเบี้ยเกิน 18 เดือน</span>
 						{:else if row.plan.premium === null}
-							<p class="text-warn-ink bg-warn-bg border-warn-ink border-l-4 px-2 py-1 text-sm">
-								บริษัทไม่ประกาศเบี้ย
-							</p>
+							<span class="data-state">ไม่ประกาศเบี้ย</span>
 						{:else if row.annualHealth === null}
-							<p class="text-muted text-sm">ไม่มีตารางเบี้ยสำหรับอายุนี้</p>
+							<span class="data-state">ไม่มีอัตราสำหรับอายุนี้</span>
 						{:else if row.share !== null && row.annualHost !== null}
 							<figure>
 								<div class="border-border flex h-6 overflow-hidden border" role="presentation">
@@ -553,7 +639,9 @@
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
 										<dt>ต่ออายุถึงอายุ</dt>
 										<dd class="text-ink tnum">
-							{#if row.renewalKind === 'lifetime'}
+										{#if !hasPricingProfile}
+											กรอกอายุเพื่อดูเงื่อนไขที่ใช้กับคุณ
+										{:else if row.renewalKind === 'lifetime'}
 								ตลอดชีวิต
 							{:else if row.renewalCeiling !== null}
 								{row.renewalCeiling} ปี
@@ -757,6 +845,50 @@
 
 	.more:active {
 		transform: scale(0.97);
+	}
+
+	/* A state readout, not an alert. This is a datasheet: its status belongs on a
+	   ruled row with the same label/value grammar as the records below. Warn
+	   colours remain reserved for stale source data. */
+	.profile-note {
+		display: grid;
+		grid-template-columns: minmax(7.5rem, auto) minmax(0, 1fr);
+		gap: 0.5rem 1rem;
+		padding-top: 0.75rem;
+		color: var(--color-muted);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.profile-note p {
+		min-width: 0;
+	}
+
+	.profile-note strong {
+		margin-right: 0.5rem;
+		color: var(--color-ink);
+		font-weight: 600;
+	}
+
+	/* A missing figure is still a table datum, never a notification card. Keep
+	   the state to one short phrase so rows retain their comparison rhythm; the
+	   expandable panel carries the explanation and source caveat. */
+	.data-state {
+		color: var(--color-muted);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+	}
+
+	.data-state-stale {
+		color: var(--color-warn-ink);
+	}
+
+	@media (max-width: 639px) {
+		.profile-note {
+			grid-template-columns: 1fr;
+			gap: 0.2rem;
+		}
 	}
 
 	@media (hover: hover) and (pointer: fine) {

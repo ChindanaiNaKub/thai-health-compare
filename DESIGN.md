@@ -107,6 +107,11 @@ Square corners everywhere. Rounded corners soften; nothing here should feel soft
   cell you can compare down a column. Reasons a figure is missing, host-policy
   caveats and copay conditions all live in the expandable panel. The grid holds
   numbers, tags and one short phrase.
+- **A missing figure is a datum, not an alert.** Never put a tinted banner,
+  callout rail, or notification-style container inside a table cell. Render one
+  short, quiet state phrase (`ไม่ประกาศเบี้ย`, `ข้อมูลเบี้ยเกิน 18 เดือน`) in
+  the cell; reserve the expanded panel for the reason and source caveat. A stale
+  figure may use `warn-ink`, but never a full warning card.
 - Structure is never numbered. These plans are a set, not a sequence.
 
 ## Organising 33 records
