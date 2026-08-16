@@ -18,7 +18,14 @@
 		.filter((group) => group.records.length > 0);
 </script>
 
-<svelte:head><title>สถานะข้อมูลที่กำลังตรวจ — เทียบประกันสุขภาพไทย</title></svelte:head>
+<svelte:head>
+	<title>สถานะข้อมูลประกันสุขภาพที่กำลังตรวจ — เทียบประกันสุขภาพไทย</title>
+	<meta name="description" content="ตรวจสอบว่าแผนประกันสุขภาพและบริษัทใดมีข้อมูลพอสำหรับตารางเปรียบเทียบ และรายการใดยังรอยืนยัน" />
+	<link rel="canonical" href="https://thai-health-compare.pages.dev/สถานะข้อมูล" />
+	<meta property="og:title" content="สถานะข้อมูลประกันสุขภาพที่กำลังตรวจ" />
+	<meta property="og:description" content="แยกข้อมูลที่ยืนยันแล้ว ข้อมูลไม่พอ และรายการที่กำลังตรวจสอบอย่างโปร่งใส" />
+	<meta property="og:url" content="https://thai-health-compare.pages.dev/สถานะข้อมูล" />
+</svelte:head>
 
 <section class="max-w-3xl">
 	<h1 class="text-xl font-bold tracking-tight">สถานะข้อมูลที่กำลังตรวจ</h1>

@@ -2,7 +2,14 @@
 	const repo = 'https://github.com/ChindanaiNaKub/thai-health-compare';
 </script>
 
-<svelte:head><title>แจ้งแก้ไขข้อมูล — เทียบประกันสุขภาพไทย</title></svelte:head>
+<svelte:head>
+	<title>แจ้งแก้ไขข้อมูลประกันสุขภาพ — เทียบประกันสุขภาพไทย</title>
+	<meta name="description" content="แจ้งตัวเลข เบี้ย หรือเงื่อนไขประกันสุขภาพที่ไม่ถูกต้องหรือล้าสมัย พร้อมแนบแหล่งข้อมูลทางการ" />
+	<link rel="canonical" href="https://thai-health-compare.pages.dev/แก้ไขข้อมูล" />
+	<meta property="og:title" content="แจ้งแก้ไขข้อมูลประกันสุขภาพ" />
+	<meta property="og:description" content="ช่วยตรวจสอบและแก้ไขข้อมูลเบี้ยหรือเงื่อนไขประกันสุขภาพให้ถูกต้อง" />
+	<meta property="og:url" content="https://thai-health-compare.pages.dev/แก้ไขข้อมูล" />
+</svelte:head>
 
 <h1 class="text-xl font-bold tracking-tight">แจ้งแก้ไขข้อมูล</h1>
 

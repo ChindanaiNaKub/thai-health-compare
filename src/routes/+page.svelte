@@ -17,6 +17,14 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+	const websiteJsonLd = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'เทียบประกันสุขภาพไทย',
+		description: 'เปรียบเทียบเบี้ยและความคุ้มครองประกันสุขภาพในไทยจากเอกสารที่อ้างอิงได้',
+		url: 'https://thai-health-compare.pages.dev/',
+		inLanguage: 'th'
+	});
 
 	// Never manufacture a reader. Age and the sex used in an insurer's rate table
 	// change the premium; an invented value is worse than a blank one. Entitlement
@@ -255,6 +263,11 @@
 		name="description"
 		content="เปรียบเทียบประกันสุขภาพในไทยจากข้อมูลที่อ้างอิงได้ เริ่มจากสิทธิที่คุณมีอยู่แล้ว ไม่มีลิงก์แนะนำ ไม่ขายของ"
 	/>
+	<link rel="canonical" href="https://thai-health-compare.pages.dev/" />
+	<meta property="og:title" content="เทียบประกันสุขภาพไทย — ข้อเท็จจริง ไม่ใช่โฆษณา" />
+	<meta property="og:description" content="เปรียบเทียบเบี้ยและความคุ้มครองประกันสุขภาพในไทยจากเอกสารที่อ้างอิงได้" />
+	<meta property="og:url" content="https://thai-health-compare.pages.dev/" />
+	{@html `<script type="application/ld+json">${websiteJsonLd}</script>`}
 </svelte:head>
 
 <!-- The two-second block. A reader who leaves after this line should still know

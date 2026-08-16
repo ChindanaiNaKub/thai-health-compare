@@ -2,7 +2,14 @@
 	let { data } = $props();
 </script>
 
-<svelte:head><title>สนับสนุนเว็บนี้ — เทียบประกันสุขภาพไทย</title></svelte:head>
+<svelte:head>
+	<title>สนับสนุนเว็บเปรียบเทียบประกันสุขภาพไทย</title>
+	<meta name="description" content="สนับสนุนค่าเซิร์ฟเวอร์ของเว็บเปรียบเทียบประกันสุขภาพไทยที่ไม่มีโฆษณาและไม่มีค่าคอมมิชชัน" />
+	<link rel="canonical" href="https://thai-health-compare.pages.dev/บริจาค" />
+	<meta property="og:title" content="สนับสนุนเว็บเปรียบเทียบประกันสุขภาพไทย" />
+	<meta property="og:description" content="ช่วยให้เว็บข้อมูลประกันสุขภาพไทยที่ไม่มีโฆษณาเปิดให้ใช้งานต่อไป" />
+	<meta property="og:url" content="https://thai-health-compare.pages.dev/บริจาค" />
+</svelte:head>
 
 <h1 class="text-xl font-bold tracking-tight">สนับสนุนเว็บนี้</h1>
 

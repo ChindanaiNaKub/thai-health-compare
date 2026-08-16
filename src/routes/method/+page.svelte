@@ -1,4 +1,11 @@
-<svelte:head><title>วิธีเก็บข้อมูล — เทียบประกันสุขภาพไทย</title></svelte:head>
+<svelte:head>
+	<title>วิธีเก็บข้อมูลประกันสุขภาพ — เทียบประกันสุขภาพไทย</title>
+	<meta name="description" content="ดูวิธีตรวจเอกสารกรมธรรม์ แหล่งที่มาของเบี้ย และวิธีคำนวณยอดจ่ายรวมของประกันสุขภาพในไทย" />
+	<link rel="canonical" href="https://thai-health-compare.pages.dev/method" />
+	<meta property="og:title" content="วิธีเก็บข้อมูลประกันสุขภาพ — เทียบประกันสุขภาพไทย" />
+	<meta property="og:description" content="วิธีตรวจเอกสารกรมธรรม์ แหล่งที่มาของเบี้ย และวิธีคำนวณยอดจ่ายรวม" />
+	<meta property="og:url" content="https://thai-health-compare.pages.dev/method" />
+</svelte:head>
 
 <h1 class="text-xl font-bold tracking-tight">วิธีเก็บข้อมูล</h1>
 

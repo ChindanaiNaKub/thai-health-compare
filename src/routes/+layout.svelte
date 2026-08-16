@@ -3,6 +3,17 @@
 	let { children } = $props();
 </script>
 
+<svelte:head>
+	<meta property="og:site_name" content="เทียบประกันสุขภาพไทย" />
+	<meta property="og:locale" content="th_TH" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://thai-health-compare.pages.dev/og-image.svg" />
+	<meta property="og:image:type" content="image/svg+xml" />
+	<meta property="og:image:alt" content="เทียบประกันสุขภาพไทยจากข้อมูลที่อ้างอิงได้" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:image" content="https://thai-health-compare.pages.dev/og-image.svg" />
+</svelte:head>
+
 <div class="mx-auto flex min-h-dvh max-w-7xl flex-col px-4">
 	<header class="border-rule flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b-2 py-5">
 		<a href="/" class="text-lg font-bold tracking-tight">
