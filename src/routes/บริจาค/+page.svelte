@@ -9,7 +9,7 @@
 <div class="mt-4 max-w-sm space-y-4">
 	<p class="text-muted">
 		เว็บนี้ไม่มีโฆษณาและไม่มีลิงก์แนะนำ อยากช่วยออกค่าเซิร์ฟเวอร์ก็สแกนจ่ายพร้อมเพย์ได้เลย
-		ให้เท่าไหร่ก็ได้ตามใจ
+		ให้เท่าไหร่ก็ได้ตามสะดวก
 	</p>
 	<div class="border-rule inline-block border-2 p-4">
 		{@html data.qr}

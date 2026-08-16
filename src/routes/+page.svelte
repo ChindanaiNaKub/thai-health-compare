@@ -261,12 +261,12 @@
      what the site claims and why it is not trying to sell them anything. -->
 <section class="max-w-3xl">
 	<h1 class="text-2xl font-bold tracking-tight text-balance sm:text-3xl">
-		ประกันสุขภาพส่วนใหญ่ในไทย <span class="text-host-ink">บังคับให้ซื้อประกันชีวิตพ่วง</span>
+		ประกันสุขภาพจำนวนมากในไทย <span class="text-host-ink">ต้องซื้อพ่วงกับประกันชีวิต</span>
 	</h1>
 	<p class="mt-3 text-base">
 		เว็บนี้แยกให้เห็นว่าเงินที่คุณจ่ายทั้งหมด <span class="text-accent font-semibold"
-			>เป็นค่าสุขภาพจริงกี่บาท</span
-		> และตลอดสัญญาต้องจ่ายรวมเท่าไหร่
+			>เป็นเบี้ยสำหรับความคุ้มครองสุขภาพเท่าไร</span
+		> และจ่ายรวมตลอดสัญญาเท่าไร
 	</p>
 	<ul class="mt-4 flex flex-wrap gap-2">
 		<li class="chip chip-neutral">{categoryPlans.length} แผนในหมวดนี้ · {insurerCount} บริษัท</li>
@@ -274,8 +274,8 @@
 		<li class="chip chip-neutral">ไม่ขายของ ไม่มีนายหน้า</li>
 	</ul>
 	<p class="text-muted mt-3 text-sm">
-		เว็บนี้ไม่ใช่นายหน้าประกันภัย ไม่ได้รับใบอนุญาตจาก คปภ. ตัวเลขบางตัว
-		อย่างยอดรวมตลอดสัญญา คำนวณจากอัตราที่บริษัทประกาศ ไม่ใช่ดึงมาตรงๆ
+		เว็บนี้ไม่ใช่นายหน้าประกันภัย และไม่ได้รับใบอนุญาตจาก คปภ. ตัวเลขบางรายการ เช่น ยอดรวมตลอดสัญญา
+		เป็นตัวเลขที่เราคำนวณจากอัตราที่บริษัทประกาศ ไม่ใช่ตัวเลขที่ระบุไว้ในเอกสารโดยตรง
 		<a class="text-accent underline underline-offset-2" href="/method">ดูวิธีเก็บข้อมูล</a>
 	</p>
 </section>
@@ -285,7 +285,7 @@
 		<span class="step">1</span> ตั้งค่าข้อมูลของคุณ
 	</h2>
 	<p class="text-muted mt-1 max-w-2xl">
-		ไม่แน่ใจได้ — แต่กรอกอายุ เพศตามตารางเบี้ย และสิทธิเดิมเมื่อพร้อม เพื่อให้ตัวเลขตรงกับคุณ
+		ยังไม่แน่ใจก็ข้ามไว้ก่อนได้ เมื่อพร้อมค่อยกรอกอายุ เพศตามตารางเบี้ย และสิทธิเดิม เพื่อดูตัวเลขที่ตรงกับคุณ
 	</p>
 </div>
 
@@ -343,12 +343,12 @@
 	</label>
 
 	<div id="profile-note" class="profile-note sm:col-span-3">
-		<span class="label">สถานะตัวเลข</span>
+		<span class="label">สถานะการคำนวณ</span>
 		<p>
 			{#if !hasPricingProfile}
 				<strong>ยังไม่คำนวณเบี้ยเฉพาะคุณ</strong><span>กรอกอายุและเพศตามตารางเบี้ย เพื่อดูแผนที่สมัครได้ เบี้ยปีแรก และยอดรวม</span>
 			{:else if baseline === 'unknown'}
-				<strong>คำนวณเบี้ยตามอายุและเพศแล้ว</strong><span>เลือกสิทธิเดิมเพิ่มได้ หากต้องการดูสิ่งที่ประกันเอกชนเข้ามาเติม</span>
+				<strong>คำนวณเบี้ยตามอายุและเพศแล้ว</strong><span>เลือกสิทธิเดิมได้ด้วย หากต้องการดูความคุ้มครองส่วนที่ประกันเอกชนช่วยเติม</span>
 			{:else}
 				<strong>ข้อมูลครบสำหรับการเปรียบเทียบนี้</strong><span>เบี้ยและสิทธิเดิมใช้ค่าที่เลือกไว้ในอุปกรณ์นี้</span>
 			{/if}
@@ -362,7 +362,7 @@
 	{#key scheme.id}
 		<section class="swap border-rule bg-surface mt-4 border p-4">
 			<div class="flex flex-wrap items-baseline gap-x-3">
-				<h3 class="label !text-accent">ฐานที่คุณมีอยู่</h3>
+				<h3 class="label !text-accent">สิทธิที่คุณมีอยู่แล้ว</h3>
 				<p class="font-semibold">{scheme.name.th}</p>
 			</div>
 			<div class="mt-3 grid gap-5 sm:grid-cols-2">
@@ -377,7 +377,7 @@
 					</ul>
 				</div>
 				<div>
-					<h4 class="label">ช่องว่างที่เหลือ ({scheme.gaps.length})</h4>
+					<h4 class="label">ส่วนที่ยังไม่ครอบคลุม ({scheme.gaps.length})</h4>
 					<ul class="mt-1.5 space-y-1.5">
 						{#each showAllScheme ? scheme.gaps : scheme.gaps.slice(0, SCHEME_CAP) as item (item.th)}
 							<li class="flex gap-2">
@@ -406,12 +406,12 @@
 
 <div class="border-rule mt-12 border-t-2 pt-5">
 	<h2 class="text-lg font-bold tracking-tight">
-		<span class="step">2</span> แผนที่ซื้อเพิ่มได้
+		<span class="step">2</span> แผนที่เลือกซื้อเพิ่มได้
 	</h2>
 	<!-- The answer, before any scrolling: how many, and the range of the cheque. -->
 	{#if hasPricingProfile}
 		<p class="mt-1">
-			ที่อายุ <span class="tnum font-semibold">{age}</span> ซื้อได้
+			อายุ <span class="tnum font-semibold">{age}</span> ปี เลือกซื้อได้
 			<span class="tnum font-semibold">{rows.length}</span> แผน{#if span}{' · '}เบี้ยปีแรก
 				<span class="tnum font-semibold">{baht.format(span.low)}</span>–<span
 					class="tnum font-semibold">{baht.format(span.high)}</span
@@ -433,7 +433,7 @@
      alone, host = the life policy bolted on. No third hue is invented here. -->
 <div class="border-rule bg-surface mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 border p-3">
 	<label class="flex items-center gap-2">
-		<span class="label">หมวดข้อมูล</span>
+		<span class="label">หมวดความคุ้มครอง</span>
 		<select bind:value={category} class="control border-border bg-bg border px-2 py-1.5 text-sm">
 			{#each CATEGORIES as option}
 				<option value={option}>
@@ -493,7 +493,7 @@
 			<tr class="border-rule border-b-2">
 				<th class="label px-3 py-2.5 text-left">แผน</th>
 				<!-- The signature column: the whole argument, six bars deep. -->
-				<th class="label w-[24%] px-3 py-2.5 text-left">เงินที่เป็นค่าสุขภาพจริง</th>
+				<th class="label w-[24%] px-3 py-2.5 text-left">เบี้ยสำหรับความคุ้มครองสุขภาพ</th>
 				<th class="label px-3 py-2.5 text-right whitespace-nowrap">วงเงินผู้ป่วยใน</th>
 				<th class="label px-3 py-2.5 text-right whitespace-nowrap">เบี้ยปีแรก</th>
 				<th class="label px-3 py-2.5 text-right whitespace-nowrap">จ่ายรวมตลอดสัญญา</th>
@@ -528,11 +528,11 @@
 					</td>
 
 					<td class="px-3 py-3 align-top">
-						<span class="label cell-label">เงินที่เป็นค่าสุขภาพจริง</span>
+						<span class="label cell-label">เบี้ยสำหรับความคุ้มครองสุขภาพ</span>
 						{#if !hasPricingProfile}
 							<span class="data-state font-mono">—</span>
 						{:else if row.stale}
-							<span class="data-state data-state-stale">ข้อมูลเบี้ยเกิน 18 เดือน</span>
+							<span class="data-state data-state-stale">ข้อมูลเบี้ยเก่าเกิน 18 เดือน</span>
 						{:else if row.plan.premium === null}
 							<span class="data-state">ไม่ประกาศเบี้ย</span>
 						{:else if row.annualHealth === null}
@@ -568,7 +568,7 @@
 						{:else}
 							<span class="tnum font-semibold">{compactBaht(row.plan.ipd_annual_limit_thb)}</span>
 							<p class="text-muted text-xs">
-								{row.plan.ipd_limit_basis === 'per_confinement' ? 'ต่อการเข้าพัก' : 'ต่อปี'}
+								{row.plan.ipd_limit_basis === 'per_confinement' ? 'ต่อการเข้าพักรักษาตัว' : 'ต่อปี'}
 							</p>
 						{/if}
 					</td>
@@ -585,7 +585,7 @@
 							     health figure alone as "เบี้ยปีแรก" understates the cheque, which is
 							     the exact error this site exists to correct. Mark it as a floor. -->
 							{#if row.plan.type === 'rider' && row.annualHost === null}
-								<p class="text-host-ink text-xs">จ่ายจริงมากกว่านี้</p>
+								<p class="text-host-ink text-xs">ยอดที่จ่ายจริงสูงกว่านี้</p>
 							{/if}
 						{/if}
 					</td>
@@ -637,7 +637,7 @@
 							<div class="overflow-hidden">
 								<dl class="text-muted grid gap-x-8 px-3 py-3 sm:grid-cols-2">
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
-										<dt>ต่ออายุถึงอายุ</dt>
+										<dt>อายุสูงสุดที่ต่ออายุได้</dt>
 										<dd class="text-ink tnum">
 										{#if !hasPricingProfile}
 											กรอกอายุเพื่อดูเงื่อนไขที่ใช้กับคุณ
@@ -680,7 +680,7 @@
 								     sentence stops being a cell you can compare across rows. -->
 								<div class="text-muted space-y-1.5 px-3 pb-3 text-sm">
 									{#if row.stale}
-										<p>ไม่ได้ตรวจเบี้ยเกิน 18 เดือน จึงซ่อนตัวเลข (ตรวจล่าสุด {row.plan.verified_on})</p>
+										<p>ไม่ได้ตรวจสอบข้อมูลเบี้ยมานานกว่า 18 เดือน จึงซ่อนตัวเลข (ตรวจล่าสุด {row.plan.verified_on})</p>
 									{/if}
 									{#if row.plan.premium === null && row.plan.premium_unknown_reason}
 										<p>{row.plan.premium_unknown_reason}</p>
@@ -689,7 +689,7 @@
 						<p>{row.plan.renewal_ceiling_unknown_reason}</p>
 					{/if}
 					{#if row.plan.renewal_ceiling_by_entry_age.length > 0}
-						<p>เงื่อนไขต่ออายุขึ้นอยู่กับอายุแรกเข้า; ตัวเลขด้านบนใช้ช่วงอายุของคุณ</p>
+										<p>เงื่อนไขต่ออายุขึ้นอยู่กับอายุแรกเข้า ตัวเลขด้านบนจึงอิงช่วงอายุของคุณ</p>
 					{/if}
 									{#if row.lifetime !== null && !withheld && row.lifetime.incomplete}
 										<p>บางช่วงอายุไม่มีข้อมูลเบี้ย ยอดรวมจึงต่ำกว่าความจริง</p>
@@ -707,8 +707,8 @@
 										</p>
 										{#if row.annualHost !== null && !withheld}
 											<p>
-												{baht.format(row.annualHost)} บาทคือ<strong>ราคาพื้น</strong> ไม่ใช่ใบเสนอราคา
-												ถูกกว่านี้ซื้อไม่ได้ แต่ตัวแทนเสนอสัญญาหลักที่แพงกว่านี้ได้เสมอ
+												{baht.format(row.annualHost)} บาทคือ<strong>ราคาขั้นต่ำ</strong> ไม่ใช่ใบเสนอราคา
+												ถูกกว่านี้ซื้อไม่ได้ แต่ตัวแทนอาจเสนอสัญญาหลักที่แพงกว่านี้
 											</p>
 										{/if}
 										{#if row.plan.host_policy.premium_unknown_reason}
@@ -719,7 +719,7 @@
 										<p>{row.plan.copay_on_renewal}</p>
 									{/if}
 									{#if row.lifetime !== null && !withheld}
-										<p>ยอดรวมคิดจากเบี้ยปัจจุบัน ซึ่งบริษัทปรับขึ้นทั้งพอร์ตได้</p>
+										<p>ยอดรวมคำนวณจากเบี้ยปัจจุบัน ซึ่งบริษัทอาจปรับเบี้ยขึ้นพร้อมกันทั้งกลุ่มได้</p>
 									{/if}
 								</div>
 
@@ -730,7 +730,7 @@
 										href={row.plan.premium_source.url}>แหล่งข้อมูล</a
 									>
 									({row.plan.premium_source.tier === 'agent_site'
-										? 'เว็บตัวแทน น่าเชื่อถือรองลงมา'
+										? 'เว็บไซต์ตัวแทน (ความน่าเชื่อถือรองลงมา)'
 										: 'ทางการ'})
 									· เงื่อนไข:
 									<a class="text-accent underline underline-offset-2" href={row.plan.terms_source.url}
