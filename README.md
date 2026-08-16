@@ -55,10 +55,10 @@ bun run build          # static output in build/
 
 ## Status
 
-Alpha. 40 plan records from 19 insurers — AIA, Allianz Ayudhya, Bangkok Life,
+Alpha. 44 plan records from 20 insurers — AIA, Allianz Ayudhya, Bangkok Life,
 Chubb Samaggi, Dhipaya, Falcon, FWD, Generali, Krungthai-AXA, Muang Thai
 Insurance, Muang Thai Life Assurance, Navakij, Ocean Life, Pacific Cross,
-Rabbit Life, Southeast Life, Thai Life, Thai Health, and Viriyah — plus the
+Rabbit Life, Southeast Life, Thai Life, Thai Health, Thai Vivat, and Viriyah — plus the
 three public schemes (สปสช. / ประกันสังคม / สิทธิข้าราชการ). The `_example-*.yaml`
 files are **fictional templates**, kept only to show the schema.
 

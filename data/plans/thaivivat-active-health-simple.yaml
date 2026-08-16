@@ -1,0 +1,40 @@
+id: thaivivat-active-health-simple
+insurer: { th: ประกันภัยไทยวิวัฒน์, en: Thai Vivat Insurance PCL }
+name: { th: ประกันสุขภาพ TVI Active Health — Simple, en: TVI Active Health — Simple }
+type: standalone
+host_policy: null
+category: medical_expense
+shape: per_item_schedule
+new_health_standard: false
+premium:
+  - { age_from: 20, age_to: 60, thb_per_year: 14388, sex: any }
+entry_age_min: 20
+entry_age_max: 60
+renewal_ceiling_age: 70
+ipd_annual_limit_thb: 100000
+ipd_limit_basis: per_policy_year
+opd_annual_limit_thb: null
+room_board_thb_per_night: 1500
+deductible_thb: null
+copay_percent: null
+copay_on_renewal: null
+exclusions: []
+waiting_period_days: 30
+premium_source:
+  url: https://health.thaivivat.co.th/active-health
+  tier: official_insurer
+  verified_on: 2026-08-16
+  note: >-
+    Thai Vivat publishes a base price of 1,199 THB per month for Simple. This record stores
+    the transparent annual equivalent (1,199 × 12 = 14,388 THB), not the conditional
+    activity-discount price. The page publishes one tier price, not age bands; the displayed
+    band only states the published entry-age range and must not be read as an age-rate table.
+terms_source:
+  url: https://www.thaivivat.co.th/th/pdf/T%26C_TVI_Active_Health.pdf
+  tier: filed_wording
+  verified_on: 2026-08-16
+  note: >-
+    Insurer-hosted summary of the OIC-approved named TVI Active Health policy form. It states
+    a 30-day general waiting period and 120 days for named conditions. It is a summary, not a
+    complete policy wording; exclusions are left empty rather than presented as complete.
+verified_on: 2026-08-16

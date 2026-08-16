@@ -1,0 +1,38 @@
+id: thaivivat-active-health-silver
+insurer: { th: ประกันภัยไทยวิวัฒน์, en: Thai Vivat Insurance PCL }
+name: { th: ประกันสุขภาพ TVI Active Health — Silver, en: TVI Active Health — Silver }
+type: standalone
+host_policy: null
+category: medical_expense
+shape: per_item_schedule
+new_health_standard: false
+premium:
+  - { age_from: 20, age_to: 60, thb_per_year: 18000, sex: any }
+entry_age_min: 20
+entry_age_max: 60
+renewal_ceiling_age: 70
+ipd_annual_limit_thb: 300000
+ipd_limit_basis: per_policy_year
+opd_annual_limit_thb: null
+room_board_thb_per_night: 2500
+deductible_thb: null
+copay_percent: null
+copay_on_renewal: null
+exclusions: []
+waiting_period_days: 30
+premium_source:
+  url: https://health.thaivivat.co.th/active-health
+  tier: official_insurer
+  verified_on: 2026-08-16
+  note: >-
+    Thai Vivat publishes a base price of 1,500 THB per month for Silver. This record stores
+    the transparent annual equivalent (1,500 × 12 = 18,000 THB), not the conditional
+    activity-discount price. The page does not publish age bands.
+terms_source:
+  url: https://www.thaivivat.co.th/th/pdf/T%26C_TVI_Active_Health.pdf
+  tier: filed_wording
+  verified_on: 2026-08-16
+  note: >-
+    Insurer-hosted summary of the OIC-approved named TVI Active Health policy form. It is a
+    summary rather than complete wording, so exclusions are deliberately left empty.
+verified_on: 2026-08-16

@@ -669,9 +669,11 @@
 									<div class="border-border flex justify-between gap-2 border-b py-1.5">
 										<dt>ความรับผิดส่วนแรก</dt>
 										<dd class="text-ink tnum">
-											{row.plan.deductible_thb === 0
-												? 'ไม่มี'
-												: `${baht.format(row.plan.deductible_thb)} บาท`}
+											{row.plan.deductible_thb === null
+												? 'ไม่ประกาศ'
+												: row.plan.deductible_thb === 0
+													? 'ไม่มี'
+													: `${baht.format(row.plan.deductible_thb)} บาท`}
 										</dd>
 									</div>
 								</dl>

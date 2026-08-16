@@ -4,7 +4,7 @@ import { CoverageRecord } from './schema';
 
 /** Tests the public validation boundary used by the data loader. */
 const coverage = loadCoverage();
-assert.equal(coverage.length, 4);
+assert.equal(coverage.length, 9);
 const scb = coverage.find((record) => record.id === 'scb-life-health-candidates');
 assert.ok(scb);
 assert.equal(scb.status, 'insufficient_data');
@@ -12,10 +12,12 @@ const notEnteredReason = scb.not_entered_reason;
 assert.ok(notEnteredReason);
 assert.match(notEnteredReason, /terms_source/);
 assert.equal(CoverageRecord.safeParse(scb).success, true);
+assert.equal(coverage.find((record) => record.id === 'msig-seasonal-diseases')?.status, 'out_of_scope');
+assert.equal(coverage.find((record) => record.id === 'deves-raksuk')?.status, 'not_verified');
 
 const matrix = loadCoverageMatrix();
-assert.equal(matrix.records.length, 19);
-assert.equal(matrix.records.filter((record) => record.status === 'in_dataset').length, 19);
+assert.equal(matrix.records.length, 20);
+assert.equal(matrix.records.filter((record) => record.status === 'in_dataset').length, 20);
 assert.equal(matrix.records.every((record) => record.oic_company_code === null), true);
 
 const missingReason = CoverageRecord.safeParse({
@@ -52,5 +54,7 @@ assert.equal(
 	plans.find((plan) => plan.id === 'chubbsamaggi-long-stay-visa-plan1')?.category,
 	'visa_expat'
 );
+assert.equal(plans.find((plan) => plan.id === 'thaivivat-active-health-simple')?.deductible_thb, null);
+assert.equal(plans.find((plan) => plan.id === 'thaivivat-active-health-diamond')?.premium?.[0].thb_per_year, 45600);
 
 console.log('schema ok');

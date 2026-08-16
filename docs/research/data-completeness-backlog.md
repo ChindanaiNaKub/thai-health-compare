@@ -1,6 +1,6 @@
 # Data completeness audit and ranked backlog
 
-Checked: 2026-08-15. Scope: the 40 loadable records in `data/plans/`; example
+Checked: 2026-08-16. Scope: the 44 loadable records in `data/plans/`; example
 YAML files are excluded by the loader. The audit is intentionally mechanical:
 it reports missing fields and premium age gaps, but it does not infer a benefit
 from a blank field.
@@ -21,9 +21,9 @@ the data rather than becoming another hand-maintained number.
 | Any premium missing | 3 |
 | Rider host premium missing | 14 |
 | Terms source is not filed wording | 32 |
-| Exclusions list empty | 19 |
+| Exclusions list empty | 23 |
 | IPD annual limit missing | 7 |
-| OPD annual limit missing | 24 |
+| OPD annual limit missing | 28 |
 | Renewal ceiling unknown | 1 |
 
 The age-gap check counts ages from entry age through renewal ceiling that are not

@@ -199,8 +199,10 @@ export const Plan = z.object({
 	ipd_limit_basis: z.enum(['per_policy_year', 'per_confinement']).default('per_policy_year'),
 	opd_annual_limit_thb: z.number().int().nonnegative().nullable(),
 	room_board_thb_per_night: z.number().int().nonnegative().nullable(),
-	deductible_thb: z.number().int().nonnegative().default(0),
-	copay_percent: z.number().min(0).max(100).default(0),
+	/** Null means the public source does not state whether a deductible applies. */
+	deductible_thb: z.number().int().nonnegative().nullable().default(null),
+	/** Null means the public source does not state a copay percentage. */
+	copay_percent: z.number().min(0).max(100).nullable().default(null),
 	/**
 	 * New-standard riders start at 0% copay and can be renewed with one imposed
 	 * after heavy claiming. A silent 0 hides that. Shown verbatim to the reader.

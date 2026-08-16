@@ -1,0 +1,22 @@
+id: deves-raksuk
+insurer: { th: เทเวศประกันภัย, en: The Deves Insurance PCL }
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://www.deves.co.th
+category: medical_expense
+product_name: { th: รักษ์สุข, en: Raksuk }
+status: not_verified
+checked_on: 2026-08-16
+finding: >-
+  Deves' public material confirms health-and-accident claim servicing but exposes no current,
+  citable personal-product page, rate table, or policy summary for Raksuk.
+not_entered_reason: >-
+  The evidence does not establish that Raksuk is currently sold, or its current benefits, price,
+  and contract terms. This is an unavailable-source result, not a claim that the product does not exist.
+sources:
+  - url: https://www.deves.co.th/th/customer-service/claims/
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Official Raksuk claim process; servicing evidence only, not a current product source.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/2026-08-16-sunday-tokio-deves-msig-follow-up.md

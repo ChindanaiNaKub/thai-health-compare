@@ -1,0 +1,23 @@
+id: msig-seasonal-diseases
+insurer: { th: เอ็ม เอส ไอ จี ประกันภัย (ประเทศไทย), en: MSIG Insurance (Thailand) PCL }
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://www.msig-thai.com
+category: medical_expense
+product_name: { th: ประกันโรคตามฤดูกาล, en: Seasonal Diseases insurance }
+status: out_of_scope
+checked_on: 2026-08-16
+finding: >-
+  MSIG publishes a currently buyable product with fixed prices and benefits, but medical expense
+  reimbursement is restricted to named seasonal diseases rather than general health cover.
+not_entered_reason: >-
+  The product must not be compared beside comprehensive medical-expense plans. It also lacks a
+  matching public policy wording or labelled policy summary. Reconsider only with an explicit
+  named-disease category and matching terms source.
+sources:
+  - url: https://www.msig-thai.com/th/personal-insurance/seasonal-diseases
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Official product page with fixed prices and disease-limited benefit information.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/2026-08-16-sunday-tokio-deves-msig-follow-up.md

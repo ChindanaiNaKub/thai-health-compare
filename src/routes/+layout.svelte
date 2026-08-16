@@ -10,6 +10,7 @@
 		</a>
 		<nav class="text-muted flex flex-wrap gap-x-4 gap-y-1 text-sm">
 			<a class="nav" href="/method">วิธีเก็บข้อมูล</a>
+			<a class="nav" href="/สถานะข้อมูล">สถานะข้อมูลที่กำลังตรวจ</a>
 			<a class="nav" href="/แก้ไขข้อมูล">แจ้งแก้ไขข้อมูล</a>
 			<a class="nav" href="/บริจาค">สนับสนุนเว็บนี้</a>
 		</nav>
@@ -32,6 +33,7 @@
 		<p class="font-mono text-xs">
 			MIT (code) · CC BY-SA 4.0 (data) ·
 			<a class="text-accent underline underline-offset-2" href="/method">วิธีเก็บข้อมูล</a> ·
+			<a class="text-accent underline underline-offset-2" href="/สถานะข้อมูล">สถานะข้อมูลที่กำลังตรวจ</a> ·
 			<a class="text-accent underline underline-offset-2" href="/แก้ไขข้อมูล">แจ้งแก้ไขข้อมูล</a> ·
 			<a class="text-accent underline underline-offset-2" href="/บริจาค">สนับสนุนเว็บนี้</a>
 		</p>

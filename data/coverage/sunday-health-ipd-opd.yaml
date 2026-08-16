@@ -1,0 +1,29 @@
+id: sunday-health-ipd-opd
+insurer: { th: ซันเดย์ ประกันภัย (ประเทศไทย), en: Sunday Insurance (Thailand) PCL }
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://sundayinsurance.co.th
+category: medical_expense
+product_name: { th: ประกันสุขภาพแบบ IPD เหมาจ่าย + OPD 2000, en: Lump-sum IPD + OPD 2000 health plans }
+status: insufficient_data
+checked_on: 2026-08-16
+finding: >-
+  Sunday hosts a detailed 2024 plan PDF with four tiers, full age-band premiums, benefits,
+  entry age 11–70, renewal to 80, and waiting-period text. The document is not labelled as a
+  policy or policy summary, and this check did not establish that the exact 2024 version remains
+  the currently sold checkout product.
+not_entered_reason: >-
+  The project requires terms from a policy or labelled policy summary. Do not promote this
+  insurer-hosted sales document to filed wording, or assume a 2024 PDF is the current checkout
+  version, until Sunday supplies a matching contract document and current product link.
+sources:
+  - url: https://sundayinsurance.co.th/en/product/
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Sunday retail health route, confirming individual health purchase flow.
+  - url: https://static.easysunday.com/retail/policy-detail/sdi/sunday_lumpsum_ipd_opd_2000_v3_TH_20240904.pdf
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Insurer-hosted plan-detail PDF; not labelled policy wording or a policy summary.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/2026-08-16-sunday-tokio-deves-msig-follow-up.md

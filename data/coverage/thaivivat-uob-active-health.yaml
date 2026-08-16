@@ -1,0 +1,24 @@
+id: thaivivat-uob-active-health
+insurer: { th: ประกันภัยไทยวิวัฒน์, en: Thai Vivat Insurance PCL }
+license_no: null
+oic_company_code: null
+insurer_class: nonlife
+domain: https://www.thaivivat.co.th
+category: medical_expense
+product_name: { th: UOB Active Health แผน 1–5, en: UOB Active Health plans 1–5 }
+status: insufficient_data
+checked_on: 2026-08-16
+finding: >-
+  The official UOB channel lists five individual medical-expense tiers, their headline limits,
+  entry age 21–55, and renewal to 60. Every displayed price is explicitly a starting monthly
+  amount that varies by age; no matching UOB policy summary or age/sex rate table is public.
+not_entered_reason: >-
+  A starting price cannot be multiplied into a definite annual premium. Add a plan only after
+  Thai Vivat publishes both a plan-matched policy summary/wording and a price tied to a defined
+  age and plan.
+sources:
+  - url: https://health.thaivivat.co.th/uob/active-health
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Official UOB Active Health product page; describes the displayed monthly amounts as age-dependent starting prices.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/2026-08-16-bangkok-insurance-uob-entry-gates.md

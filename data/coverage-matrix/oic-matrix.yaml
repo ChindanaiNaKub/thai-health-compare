@@ -8,6 +8,22 @@ source:
     client-rendered; this snapshot records the dataset's current insurer set
     while license and OIC company-code verification remains open.
 records:
+  - id: oic-thai-vivat
+    insurer: { th: ประกันภัยไทยวิวัฒน์, en: Thai Vivat Insurance PCL }
+    license_no: null
+    oic_company_code: null
+    insurer_class: nonlife
+    domain: https://www.thaivivat.co.th
+    category: medical_expense
+    product_name: { th: ประกันสุขภาพ TVI Active Health, en: TVI Active Health }
+    status: in_dataset
+    checked_on: 2026-08-16
+    finding: Dataset contains four Thai Vivat Active Health standalone medical-expense tiers. Public prices are monthly tier prices; the records disclose their annual conversion and do not claim an age-rate table.
+    not_entered_reason: null
+    sources:
+      - { url: https://health.thaivivat.co.th/active-health, tier: official_insurer, verified_on: 2026-08-16 }
+      - { url: https://www.thaivivat.co.th/th/pdf/T%26C_TVI_Active_Health.pdf, tier: filed_wording, verified_on: 2026-08-16 }
+    research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/2026-08-16-additional-official-health-sources.md
   - id: oic-bangkok-life
     insurer: { th: กรุงเทพประกันชีวิต, en: Bangkok Life Assurance }
     license_no: null

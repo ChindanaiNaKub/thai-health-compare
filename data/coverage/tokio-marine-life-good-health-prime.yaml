@@ -1,0 +1,27 @@
+id: tokio-marine-life-good-health-prime
+insurer: { th: โตเกียวมารีนประกันชีวิต, en: Tokio Marine Life Insurance (Thailand) PCL }
+license_no: null
+oic_company_code: null
+insurer_class: life
+domain: https://www.tokiomarine.com
+category: medical_expense
+product_name: { th: สัญญาเพิ่มเติม โตเกียว กู๊ด เฮลธ์ ไพรม์, en: Tokio Good Health Prime rider }
+status: insufficient_data
+checked_on: 2026-08-16
+finding: >-
+  The official product page is now accessible and confirms seven health-rider tiers, entry age
+  11–70, renewal to 89, and benefit conditions. It does not publish a premium table or identify
+  the eligible host life policy, its minimum sum assured, or its price.
+not_entered_reason: >-
+  A rider cannot be compared without its health-rider premium and required host-policy cost.
+  Add only when Tokio Marine publishes those facts and matching policy terms.
+sources:
+  - url: https://www.tokiomarine.com/th/th/life/products/personal/riders/health/tokio-good-health-prime.html
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Official Tokio Good Health Prime product page; it is accessible again but quote-only.
+  - url: https://www.tokiomarine.com/content/dam/tokiomarine/th/life/product/personal/rider/tokio-good-health-prime/BC_Tokio%20Good%20Health%20Prime%2014MAY2026-CP.pdf
+    tier: official_insurer
+    verified_on: 2026-08-16
+    note: Current insurer-hosted brochure; product evidence, not policy wording.
+research_url: https://github.com/ChindanaiNaKub/thai-health-compare/blob/main/docs/research/2026-08-16-sunday-tokio-deves-msig-follow-up.md
