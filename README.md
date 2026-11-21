@@ -49,9 +49,13 @@ bun install
 bun run dev            # local dev
 bun run validate-data  # schema-check the YAML
 bun run check-staleness
+bun run check-sources  # check cited URLs and the news watchlist
 bun run test           # arithmetic self-check on the metrics
 bun run build          # static output in build/
 ```
+
+A monthly job checks the URLs cited in the data plus a small curated news
+watchlist. It posts one GitHub issue when a source dies or changes.
 
 ## Status
 
