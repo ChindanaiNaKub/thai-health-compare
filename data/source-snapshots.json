@@ -1,0 +1,497 @@
+{
+  "https://www.aia.co.th/content/dam/th-wise/images/th/our-products/si_117_aia-issara-plus-unit-linked/AIA_Issara_Plus_(Unit%20Linked)_28122022.pdf": {
+    "status": 200,
+    "hash": "d366e31b77e95d4f4ae0fc7cd79011e85554d96b3782cc231ae10d175ca6e5b5",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.aia.co.th/content/dam/th-wise/docs/our-product/hsv/AIA_Health%20Saver_Brochure_Final%20Version_for%20website.pdf": {
+    "status": 200,
+    "hash": "def98392a86e6041c017dfb3f378d637a90e09948d04cff1463ae82c2fb4829b",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.aia.co.th/th/our-products/health/aia-health-saver": {
+    "status": 200,
+    "hash": "5150534204b8610606d4fb9f9597267592272f6176cf3a6f0e3db98cb835e977",
+    "title": "สัญญาเพิ่มเติมเอไอเอ เฮลธ์ เซฟเวอร์ (AIA Health Saver)",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.aia.co.th/content/dam/th-wise/images/th/our-products/si_98_aia-infinite-care/Brochure%20AIA%20Infinite%20Care%20(new%20standard)_Final_27Dec2022_website.pdf": {
+    "status": 200,
+    "hash": "fc1826ed247fd1f41c98b5098e01ec5d649a18aa08c385570dda95de78d89c2a",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.allianz.co.th/en_TH/health/lump-sum/basic-care.html": {
+    "status": 403,
+    "hash": "ca51ccad61757df4b685a8fc1614e7c0d00e58717417eb2e11382e4bb4969fd3",
+    "title": "Just a moment...",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.allianz.co.th/content/dam/onemarketing/azay/allianz-co-th/document-download/forms/Allianz%20Policy%20-%20Basic%20Care_TH.pdf": {
+    "status": 200,
+    "hash": "f046df8df8da2897140c97786dfc47663c5ddde7d8820a7268486ec9210f69fc",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.bangkoklife.com/th/products/detail/204": {
+    "status": 200,
+    "hash": "4cc5ce4b4ca2021d3702c3f7c707f0358ebfc617933c1b685c725aca2a7f64fe",
+    "title": "บีแอลเอ ตลอดชีพ 99/99 | กรุงเทพประกันชีวิต",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.bangkoklife.com/th/products/detail/269": {
+    "status": 200,
+    "hash": "9bdd00717f7f2ea246da4dfcf3166e94a5cafb79d844ba1efb1e7c4066a0e5e8",
+    "title": "บีแอลเอ แฮปปี้ เฮลธ์ พรีเมียร์ | กรุงเทพประกันชีวิต",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.chubb.com/content/dam/chubb-sites/chubb-com/th-th/cl/long-stay-visa/long-stay-visa.pdf": {
+    "status": 200,
+    "hash": "a75288d8d0b1de8ad5e0273e7abc57e589c05419cf3eb7797db979fb4b74f23a",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://ft.tipinsure.com/HealthTalisman/index": {
+    "status": 200,
+    "hash": "c94eff810bea7fb25effc466252db16c7423d2dd330bdf635f840b1fa1821f04",
+    "title": "ประกันสุขภาพ คุ้มครองพร้อมค่ารักษา ราคาเดียวทุกช่วงอายุ | TIPINSURE",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://ft.tipinsure.com/Health/step_2": {
+    "status": 200,
+    "hash": "64ccdb159a2212c58ebed9dc501280da4682b4b79f5c24f2c5b83d3c3dedcc16",
+    "title": "เช็คเบี้ยประกันสุขภาพ TIP ชิลชิล ออนไลน์ | TIPINSURE",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://ft.tipinsure.com/Health/index": {
+    "status": 200,
+    "hash": "c0baac9850a8226675d2e4a076a3083044895d71d03edcf2048c473ca183b9b0",
+    "title": "ประกันสุขภาพ ออนไลน์ เลือกได้ตามความต้องการ | TIPINSURE",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://falconinsurance.co.th/accident-health/health-o-x-plan": {
+    "status": 200,
+    "hash": "bea381ec79b47ebfed999c2d5aeae3284c4717969af2fc8bf21713ccfc0ffe0e",
+    "title": "ประกันสุขภาพ Health O-X Plan | ฟอลคอนประกันภัย",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://cms.falconinsurance.co.th/wp-content/uploads/2022/11/Health-OX-Plan_coverage_coverage.jpg": {
+    "status": 200,
+    "hash": "089ed2f1d3e3f101fa340a0b249a8acfeb5024ac7cec32af50962598e792de0c",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.fwd.co.th/files/v3/assets/blt331c1aa12dcfd37a/blt36c0cfb8786a9cb3/67c00c02938bf55c6ef9b388/TH_Brochure_FWD_Precious_Protection_2025.pdf": {
+    "status": 200,
+    "hash": "de0833e9fc769012520f398c8402b56034b8259d55cda418b3ef17d2b8604394",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.fwd.co.th/files/v3/assets/blt331c1aa12dcfd37a/bltab2941a67fd44909/6669669346a03743bda265b1/TH_Brochure_Whole_Life_99-99.pdf": {
+    "status": 200,
+    "hash": "9f6f0607b535b6b85d71315515b01264e45dd0e4265f3cc3b74f3483cbee02fb",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.fwd.co.th/files/v3/assets/blt331c1aa12dcfd37a/blt3866802f75fca3b6/69521ad46ae381bb2f51eca9/TH_Brochure_Prima_Care_V1.pdf": {
+    "status": 200,
+    "hash": "f818d858f8abd16d83fa3634676465287a79c763d8e40a0f642ffc3b30c84d0b",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://generali.co.th/download/brochure-gen-health-hero-plus/?wpdmdl=95007": {
+    "status": 200,
+    "hash": "0d32ba06ec6eda4b8b484aae1834ab16ee791dd564a753c32cab4deda048f276",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://generali.co.th/individual-insurance/gen-health-hero-2/": {
+    "status": 200,
+    "hash": "82c499a2c1cec830374732939227102f37853475d09a356b8ce7616d13a92643",
+    "title": "ประกันชีวิตGen Health Hero Plus | Global Standard Insurance Company in Thailand | GENERALI",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://thailandgi-ktaxa.cdn.prismic.io/thailandgi-ktaxa/aRs0prpReVYa4jIi_AG_A4_Brochure_HealthUltra.pdf": {
+    "status": 200,
+    "hash": "f00265413cfe8ddacfa941282a5f48e5363f84e160097488dc73ab206f84456b",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://thailandgi-ktaxa.cdn.prismic.io/thailandgi-ktaxa/aRs2NbpReVYa4jNL_AG_A4_Brochure_iHealthyultra4plans.pdf": {
+    "status": 200,
+    "hash": "02d9540a9308f9afac321f79f25234da3d3df6dcd7064f8d837ecb27e2e23822",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://thailandgi-ktaxa.cdn.prismic.io/thailandgi-ktaxa/aRs2P7pReVYa4jNO_Exception_iHealthy_Ultra-1--1-.pdf": {
+    "status": 200,
+    "hash": "cb478e82caa65151be0218767c7ea3f7cfa2da7cbd41819b54b97d42a9937683",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://mticonnect-resources.muangthaiinsurance.com/product/files_01-2026_1767929124256.pdf": {
+    "status": 200,
+    "hash": "39e18a35c169a5f18bc272cfc3b573ed0ddc5b2e4f5c51e5b40a9c715ed19f4a",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.muangthai.co.th/th/health-insurance/elite-health-plus": {
+    "status": 200,
+    "hash": "71559c9decbefe00a9241c756f7563363f817ca214ab68ba473d312d716b4233",
+    "title": "สัญญาเพิ่มเติม ประกันสุขภาพ อีลิท เฮลท์ พลัส (Elite Health Plus)",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.muangthai-agent.com/product/318094/maternity-plus": {
+    "status": 200,
+    "hash": "6729a4e60c673ce0d1634b2731743366bd22f9f1004d508b8fbce8064dea8c1c",
+    "title": "ความคุ้มครองการคลอดบุตร พลัส (Maternity Plus)",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.muangthai.co.th/filestorage/brochures/04-0480_%20EliteHealthPlus_TH_20250221.pdf": {
+    "status": 200,
+    "hash": "c9a217b37dec65e332ced57429e8c6470d5deab6849fac54582aec1a38d6a447",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.navakij.co.th/public/core/uploaded/insurance/file/95625a78cb596c44869408c9a708651b.pdf": {
+    "status": 404,
+    "hash": "5e72b6a95c25646e21c57889c8e7980eaa2ed39dd9f99b4ba4f139dfab638b7a",
+    "title": "404 Not Found",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.navakij.co.th/th/products/miscellaneous-insurance/ประกัน-๕-ยอด-มีไว้ยอดเยี่ยม-หมดห่วงเรื่องประกัน": {
+    "status": 200,
+    "hash": "cd27e9c4f968a8286e4a44b038cdf50710695ecd904b35d6165341af07cd3a2a",
+    "title": "ประกันสุขภาพลดหย่อนภาษีได้",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.ocean.co.th/our-products/health-insurance/enjoy-health-extra/download/brochure": {
+    "status": 200,
+    "hash": "06b45e958ecbb58cb06eed872ca044b3f8cd579c274bc3fe8b82db08ba71a167",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.ocean.co.th/our-products/health-insurance/enjoy-health-extra": {
+    "status": 200,
+    "hash": "ba5142c3be0cf4bee7dd20dc8419ef0eaa2de97720ee2462508b05313a26cc67",
+    "title": "โอเชี่ยนไลฟ์ เอ็นจอย เฮลท์ เอ็กซ์ตร้า",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.ocean.co.th/our-products/health-insurance/ochi-small-health-package?purchase_intent=1": {
+    "status": 200,
+    "hash": "56ec9ca03bc5c312165d608903bfae8f599fe1b205f8509dd39e80aad04d0a8e",
+    "title": "ประกันสุขภาพ ไม่ต้องตรวจสุขภาพ โอชิ สมอล เฮลท์",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.ocean.co.th/our-products/health-insurance/ochi-small-health-package/download/benefit": {
+    "status": 200,
+    "hash": "a5e9001a8f33d1c4606995414daa2bd52a7c5298ec3afe4967e4beaabbc692e7",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.ocean.co.th/our-products/health-insurance/supreme-health/download/brochure": {
+    "status": 200,
+    "hash": "fc21ea18dce084a91fa96816d6648d5664bd578df642c42b7571a63277a577af",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.ocean.co.th/our-products/health-insurance/supreme-health": {
+    "status": 200,
+    "hash": "173ad83b83d701db1231e3a0acff301fc841979a4b59a7140c91724de460238f",
+    "title": "โอเชี่ยนไลฟ์ ซูพรีม เฮลท์ ประกันสุขภาพ ไม่ต้องสำรองจ่าย",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://onlineapplication.pacificcrosshealth.com/index.php?lang=TH": {
+    "status": 200,
+    "hash": "a077a6f2277e2bb4c4d192b185c5d88db691afbdbb94e6af05357a7a636aec4d",
+    "title": "PCHI Registration Form",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://cdn.prod.website-files.com/685ac8dcfa95c0ec42c27bd1/685ac8dcfa95c0ec42c27f38_Policy-Wording-New-Normal-Lifestyle-Series_EN.pdf": {
+    "status": 200,
+    "hash": "6cfaa92f74babd4881d389e7076e725a787064d3b0b54c1de3d63fd268bb17c3",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.rabbitlife.co.th/products/health-protect/product-detail": {
+    "status": 200,
+    "hash": "8f8da884452da6c8d09f1d2df7642f89e74f25783e0269fe45ba900d379437f0",
+    "title": "Health Protect สัญญาเพิ่มเติมประกันสุขภาพ ผู้ป่วยในแบบ IPD – Rabbit Life Insurance PCL",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://rblwebstorageprd.blob.core.windows.net/productfiles/download_file/2026/4/HP_2025-12-22.pdf": {
+    "status": 200,
+    "hash": "9f2029405f02ab1c5157290acb0d3de1b30201deb27018a887d7a5bb17f603a4",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.southeastlife.co.th/uploads/product/pdf/20230619154520_7750.pdf": {
+    "status": null,
+    "hash": null,
+    "title": null,
+    "checked_on": "2026-11-21",
+    "error": "fetch failed"
+  },
+  "https://www.thaihealth.co.th/simply-healthy/": {
+    "status": 200,
+    "hash": "2c87cbace002f612cc6ce36a76d3b033090562efef1e0f29ff5ccb6c1584091e",
+    "title": "Simply Healthy - Thai Health Insurance",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.thaihealth.co.th/wp-content/uploads/2021/01/simplyhealthy_20171116.pdf": {
+    "status": 200,
+    "hash": "8562b0b779de53de0b41dcd12af5e143d43169b5d1fa1f902b2326b884277929",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.thaihealth.co.th/wealthy-healthy/": {
+    "status": 200,
+    "hash": "2db8db77fe75b55b8be43e0b1940961a76beb8633916028db6fe22ee68b67cf0",
+    "title": "แผน Wealthy Healthy - Thai Health Insurance",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.thaihealth.co.th/files/summary_healthy.pdf": {
+    "status": 200,
+    "hash": "da9c86e54ca414335ba8eb0b309ceda051b4c20bdea7a09e77a1890699ce3988",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://product.thailife.com/ประกันสุขภาพ/ประกันสุขภาพเฮลท์ฟิตดีดี/": {
+    "status": 403,
+    "hash": "cd06140d34b57238152dab71176514b526ec36a947cccb5926fee3c69a126db0",
+    "title": null,
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://product.thailife.com/media/wysiwyg/TL-brochure/HealthFitDD.pdf": {
+    "status": null,
+    "hash": null,
+    "title": null,
+    "checked_on": "2026-11-21",
+    "error": "terminated"
+  },
+  "https://product.thailife.com/ประกันสุขภาพ/เฮลท์ฟิตชีลด์/": {
+    "status": null,
+    "hash": null,
+    "title": null,
+    "checked_on": "2026-11-21",
+    "error": "terminated"
+  },
+  "https://product.thailife.com/ประกันสุขภาพ/ประกันสุขภาพเฮลท์ฟิตอัลตร้า/": {
+    "status": null,
+    "hash": null,
+    "title": null,
+    "checked_on": "2026-11-21",
+    "error": "fetch failed"
+  },
+  "https://health.thaivivat.co.th/active-health": {
+    "status": 200,
+    "hash": "2d5b0e1495e63f9b73e4592afc96e4f1e79a3d6fedbdab174f48989cbf0861e9",
+    "title": "ประกันสุขภาพ Active Health | ยิ่งออกกำลังกาย เบี้ยยิ่งลด สูงสุด 40%",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.thaivivat.co.th/th/pdf/T%26C_TVI_Active_Health.pdf": {
+    "status": 200,
+    "hash": "0bd4d50687618af7f7fcc88e0e9aa9052f4a4195b79cc57846e8231557999fce",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://vinsure.viriyah.co.th/insurance/health/v-prestige-care": {
+    "status": 200,
+    "hash": "c6591cef71c284ba28b81580db8c7a66f091b6baaf0a7d3d1b9067af92ad06d6",
+    "title": "วี เพรสทีจ แคร์ ประกันสุขภาพเหมาจ่าย คุ้มครองสูงสุด 4,500,000 บาท | วิริยะประกันสุขภาพ",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://vinsure.viriyah.co.th/VHealth/media/Brochure/BrochureDeduct/v-prestige-care-deduct-coverage-aug.pdf": {
+    "status": 200,
+    "hash": "fd62e83f5829d2231d9581119e20000c516d2d602c0726fcc9ef0b1ff018811b",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.cgd.go.th/cs/internet/internet/(รักษา)กฎหมายระเบียบบ.html": {
+    "status": 403,
+    "hash": "ef508fea269213caaed7a554e8bd341d39cbe0bb451adc4e79e80c83c7612538",
+    "title": "Attention Required! | Cloudflare",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.sso.go.th/wpr/assets/upload/files_storage/sso_th/1d936c61bf5d6cc1f7a51ffdb2f9bd2c.pdf": {
+    "status": null,
+    "hash": null,
+    "title": null,
+    "checked_on": "2026-11-21",
+    "error": "fetch failed"
+  },
+  "https://www.nhso.go.th/th/population-th/2024-08-20-15-19-43/30-bath-th-2": {
+    "status": 200,
+    "hash": "379d9d0d203ea6fc11f71351def21f3ba4e412427e1128ffb704f3d481b76b88",
+    "title": "30 บาทรักษาทุกที่",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.axa.co.th/th/personal/health-insurance/cancer": {
+    "status": 200,
+    "hash": "a0bb826862c1ca7b8dfb205be7f7a61e547418a09d251175824847e585a6d169",
+    "title": "ประกันมะเร็ง AXA SmartCare Cancer เจอ จ่าย จบ โรคมะเร็ง",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.axa.co.th/en/personal/health-insurance": {
+    "status": 200,
+    "hash": "2bb14a66ba9354992161bb45de12fa6d02fa1382484b64b2132db2401f05dab7",
+    "title": "AXA Health Insurance For Locals and Expats in Thailand",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.axa.co.th/th/personal/health-insurance/visa-plan": {
+    "status": 200,
+    "hash": "e2a9ff37d308039a01b556b720a92c154fcb82b7f9e41e35dfaa6dc189b4a42a",
+    "title": "ประกันสุขภาพสำหรับชาวต่างชาติ AXA EasyCare Visa",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.axa.co.th/th/personal/health-insurance/value-plan": {
+    "status": 200,
+    "hash": "bce34845d99d69058741e78063f7746a6e296a2cf91137d65b84d6282410ff60",
+    "title": "ประกันสุขภาพเหมาจ่าย AXA SmartCare Value",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.bangkokinsurance.com/th/product/health/new": {
+    "status": 200,
+    "hash": "623ed349eda2f9f0efaf21c232c26cede18d2209df9c1b53cddafce042941f18",
+    "title": "บริษัท กรุงเทพประกันภัย จำกัด (มหาชน) : ประกันภัยสุขภาพ",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.bangkokinsurance.com/product/health/new/register?care_name=CASUPERIOR": {
+    "status": 200,
+    "hash": "c0fd3e94cacf9c6eeee7a73d032627a7f13f998732fa55118a9e13670198603e",
+    "title": "บริษัท กรุงเทพประกันภัย จำกัด (มหาชน) : ประกันภัยสุขภาพ",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.bangkokinsurance.com/download/AIS/selling-kit/Selling%20kit%20สุขภาพ%20Superior.pdf": {
+    "status": 200,
+    "hash": "e895d8abfd7420d8c4ca655ac6ac168da8389908ee909278e205cc0aa617c761",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.deves.co.th/th/customer-service/claims/": {
+    "status": 200,
+    "hash": "fcb76c2be55a5e4e02c6774990f859f2b9aa18055c4b069d250c161de8f7783e",
+    "title": "Deves",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.msig-thai.com/th/personal-insurance/seasonal-diseases": {
+    "status": 200,
+    "hash": "12598b1e280a8a17c144eeef45e6da127650c95b2c60946b7d0c2b231afde392",
+    "title": "ประกันภัยโรคสุดฮิต Seasonal Diseases | MSIG ประกันภัย",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.scb.co.th/content/dam/scb/personal-banking/insurance/scb-m-insurance/documents/scb-m-health.pdf?MRK_CMPG_SOURCE=gk_hl": {
+    "status": 200,
+    "hash": "e9f781965de4f50c99c1ae525581f13e7ff14d743bef9bc574f5bbfe70e1975c",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://www.scb.co.th/th/personal-banking/insurance/health-insurance/scb-health-elite.html": {
+    "status": 200,
+    "hash": "69f1e766ecb0b2be671d4fdd33ea55d92d31bdf2743e6e379573a16e1bdf8310",
+    "title": "ประกัน SCB Health Elite",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://sundayinsurance.co.th/en/product/": {
+    "status": 404,
+    "hash": "1d544c0239d670380a30771f098891540e337e1949220e32cdb9e6ff8fef08bc",
+    "title": "Sunday Insurance",
+    "checked_on": "2026-11-21"
+  },
+  "https://static.easysunday.com/retail/policy-detail/sdi/sunday_lumpsum_ipd_opd_2000_v3_TH_20240904.pdf": {
+    "status": 200,
+    "hash": "0278955421e7cc66613172601809df3b043bb7814b00888a58d0c5be05dea857",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://health.thaivivat.co.th/uob/active-health": {
+    "status": 200,
+    "hash": "80a5c18f48d0d6c4ce644c7b38ce02147fc53365abbe0e529e04a0fe879ed3e6",
+    "title": "Thaivivat Health Ecommerce",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.tokiomarine.com/th/th/life/products/personal/riders/health/tokio-good-health-prime.html": {
+    "status": 200,
+    "hash": "7c39e3d7cf4e02fa556929c80fae49b7541b8100f57d3fedad6cb47c918c01b0",
+    "title": null,
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.tokiomarine.com/content/dam/tokiomarine/th/life/product/personal/rider/tokio-good-health-prime/BC_Tokio%20Good%20Health%20Prime%2014MAY2026-CP.pdf": {
+    "status": 200,
+    "hash": "c73195b10dc62663f6c2ff1fabed411d328884b552e7e28f6dfbdb08abf47030",
+    "title": null,
+    "checked_on": "2026-11-21"
+  },
+  "https://oiceservice.oic.or.th/company/life.php": {
+    "status": 200,
+    "hash": "ad78df0b82181faeb409a9d554ea04d225415b4d07ef9aa367dfbf9d43d1598d",
+    "title": "Life | Company",
+    "checked_on": "2026-11-21"
+  },
+  "https://oiceservice.oic.or.th/company/non_life.php": {
+    "status": 200,
+    "hash": "50b2ec6f07bd610b60a1b490299679b66abd5229f97b4b9bbe4abe940069a09c",
+    "title": "Non Life | Company",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.oic.or.th/th/news": {
+    "status": 200,
+    "hash": "f510b4127a898e59995cd92f04100abf8f5c87634841e1175fa1a4b37488ef67",
+    "title": "สำนักงานคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัย",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.aia.co.th/th/newsroom": {
+    "status": 200,
+    "hash": "f09c126ada51d96b5b6ddfb7e962f5c2d00533c310c0261b06a037ec6b98fb23",
+    "title": "404 Error",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  },
+  "https://www.fwd.co.th/th/news-and-media/press-releases/": {
+    "status": 200,
+    "hash": "30699f49643e4a8dfaa25a6db0f564c47994535435401db2ec0915950b210829",
+    "title": "FWD",
+    "checked_on": "2026-11-21"
+  },
+  "https://generali.co.th/en/news-event/": {
+    "status": 200,
+    "hash": "0dcea94c0cbb89cf2ef14bcec7a67ddd9ae0505790fb588b0e5966f358d4ec7e",
+    "title": "ข่าวและบทความ Archives | Global Standard Insurance Company in Thailand | GENERALI",
+    "checked_on": "2026-11-21"
+  },
+  "https://www.muangthai.co.th/th/news": {
+    "status": 200,
+    "hash": "9f4cce35b04c3dbaf9a86955817eed59971b17df86a89d8f5251093f41a942b0",
+    "title": "ขออภัย ไม่พบหน้าที่คุณต้องการ",
+    "checked_on": "2026-11-21",
+    "volatile": true
+  }
+}
